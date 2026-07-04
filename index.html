@@ -3,303 +3,250 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BumiLokal — Warisan Bumi, Diracik dengan Tanggung Jawab</title>
-<meta name="description" content="BumiLokal meracik kosmetik herbal dari resep kecantikan leluhur Nusantara, bersumber dari petani mitra lokal, dengan produksi 100% bertanggung jawab.">
+<title>Navora — Produk Lokal Berkelanjutan Nusantara</title>
+<meta name="description" content="Navora menghadirkan produk kecantikan, rumah tangga, dan pangan lokal berkelanjutan dari petani dan pengrajin mitra di seluruh Nusantara.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,340;0,9..144,450;0,9..144,560;1,9..144,340;1,9..144,450&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ====== NAV ====== -->
+<div class="topbar">
+  <div class="topbar__inner">
+    <span>Pengiriman gratis untuk pembelian di atas Rp 250.000 ke seluruh Indonesia</span>
+    <div class="topbar__links">
+      <a href="#">Tentang Kami</a>
+      <a href="#">FAQ</a>
+      <a href="https://wa.me/6281234567890" target="_blank" rel="noopener">Hubungi Kami</a>
+    </div>
+  </div>
+</div>
+
 <header class="nav" id="nav">
   <div class="nav__inner">
-    <a href="#top" class="nav__logo">
-      <span class="nav__mark" aria-hidden="true">
-        <svg viewBox="0 0 40 40" width="26" height="26"><circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M20 8c4 5 4 11 0 12-4-1-4-7 0-12Z" fill="currentColor"/><path d="M20 32c-4-5-4-11 0-12 4 1 4 7 0 12Z" fill="currentColor"/></svg>
-      </span>
-      BumiLokal
-    </a>
-    <nav class="nav__links" id="navLinks">
-      <a href="#filosofi">Filosofi</a>
-      <a href="#peta">Peta Warisan</a>
-      <a href="#prinsip">Keberlanjutan</a>
-      <a href="#katalog">Katalog</a>
-      <a href="#cerita">Cerita</a>
+    <a href="index.html" class="nav__logo">N<em>a</em>vora</a>
+    <nav class="nav__links">
+      <a href="index.html" class="is-active">Beranda</a>
+      <a href="shop.html">Toko</a>
+      <a href="index.html#peta">Peta Warisan</a>
+      <a href="index.html#tentang">Tentang</a>
     </nav>
     <div class="nav__actions">
       <button class="icon-btn" id="searchToggle" aria-label="Cari produk" aria-expanded="false">
-        <svg viewBox="0 0 24 24" width="19" height="19"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M21 21l-5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 24 24" width="18" height="18"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M21 21l-5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
       </button>
-      <a href="https://wa.me/6281234567890" class="btn btn--dark btn--sm" target="_blank" rel="noopener">Pesan via WhatsApp</a>
+      <button class="icon-btn" aria-label="Wishlist">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 21s-7-4.35-9.5-8.5C.9 9.2 2.3 6 5.6 6c1.9 0 3.3 1 4.4 2.4C11.1 7 12.5 6 14.4 6c3.3 0 4.7 3.2 3.1 6.5C19 16.65 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span class="icon-btn__badge" id="wishlistBadge">0</span>
+      </button>
+      <a href="https://wa.me/6281234567890" class="btn btn--wa btn--sm" target="_blank" rel="noopener">Pesan via WhatsApp</a>
     </div>
-    <button class="nav__burger" id="burger" aria-label="Buka menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="nav__burger" id="burger" aria-label="Buka menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
   <div class="nav__search" id="navSearch">
     <div class="nav__search-inner">
       <svg viewBox="0 0 24 24" width="18" height="18"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M21 21l-5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-      <input type="text" id="productSearch" placeholder="Cari produk, mis. “cendana” atau “beras”…">
+      <input type="text" placeholder="Cari di seluruh katalog Navora…" onkeydown="if(event.key==='Enter'){window.location.href='shop.html?q='+encodeURIComponent(this.value)}">
     </div>
   </div>
 </header>
 
-<!-- ====== HERO ====== -->
-<section class="hero" id="top">
-  <div class="hero__blob hero__blob--1" aria-hidden="true"></div>
-  <div class="hero__blob hero__blob--2" aria-hidden="true"></div>
+<div class="catbar">
+  <div class="catbar__inner">
+    <a href="shop.html?cat=health">Health &amp; Beauty</a>
+    <a href="shop.html?cat=home">Home &amp; Living</a>
+    <a href="shop.html?cat=food">Food</a>
+    <a href="shop.html">Semua Produk</a>
+  </div>
+</div>
 
-  <div class="container hero__grid">
-    <div class="hero__content">
-      <p class="eyebrow"><span class="eyebrow__dot"></span>Sustainable Heritage Skincare</p>
-      <h1 class="hero__title">
-        Kecantikan Warisan,<br>
-        <em>di Setiap</em> Tetes.
-      </h1>
-      <p class="hero__desc">
-        BumiLokal menghidupkan kembali resep kecantikan leluhur Nusantara —
-        kunyit dari sawah Yogyakarta, cendana dari bukit Sumba, sirih dari
-        hutan Kalimantan — diracik bersama petani mitra, tanpa limbah,
-        tanpa plastik sekali pakai.
-      </p>
-      <div class="hero__actions">
-        <a href="#katalog" class="btn btn--dark">Jelajahi Katalog</a>
-        <a href="#peta" class="btn btn--outline">Telusuri Asal Bahan</a>
-      </div>
-
-      <div class="hero__features">
-        <div class="hf">
-          <svg viewBox="0 0 40 40" class="hf__icon" aria-hidden="true"><path d="M20 8c8 6 10 16 4 24-8-2-12-14-4-24Z" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M14 30c6-14 22-16 22-16" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
-          <div><strong>100% Alami</strong><span>Bahan Baku Lokal</span></div>
+<!-- ====== HERO SLIDER ====== -->
+<section class="hero">
+  <div class="hero__slides" id="heroSlides">
+    <div class="slide is-active">
+      <div class="slide__inner">
+        <div>
+          <p class="slide__eyebrow">Alam &amp; Nusantara</p>
+          <h1 class="slide__title"><em>Alam yang Murni,</em><strong>Segar dari Nusantara.</strong></h1>
+          <p class="slide__desc">Produk kecantikan, rumah tangga, dan pangan lokal dari petani serta pengrajin mitra — organik, adil, dan minim jejak plastik.</p>
+          <a href="shop.html" class="btn btn--primary">Belanja Sekarang</a>
         </div>
-        <div class="hf">
-          <svg viewBox="0 0 40 40" class="hf__icon" aria-hidden="true"><path d="M20 6c6 8 10 16 10 22a10 10 0 0 1-20 0c0-6 4-14 10-22Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
-          <div><strong>Teruji Aman</strong><span>Tanpa Bahan Berbahaya</span></div>
-        </div>
-        <div class="hf">
-          <svg viewBox="0 0 40 40" class="hf__icon" aria-hidden="true"><circle cx="20" cy="20" r="4" fill="currentColor"/><path d="M20 6c4 6 4 10 0 14M20 34c4-6 4-10 0-14M6 20c6-4 10-4 14 0M34 20c-6 4-10 4-14 0" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
-          <div><strong>Resep Leluhur</strong><span>Warisan Turun-Temurun</span></div>
+        <div class="slide__visual">
+          <svg viewBox="0 0 380 380" id="slideVisual1"></svg>
         </div>
       </div>
     </div>
-
-    <div class="hero__visual">
-      <div class="hero__frame">
-        <svg viewBox="0 0 480 560" class="hero__illustration" aria-hidden="true">
-          <defs>
-            <radialGradient id="bgGlow" cx="50%" cy="35%" r="65%">
-              <stop offset="0%" stop-color="#F6E9D6"/>
-              <stop offset="100%" stop-color="#E7D3B4"/>
-            </radialGradient>
-            <linearGradient id="bottleGlass" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#8A5A2E"/>
-              <stop offset="100%" stop-color="#5E3A1C"/>
-            </linearGradient>
-            <radialGradient id="flameGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#F3B45B" stop-opacity="0.9"/>
-              <stop offset="100%" stop-color="#F3B45B" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-
-          <rect x="0" y="0" width="480" height="560" rx="26" fill="url(#bgGlow)"/>
-
-          <!-- soft shadow podium -->
-          <ellipse cx="240" cy="472" rx="150" ry="20" fill="#3A2A18" opacity="0.14"/>
-          <!-- stone podium -->
-          <ellipse cx="240" cy="452" rx="128" ry="30" fill="#C9B189"/>
-          <ellipse cx="240" cy="444" rx="128" ry="26" fill="#D8C4A0"/>
-          <ellipse cx="240" cy="440" rx="100" ry="16" fill="#E7D8BC"/>
-
-          <!-- candle -->
-          <g transform="translate(350,330)">
-            <circle r="46" fill="url(#flameGlow)"/>
-            <rect x="-26" y="20" width="52" height="70" rx="6" fill="#C9773E" opacity="0.9"/>
-            <ellipse cx="0" cy="20" rx="26" ry="7" fill="#E3A268"/>
-            <path d="M0 -14c6 8 6 16 0 22-6-6-6-14 0-22Z" fill="#F2A93C"/>
-          </g>
-
-          <!-- olive branch -->
-          <g stroke="#5C6F45" stroke-width="4" fill="none" stroke-linecap="round">
-            <path d="M120 90c40 20 70 60 78 110"/>
-          </g>
-          <g fill="#63784A">
-            <ellipse cx="128" cy="100" rx="16" ry="7" transform="rotate(-30 128 100)"/>
-            <ellipse cx="150" cy="118" rx="17" ry="7" transform="rotate(-15 150 118)"/>
-            <ellipse cx="168" cy="145" rx="16" ry="7" transform="rotate(5 168 145)"/>
-            <ellipse cx="182" cy="175" rx="17" ry="7" transform="rotate(20 182 175)"/>
-            <ellipse cx="192" cy="205" rx="16" ry="7" transform="rotate(35 192 205)"/>
-          </g>
-
-          <!-- dropper bottle -->
-          <g transform="translate(240,300)">
-            <rect x="-52" y="-40" width="104" height="180" rx="14" fill="url(#bottleGlass)"/>
-            <rect x="-52" y="-40" width="104" height="180" rx="14" fill="#000" opacity="0.06"/>
-            <rect x="-24" y="-92" width="48" height="56" rx="6" fill="#241C15"/>
-            <rect x="-10" y="-118" width="20" height="30" fill="#241C15"/>
-            <rect x="-14" y="-128" width="28" height="12" rx="4" fill="#3A2E22"/>
-
-            <!-- label -->
-            <rect x="-40" y="-4" width="80" height="98" rx="4" fill="#F3EAD9"/>
-            <circle cx="0" cy="16" r="10" fill="none" stroke="#8A5A2E" stroke-width="1.4"/>
-            <path d="M0 9c3 4 3 8 0 12-3-4-3-8 0-12Z" fill="#8A5A2E"/>
-            <text x="0" y="42" text-anchor="middle" font-family="Fraunces, serif" font-size="10" letter-spacing="1.5" fill="#241C15">BUMILOKAL</text>
-            <text x="0" y="58" text-anchor="middle" font-family="Manrope, sans-serif" font-size="6.5" letter-spacing="1.2" fill="#8A5A2E">SERUM CENDANA</text>
-            <text x="0" y="80" text-anchor="middle" font-family="Manrope, sans-serif" font-size="6" letter-spacing="0.6" fill="#6B5D48">NUTRISI · KELEMBAPAN</text>
-          </g>
-
-          <!-- small leaves foreground -->
-          <g fill="#7C9256" opacity="0.9">
-            <ellipse cx="95" cy="470" rx="20" ry="8" transform="rotate(-20 95 470)"/>
-            <ellipse cx="118" cy="482" rx="16" ry="7" transform="rotate(10 118 482)"/>
-          </g>
-        </svg>
-        <span class="hero__frame-tag">Serum Cendana · 30 ml</span>
+    <div class="slide">
+      <div class="slide__inner">
+        <div>
+          <p class="slide__eyebrow">Kurasi Petani Mitra</p>
+          <h1 class="slide__title"><em>Adil bagi Bumi,</em><strong>Adil bagi Petani.</strong></h1>
+          <p class="slide__desc">Setiap produk membawa cerita asal-usulnya — dari kebun kunyit di Yogyakarta hingga hutan cendana di Sumba.</p>
+          <a href="index.html#peta" class="btn btn--outline">Telusuri Peta Warisan</a>
+        </div>
+        <div class="slide__visual">
+          <svg viewBox="0 0 380 380" id="slideVisual2"></svg>
+        </div>
       </div>
+    </div>
+    <div class="slide">
+      <div class="slide__inner">
+        <div>
+          <p class="slide__eyebrow">Diskon Peluncuran</p>
+          <h1 class="slide__title"><em>Hemat 20%</em><strong>untuk Pemesanan Pertama.</strong></h1>
+          <p class="slide__desc">Gunakan kode <strong>NAVORA20</strong> saat memesan lewat WhatsApp untuk pembelian pertama Anda.</p>
+          <a href="https://wa.me/6281234567890" class="btn btn--primary" target="_blank" rel="noopener">Klaim Sekarang</a>
+        </div>
+        <div class="slide__visual">
+          <svg viewBox="0 0 380 380" id="slideVisual3"></svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="hero__arrow hero__arrow--prev" id="heroPrev" aria-label="Sebelumnya">
+    <svg viewBox="0 0 24 24" width="18" height="18"><path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <button class="hero__arrow hero__arrow--next" id="heroNext" aria-label="Berikutnya">
+    <svg viewBox="0 0 24 24" width="18" height="18"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </button>
+  <div class="hero__dots" id="heroDots"></div>
+</section>
+
+<!-- ====== FEATURE STRIP ====== -->
+<section class="features">
+  <div class="container features__grid">
+    <div class="feature">
+      <svg class="feature__icon" viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M20 10c5 5 5 15 0 20" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      <div><strong>Kurasi Lokal</strong><span>Dari 80+ pengrajin &amp; petani mitra</span></div>
+    </div>
+    <div class="feature">
+      <svg class="feature__icon" viewBox="0 0 40 40"><path d="M8 30V16l12-8 12 8v14" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M14 30v-8h12v8" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      <div><strong>Buatan Tangan</strong><span>Diproduksi dalam batch kecil</span></div>
+    </div>
+    <div class="feature">
+      <svg class="feature__icon" viewBox="0 0 40 40"><path d="M20 8c8 6 10 16 4 24-8-2-12-14-4-24Z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+      <div><strong>100% Alami</strong><span>Bebas bahan kimia berbahaya</span></div>
+    </div>
+    <div class="feature">
+      <svg class="feature__icon" viewBox="0 0 40 40"><rect x="6" y="16" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M24 20h6l4 5v5h-10Z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="14" cy="32" r="2.4" fill="currentColor"/><circle cx="28" cy="32" r="2.4" fill="currentColor"/></svg>
+      <div><strong>Kirim Seluruh Indonesia</strong><span>Kemasan aman &amp; ramah lingkungan</span></div>
     </div>
   </div>
 </section>
 
-<!-- ====== FILOSOFI / STORYTELLING ====== -->
-<section class="story" id="filosofi">
-  <div class="container story__grid">
-    <div class="story__art" aria-hidden="true">
-      <svg viewBox="0 0 420 480" class="story__illustration">
-        <ellipse cx="210" cy="420" rx="150" ry="24" fill="var(--clay)" opacity="0.12"/>
-        <path d="M90 330c0 68 54 116 120 116s120-48 120-116c0-13-11-23-25-21-8 58-48 96-95 96s-87-38-95-96c-14-2-25 8-25 21Z" fill="var(--clay)"/>
-        <ellipse cx="210" cy="328" rx="120" ry="22" fill="var(--clay-light)"/>
-        <ellipse cx="210" cy="328" rx="95" ry="14" fill="var(--paper)"/>
-        <path d="M150 292c10-30 30-88 70-138" stroke="var(--sirih)" stroke-width="9" stroke-linecap="round" fill="none"/>
-        <circle cx="150" cy="292" r="15" fill="var(--turmeric)"/>
-        <circle cx="222" cy="156" r="13" fill="var(--sirih)"/>
-        <g class="floating-leaf"><path d="M270 118c24 5 38 27 34 50-24-5-38-27-34-50Z" fill="var(--sirih)"/></g>
-        <g class="floating-leaf floating-leaf--slow"><path d="M320 196c19 10 27 33 15 52-19-10-27-33-15-52Z" fill="var(--turmeric-light)"/></g>
+<!-- ====== KATEGORI ====== -->
+<section class="catgrid">
+  <div class="container">
+    <div class="catgrid__head">
+      <div>
+        <p class="eyebrow"><span class="eyebrow__dot"></span>Belanja per Kategori</p>
+        <h2 class="h2">Tiga Dunia,<br>Satu Prinsip Keberlanjutan.</h2>
+      </div>
+      <a href="shop.html" class="btn btn--outline btn--sm">Lihat Semua Produk</a>
+    </div>
+    <div class="catgrid__row">
+      <article class="catcard">
+        <div class="catcard__icon" style="background:var(--clay-light);">
+          <svg viewBox="0 0 40 40"><path d="M20 8c8 6 10 16 4 24-8-2-12-14-4-24Z" fill="none" stroke="var(--clay)" stroke-width="1.8"/></svg>
+        </div>
+        <h3>Health &amp; Beauty</h3>
+        <p>Perawatan raga &amp; estetika berbahan organik, minim plastik.</p>
+        <a href="shop.html?cat=health">Jelajahi kategori →</a>
+      </article>
+      <article class="catcard">
+        <div class="catcard__icon" style="background:var(--gold-light);">
+          <svg viewBox="0 0 40 40"><path d="M8 30V16l12-8 12 8v14" fill="none" stroke="var(--gold)" stroke-width="1.8"/><path d="M14 30v-8h12v8" fill="none" stroke="var(--gold)" stroke-width="1.8"/></svg>
+        </div>
+        <h3>Home &amp; Living</h3>
+        <p>Griya &amp; gaya hidup lestari, kurangi sekali pakai di rumah.</p>
+        <a href="shop.html?cat=home">Jelajahi kategori →</a>
+      </article>
+      <article class="catcard">
+        <div class="catcard__icon" style="background:var(--green-light);">
+          <svg viewBox="0 0 40 40"><path d="M14 8c0 8-6 10-6 18a12 12 0 0 0 24 0c0-8-6-10-6-18" fill="none" stroke="var(--green)" stroke-width="1.8"/></svg>
+        </div>
+        <h3>Food</h3>
+        <p>Pangan lokal &amp; berkelanjutan, adil bagi petani Nusantara.</p>
+        <a href="shop.html?cat=food">Jelajahi kategori →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FEATURED PRODUCTS ====== -->
+<section class="productsection">
+  <div class="container">
+    <div class="productsection__head">
+      <div>
+        <p class="eyebrow"><span class="eyebrow__dot"></span>Produk Pilihan</p>
+        <h2 class="h2">Favorit Pelanggan<br>Minggu Ini.</h2>
+      </div>
+      <a href="shop.html" class="btn btn--outline btn--sm">Lihat Semua</a>
+    </div>
+    <div class="productgrid" id="featuredGrid"></div>
+  </div>
+</section>
+
+<!-- ====== ABOUT BAND ====== -->
+<section class="aboutband" id="tentang">
+  <div class="container aboutband__grid">
+    <div>
+      <p class="eyebrow"><span class="eyebrow__dot"></span>Toko oleh Orang Baik</p>
+      <h2 class="h2">Untuk Orang Baik,<br>oleh Orang Baik.</h2>
+      <p class="lead">
+        Navora adalah rumah bagi produk lokal berkelanjutan — dibuat oleh
+        petani, pengrajin, dan peracik kecil di seluruh Nusantara. Kami
+        percaya konsumsi yang bertanggung jawab dimulai dari tahu persis
+        siapa yang membuat produk yang kita pakai, dan dari mana asalnya.
+      </p>
+      <div class="aboutband__stats">
+        <div class="stat"><strong>80+</strong><span>Petani &amp; Pengrajin Mitra</span></div>
+        <div class="stat"><strong>32</strong><span>Produk Berkelanjutan</span></div>
+        <div class="stat"><strong>12</strong><span>Provinsi Asal Bahan</span></div>
+      </div>
+    </div>
+    <div class="aboutband__art">
+      <svg viewBox="0 0 380 340">
+        <circle cx="190" cy="170" r="150" fill="var(--white)" opacity="0.6"/>
+        <path d="M120 230c0 40 30 68 70 68s70-28 70-68c0-8-6-14-15-13-5 34-28 56-55 56s-50-22-55-56c-9-1-15 5-15 13Z" fill="var(--clay)"/>
+        <ellipse cx="190" cy="228" rx="70" ry="14" fill="var(--clay-light)"/>
+        <path d="M150 200c6-18 18-52 42-82" stroke="var(--green)" stroke-width="6" stroke-linecap="round" fill="none"/>
+        <circle cx="150" cy="200" r="10" fill="var(--gold)"/>
+        <circle cx="192" cy="118" r="9" fill="var(--sirih)"/>
       </svg>
     </div>
-
-    <div class="story__text">
-      <p class="eyebrow"><span class="eyebrow__dot"></span>Filosofi Kami</p>
-      <h2 class="h2">Dari Dapur Nenek,<br>ke Meja Rias Masa Kini.</h2>
-      <p class="story__lead">
-        Jauh sebelum kata "skincare" dikenal, perempuan Nusantara sudah
-        meracik jamu ratus, lulur rempah, dan minyak wangi dari apa yang
-        tumbuh di halaman rumah. BumiLokal lahir dari niat sederhana:
-        mendokumentasikan resep-resep itu sebelum hilang ditelan zaman —
-        dan membagikannya kembali dengan cara yang adil bagi bumi dan
-        bagi tangan yang menanamnya.
-      </p>
-
-      <div class="story__panels">
-        <div class="panel">
-          <span class="panel__mark">Dicatat</span>
-          <p>Kami menelusuri resep dari ibu-ibu peracik jamu di lebih dari
-          12 desa, mencatat takaran dan cerita sebelum diformulasikan
-          ulang secara aman dan teruji.</p>
-        </div>
-        <div class="panel">
-          <span class="panel__mark">Ditanam</span>
-          <p>Setiap bahan bersumber dari kebun petani mitra yang menanam
-          secara musiman — tanpa eksploitasi lahan, tanpa panen paksa di
-          luar musim.</p>
-        </div>
-        <div class="panel">
-          <span class="panel__mark">Diracik</span>
-          <p>Diproduksi dalam batch kecil di dapur produksi lokal, sisa
-          rempah dikomposkan, air pengolahan disaring ulang sebelum
-          dibuang.</p>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- ====== PRINSIP KEBERLANJUTAN (SDG 12) ====== -->
-<section class="prinsip" id="prinsip">
-  <div class="container">
-    <p class="eyebrow"><span class="eyebrow__dot"></span>Prinsip Kami · SDG 12</p>
-    <h2 class="h2">Konsumsi dan Produksi<br>yang Bertanggung Jawab.</h2>
-
-    <div class="prinsip__grid">
-      <article class="prinsip-card">
-        <svg class="prinsip-card__icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6c8 8 8 20 0 24-8-4-8-16 0-24Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 40c6-10 18-10 24 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        <h3>Bahan Musiman &amp; Lokal</h3>
-        <p>Kami hanya memanen saat musimnya tiba, menjaga siklus tanam tetap sehat dan mencegah eksploitasi lahan petani mitra.</p>
-      </article>
-      <article class="prinsip-card">
-        <svg class="prinsip-card__icon" viewBox="0 0 48 48" aria-hidden="true"><rect x="14" y="10" width="20" height="30" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14 20h20M20 10v-4h8v4" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-        <h3>Kemasan Guna Ulang</h3>
-        <p>Botol kaca dapat dikembalikan dan diisi ulang di gerai mitra kami; label menggunakan kertas serat pisang yang mudah terurai.</p>
-      </article>
-      <article class="prinsip-card">
-        <svg class="prinsip-card__icon" viewBox="0 0 48 48" aria-hidden="true"><circle cx="18" cy="18" r="8" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="30" cy="30" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M23 23l4 4" stroke="currentColor" stroke-width="2"/></svg>
-        <h3>Kemitraan Adil</h3>
-        <p>Petani mitra menerima harga tetap di atas pasar, terlepas dari fluktuasi musim — kami berbagi risiko, bukan cuma hasil.</p>
-      </article>
-      <article class="prinsip-card">
-        <svg class="prinsip-card__icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M10 30c0-11 9-20 20-20M38 18c0 11-9 20-20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M26 6l4 4-4 4M22 42l-4-4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        <h3>Produksi Nol Sisa</h3>
-        <p>Ampas rempah dikomposkan menjadi pupuk untuk kebun petani; air limbah diolah ulang sebelum kembali ke tanah.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ====== PETA WARISAN (SIGNATURE INTERACTIVE) ====== -->
+<!-- ====== PETA WARISAN NUSANTARA (signature) ====== -->
 <section class="heritage" id="peta">
   <div class="container">
-    <p class="eyebrow eyebrow--light"><span class="eyebrow__dot eyebrow__dot--light"></span>Peta Warisan Nusantara</p>
-    <h2 class="h2 h2--light">Setiap Botol, Membawa<br>Cerita dari Tanahnya.</h2>
-    <p class="heritage__lead">
-      Sentuh atau ketuk setiap titik pada peta Indonesia untuk menelusuri
-      dari desa mana bahan itu berasal, siapa yang menanamnya, dan
-      bagaimana kami menjaga keberlanjutannya.
-    </p>
+    <p class="eyebrow"><span class="eyebrow__dot"></span>Peta Warisan Nusantara</p>
+    <h2 class="h2">Setiap Produk, Membawa<br>Cerita dari Tanahnya.</h2>
+    <p class="heritage__lead">Sentuh atau ketuk setiap titik pada peta Indonesia untuk menelusuri dari desa mana bahan itu berasal, siapa yang menanamnya, dan bagaimana kami menjaga keberlanjutannya.</p>
   </div>
 
   <div class="heritage__wrap container">
     <div class="heritage__map">
       <svg viewBox="0 0 900 380" class="heritage__svg" id="archipelago" role="img" aria-label="Peta interaktif asal bahan Nusantara">
-        <path d="M70 250 Q 220 300 340 280 T 520 160 T 730 170" fill="none" stroke="var(--turmeric)" stroke-width="1.4" stroke-dasharray="2 8" stroke-linecap="round" opacity="0.4"/>
-
-        <!-- Sumatra -->
+        <path d="M70 250 Q 220 300 340 280 T 520 160 T 730 170" fill="none" stroke="var(--gold)" stroke-width="1.4" stroke-dasharray="2 8" stroke-linecap="round" opacity="0.4"/>
         <path d="M70,40 C100,30 130,55 140,100 C150,150 130,200 110,240 C95,265 70,270 55,250 C35,220 30,170 35,130 C40,90 45,55 70,40 Z" class="island"/>
-        <!-- Kalimantan -->
         <path d="M260,70 C300,45 360,45 400,65 C430,80 440,110 435,145 C430,180 410,210 380,225 C345,240 300,235 275,210 C250,185 240,150 245,115 C248,95 252,80 260,70 Z" class="island"/>
-        <!-- Sulawesi -->
         <path d="M470,120 C480,100 500,95 510,110 C518,122 512,138 522,150 C535,165 555,168 565,155 C575,142 570,125 580,112 C590,100 605,102 608,116 C610,130 598,140 600,155 C602,172 615,185 610,200 C605,212 588,210 578,198 C566,184 555,190 548,205 C540,222 522,225 515,210 C508,195 515,180 505,168 C495,155 478,158 470,145 C463,133 462,128 470,120 Z" class="island"/>
-        <!-- Papua -->
         <path d="M660,110 C700,80 760,78 800,100 C835,118 850,150 845,185 C840,220 815,245 780,255 C745,265 705,258 680,235 C655,212 645,180 648,150 C650,133 652,120 660,110 Z" class="island"/>
-        <!-- Java -->
         <path d="M165,270 C200,255 260,258 300,268 C320,273 328,282 320,288 C280,300 220,298 175,288 C160,284 155,276 165,270 Z" class="island"/>
-        <!-- Bali -->
         <path d="M338,272 C348,270 356,276 354,284 C352,290 342,292 336,286 C332,280 332,275 338,272 Z" class="island"/>
-        <!-- Nusa Tenggara -->
         <path d="M362,278 C390,272 420,276 445,282 C465,286 480,292 470,298 C440,302 400,300 370,292 C360,288 356,282 362,278 Z" class="island"/>
-        <!-- Sumba -->
         <path d="M395,305 C415,300 440,302 450,310 C455,316 445,320 425,320 C405,320 392,314 395,305 Z" class="island"/>
-        <!-- Maluku (kecil) -->
         <path d="M610,175 C622,170 634,176 632,186 C630,194 616,196 608,190 C602,184 604,178 610,175 Z" class="island"/>
 
-        <!-- pins -->
-        <g class="pin" data-id="yogya" tabindex="0" role="button" aria-label="Yogyakarta — Kunyit dan Beras">
-          <circle cx="230" cy="278" r="6.5" class="pin__dot"/><circle cx="230" cy="278" r="13" class="pin__pulse"/>
-        </g>
-        <g class="pin" data-id="sunda" tabindex="0" role="button" aria-label="Jawa Barat — Beras dan Melati">
-          <circle cx="185" cy="277" r="6.5" class="pin__dot"/><circle cx="185" cy="277" r="13" class="pin__pulse"/>
-        </g>
-        <g class="pin" data-id="kalimantan" tabindex="0" role="button" aria-label="Kalimantan Barat — Sirih">
-          <circle cx="278" cy="150" r="6.5" class="pin__dot"/><circle cx="278" cy="150" r="13" class="pin__pulse"/>
-        </g>
-        <g class="pin" data-id="kenanga" tabindex="0" role="button" aria-label="Jawa Tengah — Kenanga">
-          <circle cx="258" cy="284" r="6.5" class="pin__dot"/><circle cx="258" cy="284" r="13" class="pin__pulse"/>
-        </g>
-        <g class="pin" data-id="bali" tabindex="0" role="button" aria-label="Bali — Kelapa">
-          <circle cx="344" cy="279" r="6.5" class="pin__dot"/><circle cx="344" cy="279" r="13" class="pin__pulse"/>
-        </g>
-        <g class="pin" data-id="sumba" tabindex="0" role="button" aria-label="Sumba, NTT — Cendana">
-          <circle cx="420" cy="312" r="6.5" class="pin__dot"/><circle cx="420" cy="312" r="13" class="pin__pulse"/>
-        </g>
+        <g class="pin" data-id="yogya" tabindex="0" role="button" aria-label="Yogyakarta"><circle cx="230" cy="278" r="6.5" class="pin__dot"/><circle cx="230" cy="278" r="13" class="pin__pulse"/></g>
+        <g class="pin" data-id="sunda" tabindex="0" role="button" aria-label="Jawa Barat/Timur"><circle cx="185" cy="277" r="6.5" class="pin__dot"/><circle cx="185" cy="277" r="13" class="pin__pulse"/></g>
+        <g class="pin" data-id="kalimantan" tabindex="0" role="button" aria-label="Kalimantan Barat"><circle cx="278" cy="150" r="6.5" class="pin__dot"/><circle cx="278" cy="150" r="13" class="pin__pulse"/></g>
+        <g class="pin" data-id="bali" tabindex="0" role="button" aria-label="Bali"><circle cx="344" cy="279" r="6.5" class="pin__dot"/><circle cx="344" cy="279" r="13" class="pin__pulse"/></g>
+        <g class="pin" data-id="sumba" tabindex="0" role="button" aria-label="Sumba, NTT"><circle cx="420" cy="312" r="6.5" class="pin__dot"/><circle cx="420" cy="312" r="13" class="pin__pulse"/></g>
+        <g class="pin" data-id="maluku" tabindex="0" role="button" aria-label="Pulau Buru, Maluku"><circle cx="618" cy="182" r="6.5" class="pin__dot"/><circle cx="618" cy="182" r="13" class="pin__pulse"/></g>
       </svg>
       <div class="heritage__map-labels" aria-hidden="true">
         <span style="left:8%; top:14%;">Sumatra</span>
@@ -309,122 +256,32 @@
         <span style="left:22%; top:80%;">Jawa</span>
       </div>
     </div>
-
     <aside class="heritage__card" id="heritageCard">
       <p class="heritage__card-hint">Pilih titik pada peta untuk membaca kisahnya →</p>
     </aside>
   </div>
 </section>
 
-<!-- ====== KATALOG PRODUK ====== -->
-<section class="katalog" id="katalog">
+<!-- ====== TESTIMONIALS ====== -->
+<section class="testimoni">
   <div class="container">
-    <p class="eyebrow"><span class="eyebrow__dot"></span>Katalog</p>
-    <h2 class="h2">Racikan yang Bisa<br>Anda Percaya.</h2>
-
-    <div class="katalog__filter" role="tablist" aria-label="Filter kategori produk">
-      <button class="filter-btn is-active" data-filter="semua" role="tab" aria-selected="true">Semua</button>
-      <button class="filter-btn" data-filter="wajah" role="tab" aria-selected="false">Wajah</button>
-      <button class="filter-btn" data-filter="tubuh" role="tab" aria-selected="false">Tubuh</button>
-      <button class="filter-btn" data-filter="rambut" role="tab" aria-selected="false">Rambut &amp; Ratus</button>
-    </div>
-
-    <p class="katalog__empty" id="katalogEmpty" hidden>Tidak ada produk yang cocok dengan pencarian Anda.</p>
-
-    <div class="katalog__grid" id="katalogGrid">
-      <article class="product" data-cat="tubuh" data-name="lulur rempah nusantara kunyit beras kayu manis">
-        <div class="product__visual"><svg viewBox="0 0 120 140" aria-hidden="true"><rect x="30" y="30" width="60" height="90" rx="6" fill="var(--turmeric)"/><rect x="38" y="14" width="44" height="20" rx="4" fill="var(--espresso)"/></svg></div>
-        <span class="product__badge">Kemasan Isi Ulang</span>
-        <h3>Lulur Rempah Nusantara</h3>
-        <p class="product__origin">Asal: Yogyakarta, Jawa</p>
-        <p class="product__ing">Kunyit · Beras · Kayu Manis</p>
-        <div class="product__foot"><span class="product__price">Rp 65.000</span><span class="product__size">250 g</span></div>
-      </article>
-
-      <article class="product" data-cat="wajah" data-name="minyak wangi cendana sumba nusa tenggara timur">
-        <div class="product__visual"><svg viewBox="0 0 120 140" aria-hidden="true"><path d="M40 120V50c0-11 9-20 20-20s20 9 20 20v70Z" fill="var(--clay)"/><rect x="46" y="20" width="28" height="14" rx="4" fill="var(--espresso)"/></svg></div>
-        <span class="product__badge">Petani Mitra Adil</span>
-        <h3>Minyak Wangi Cendana</h3>
-        <p class="product__origin">Asal: Sumba, NTT</p>
-        <p class="product__ing">Cendana · Minyak Kelapa Dara</p>
-        <div class="product__foot"><span class="product__price">Rp 98.000</span><span class="product__size">30 ml</span></div>
-      </article>
-
-      <article class="product" data-cat="tubuh" data-name="sabun sirih hijau kalimantan barat">
-        <div class="product__visual"><svg viewBox="0 0 120 140" aria-hidden="true"><rect x="28" y="45" width="64" height="75" rx="10" fill="var(--sirih)"/><rect x="28" y="45" width="64" height="16" rx="8" fill="var(--sirih-dark)"/></svg></div>
-        <span class="product__badge">Tanpa Plastik</span>
-        <h3>Sabun Sirih Hijau</h3>
-        <p class="product__origin">Asal: Kalimantan Barat</p>
-        <p class="product__ing">Daun Sirih · Minyak Zaitun</p>
-        <div class="product__foot"><span class="product__price">Rp 32.000</span><span class="product__size">100 g</span></div>
-      </article>
-
-      <article class="product" data-cat="wajah" data-name="bedak dingin beras jawa barat sunda melati">
-        <div class="product__visual"><svg viewBox="0 0 120 140" aria-hidden="true"><ellipse cx="60" cy="90" rx="34" ry="30" fill="var(--paper-alt)" stroke="var(--turmeric)" stroke-width="3"/><rect x="46" y="28" width="28" height="34" rx="10" fill="var(--turmeric)"/></svg></div>
-        <span class="product__badge">Kemasan Isi Ulang</span>
-        <h3>Bedak Dingin Beras</h3>
-        <p class="product__origin">Asal: Jawa Barat, Tanah Sunda</p>
-        <p class="product__ing">Beras · Bunga Melati</p>
-        <div class="product__foot"><span class="product__price">Rp 45.000</span><span class="product__size">80 g</span></div>
-      </article>
-
-      <article class="product" data-cat="wajah" data-name="serum bunga kenanga jawa tengah lidah buaya">
-        <div class="product__visual"><svg viewBox="0 0 120 140" aria-hidden="true"><path d="M45 120V55c0-9 7-16 15-16s15 7 15 16v65Z" fill="var(--espresso)"/><rect x="50" y="26" width="20" height="12" rx="3" fill="var(--turmeric)"/></svg></div>
-        <span class="product__badge">Petani Mitra Adil</span>
-        <h3>Serum Bunga Kenanga</h3>
-        <p class="product__origin">Asal: Jawa Tengah</p>
-        <p class="product__ing">Kenanga · Lidah Buaya</p>
-        <div class="product__foot"><span class="product__price">Rp 87.000</span><span class="product__size">20 ml</span></div>
-      </article>
-
-      <article class="product" data-cat="rambut" data-name="minyak kelapa murni bali kamboja">
-        <div class="product__visual"><svg viewBox="0 0 120 140" aria-hidden="true"><rect x="26" y="40" width="68" height="80" rx="34" fill="var(--turmeric-light)"/><rect x="46" y="20" width="28" height="24" rx="6" fill="var(--espresso)"/></svg></div>
-        <span class="product__badge">Tanpa Plastik</span>
-        <h3>Minyak Kelapa Murni Bali</h3>
-        <p class="product__origin">Asal: Bali</p>
-        <p class="product__ing">Kelapa Dara · Bunga Kamboja</p>
-        <div class="product__foot"><span class="product__price">Rp 58.000</span><span class="product__size">150 ml</span></div>
-      </article>
-
-      <article class="product" data-cat="rambut" data-name="jamu ratus tubuh yogyakarta solo sereh secang cengkeh">
-        <div class="product__visual"><svg viewBox="0 0 120 140" aria-hidden="true"><path d="M60 20c-22 20-30 44-22 64 6 15 22 24 22 24s16-9 22-24c8-20 0-44-22-64Z" fill="var(--sirih)"/></svg></div>
-        <span class="product__badge">Kemasan Isi Ulang</span>
-        <h3>Jamu Ratus Tubuh</h3>
-        <p class="product__origin">Asal: Yogyakarta &amp; Solo</p>
-        <p class="product__ing">Sereh · Kayu Secang · Cengkeh</p>
-        <div class="product__foot"><span class="product__price">Rp 40.000</span><span class="product__size">6 sachet</span></div>
-      </article>
-
-      <article class="product" data-cat="rambut" data-name="tonik rambut mangir jawa tengah kemiri urang aring">
-        <div class="product__visual"><svg viewBox="0 0 120 140" aria-hidden="true"><rect x="32" y="35" width="56" height="85" rx="8" fill="var(--clay)"/><rect x="32" y="35" width="56" height="18" rx="6" fill="var(--clay-light)"/></svg></div>
-        <span class="product__badge">Petani Mitra Adil</span>
-        <h3>Tonik Rambut Mangir</h3>
-        <p class="product__origin">Asal: Jawa Tengah</p>
-        <p class="product__ing">Mangir · Kemiri · Urang Aring</p>
-        <div class="product__foot"><span class="product__price">Rp 52.000</span><span class="product__size">100 ml</span></div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ====== TESTIMONI ====== -->
-<section class="testimoni" id="cerita">
-  <div class="container">
-    <p class="eyebrow"><span class="eyebrow__dot"></span>Cerita Mereka</p>
-    <h2 class="h2">Dipercaya oleh Mereka<br>yang Peduli Bumi.</h2>
-
+    <p class="eyebrow"><span class="eyebrow__dot"></span>Kata Pelanggan</p>
+    <h2 class="h2">Mengapa Mereka<br>Mempercayai Navora.</h2>
     <div class="testimoni__grid">
       <blockquote class="testi">
-        <p>“Saya suka bahwa saya bisa tahu persis desa mana kunyit ini berasal. Rasanya seperti membeli langsung dari kebun nenek saya.”</p>
-        <cite>Ratna A. — Bandung</cite>
+        <div class="testi__stars">★★★★★</div>
+        <p>“Saya suka bahwa saya bisa tahu persis desa mana bahan produknya berasal. Rasanya seperti membeli langsung dari petani.”</p>
+        <cite>Ratna A.<span>Bandung</span></cite>
       </blockquote>
       <blockquote class="testi">
-        <p>“Botol kaca yang bisa diisi ulang bikin saya nggak ragu beli rutin. Akhirnya ada brand lokal yang benar-benar serius soal sampah.”</p>
-        <cite>Dimas P. — Surabaya</cite>
+        <div class="testi__stars">★★★★★</div>
+        <p>“Kemasan isi ulang dan minim plastiknya bikin saya nggak ragu belanja rutin di Navora untuk kebutuhan rumah tangga.”</p>
+        <cite>Dimas P.<span>Surabaya</span></cite>
       </blockquote>
       <blockquote class="testi">
-        <p>“Minyak cendananya wangi otentik, bukan sintetis. Tahu ceritanya dari Sumba bikin saya makin sayang pakainya.”</p>
-        <cite>Larasati W. — Yogyakarta</cite>
+        <div class="testi__stars">★★★★★</div>
+        <p>“Kopi dan madunya enak, dan tahu harganya adil buat petani bikin saya makin sering repeat order.”</p>
+        <cite>Larasati W.<span>Yogyakarta</span></cite>
       </blockquote>
     </div>
   </div>
@@ -433,14 +290,16 @@
 <!-- ====== CTA NEWSLETTER ====== -->
 <section class="cta">
   <div class="container cta__inner">
-    <h2 class="h2">Ikut Menjaga<br>Warisan Ini Tetap Hidup.</h2>
-    <p>Dapatkan kabar racikan baru dan cerita petani mitra langsung ke surel Anda.</p>
+    <div>
+      <h2 class="h2">Dapatkan Kabar Produk Baru</h2>
+      <p>Diskon spesial &amp; cerita petani mitra langsung ke surel Anda.</p>
+    </div>
     <form class="cta__form" id="ctaForm">
-      <label for="ctaEmail" class="sr-only">Alamat surel</label>
+      <label for="ctaEmail" class="sr-only">Surel</label>
       <input type="email" id="ctaEmail" placeholder="nama@surel.com" required>
-      <button type="submit" class="btn btn--dark">Daftar</button>
+      <button type="submit" class="btn btn--outline" style="background:#fff;">Daftar</button>
+      <p class="cta__note" id="ctaNote" aria-live="polite"></p>
     </form>
-    <p class="cta__note" id="ctaNote" aria-live="polite"></p>
   </div>
 </section>
 
@@ -448,31 +307,36 @@
 <footer class="footer">
   <div class="container footer__grid">
     <div class="footer__brand">
-      <p class="nav__logo footer__logo">BumiLokal</p>
-      <p>Sustainable Heritage Skincare dari Nusantara — diracik dengan tanggung jawab, untuk kulit dan untuk bumi.</p>
+      <p class="footer__logo">N<em>a</em>vora</p>
+      <p>Marketplace produk lokal berkelanjutan dari petani dan pengrajin mitra di seluruh Nusantara.</p>
     </div>
     <div class="footer__col">
-      <h4>Jelajah</h4>
-      <a href="#filosofi">Filosofi</a>
-      <a href="#peta">Peta Warisan</a>
-      <a href="#prinsip">Keberlanjutan</a>
-      <a href="#katalog">Katalog</a>
+      <h4>Kategori</h4>
+      <a href="shop.html?cat=health">Health &amp; Beauty</a>
+      <a href="shop.html?cat=home">Home &amp; Living</a>
+      <a href="shop.html?cat=food">Food</a>
+    </div>
+    <div class="footer__col">
+      <h4>Navora</h4>
+      <a href="index.html#tentang">Tentang Kami</a>
+      <a href="index.html#peta">Peta Warisan</a>
+      <a href="shop.html">Toko</a>
     </div>
     <div class="footer__col">
       <h4>Kontak</h4>
-      <a href="mailto:halo@bumilokal.id">halo@bumilokal.id</a>
-      <a href="https://wa.me/6281234567890" target="_blank" rel="noopener">WhatsApp Mitra</a>
+      <a href="mailto:halo@navora.id">halo@navora.id</a>
+      <a href="https://wa.me/6281234567890" target="_blank" rel="noopener">WhatsApp</a>
       <a href="#">Instagram</a>
     </div>
   </div>
-  <svg class="footer__motif" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0 20 Q30 0 60 20 T120 20 T180 20 T240 20 T300 20 T360 20 T420 20 T480 20 T540 20 T600 20 T660 20 T720 20 T780 20 T840 20 T900 20 T960 20 T1020 20 T1080 20 T1140 20 T1200 20" fill="none" stroke="currentColor" stroke-width="1"/>
-  </svg>
-  <div class="container footer__bottom">
-    <p>© 2026 BumiLokal. Dibuat untuk mendukung SDG 12 — Konsumsi dan Produksi yang Bertanggung Jawab.</p>
+  <div class="footer__bottom container">
+    <p>© 2026 Navora. Semua Hak Dilindungi.</p>
+    <p>Mendukung SDG 12 — Konsumsi dan Produksi yang Bertanggung Jawab.</p>
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script src="data.js"></script>
+<script src="common.js"></script>
+<script src="home.js"></script>
 </body>
 </html>
