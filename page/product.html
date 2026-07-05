@@ -271,6 +271,9 @@
     <link rel='stylesheet' id='freshio2-icon-css'
         href='https://demo2.pavothemes.com/freshio/wp-content/themes/freshio2/assets/css/icons.css?ver=2.4.3'
         media='all' />
+    <link rel='stylesheet' id='woosc-frontend-css'
+        href='https://demo2.pavothemes.com/freshio/wp-content/plugins/woo-smart-compare/assets/css/frontend.css?ver=6.5.6'
+        media='all' />
     <link rel='stylesheet' id='freshio2-style-css'
         href='https://demo2.pavothemes.com/freshio/wp-content/themes/freshio2/style.css?ver=2.4.3' media='all' />
     <style id='freshio2-style-inline-css'>
@@ -1488,134 +1491,24 @@
                             <div class="content-single-wrapper">
                                 <div class="content-single-images-wrapper">
                                     <div class="woocommerce-product-gallery woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 images woocommerce-product-gallery-horizontal"
-                                        data-columns="4" style="opacity: 1; transition: opacity .25s ease-in-out;">
-
-                                        <!-- Swiper Gallery Utama -->
-                                        <div class="product-swiper-main swiper" id="productMainSwiper">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <a href="../assets/foto-produk/alat-makan.png">
-                                                        <img src="../assets/foto-produk/alat-makan.png"
-                                                            alt="Alat Makan Kayu Jati - Tampak Depan"
-                                                            class="wp-post-image" width="600" height="520"
-                                                            fetchpriority="high" decoding="async" />
-                                                    </a>
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <a href="../assets/foto-produk/belakang-alat-makan.png">
-                                                        <img src="../assets/foto-produk/belakang-alat-makan.png"
-                                                            alt="Alat Makan Kayu Jati - Tampak Belakang"
-                                                            class="wp-post-image" width="600" height="520"
-                                                            decoding="async" />
-                                                    </a>
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <a href="../assets/foto-produk/isi-alat-makan.png">
-                                                        <img src="../assets/foto-produk/isi-alat-makan.png"
-                                                            alt="Alat Makan Kayu Jati - Isi Set" class="wp-post-image"
-                                                            width="600" height="520" decoding="async" />
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <!-- Navigasi Panah -->
-                                            <div class="swiper-button-prev product-swiper-prev"></div>
-                                            <div class="swiper-button-next product-swiper-next"></div>
+                                        data-columns="4" style="opacity: 0; transition: opacity .25s ease-in-out;">
+                                        <div class="woocommerce-product-gallery__wrapper">
+                                            <div data-thumb="../assets/foto produk/alat-makan.png"
+                                                data-thumb-alt="Fantastic Plastic Chair"
+                                                data-thumb-srcset="../assets/foto produk/alat-makan.png 100w, ../assets/foto produk/alat-makan.png 150w, ../assets/foto produk/alat-makan.png 90w, ../assets/foto produk/alat-makan.png 50w, ../assets/foto produk/alat-makan.png 600w, ../assets/foto produk/alat-makan.png 96w, ../assets/foto produk/alat-makan.png 460w"
+                                                data-thumb-sizes="(max-width: 100px) 100vw, 100px"
+                                                class="woocommerce-product-gallery__image"><a
+                                                    href="../assets/foto produk/alat-makan.png"><img
+                                                        fetchpriority="high" width="600" height="520"
+                                                        src="../assets/foto produk/alat-makan.png"
+                                                        class="wp-post- image" alt="Fantastic Plastic Chair"
+                                                        data-caption="" data-src="alat-makan"
+                                                        data-large_image="../assets/foto produk/alat-makan.png"
+                                                        data-large_image_width="900" data-large_image_height="780"
+                                                        decoding="async"
+                                                        srcset="../assets/foto produk/alat-makan.png 600w, ../assets/foto produk/alat-makan.png 300w, ../assets/foto produk/alat-makan.png 768w, ../assets/foto produk/alat-makan.png 900w"
+                                                        sizes="(max-width: 600px) 100vw, 600px" /></a></div>
                                         </div>
-
-                                        <!-- Swiper Thumbnail -->
-                                        <div class="product-swiper-thumbs swiper" id="productThumbSwiper">
-                                            <div class="swiper-wrapper">
-                                                <div class="swiper-slide">
-                                                    <img src="../assets/foto-produk/alat-makan.png" alt="Thumbnail 1" />
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="../assets/foto-produk/belakang-alat-makan.png"
-                                                        alt="Thumbnail 2" />
-                                                </div>
-                                                <div class="swiper-slide">
-                                                    <img src="../assets/foto-produk/isi-alat-makan.png"
-                                                        alt="Thumbnail 3" />
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <style>
-                                            /* === Product Swiper Gallery === */
-                                            .product-swiper-main {
-                                                width: 100%;
-                                                border-radius: 12px;
-                                                overflow: hidden;
-                                                margin-bottom: 12px;
-                                                background: #f8f8f6;
-                                            }
-
-                                            .product-swiper-main .swiper-slide {
-                                                display: flex;
-                                                align-items: center;
-                                                justify-content: center;
-                                                background: #f8f8f6;
-                                                min-height: 420px;
-                                            }
-
-                                            .product-swiper-main .swiper-slide img {
-                                                width: 100%;
-                                                height: 420px;
-                                                object-fit: cover;
-                                                border-radius: 12px;
-                                                display: block;
-                                            }
-
-                                            .product-swiper-main .swiper-button-prev,
-                                            .product-swiper-main .swiper-button-next {
-                                                color: #2d6a4f;
-                                                background: rgba(255, 255, 255, 0.85);
-                                                width: 40px;
-                                                height: 40px;
-                                                border-radius: 50%;
-                                                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-                                                transition: background 0.2s;
-                                            }
-
-                                            .product-swiper-main .swiper-button-prev:hover,
-                                            .product-swiper-main .swiper-button-next:hover {
-                                                background: rgba(255, 255, 255, 1);
-                                            }
-
-                                            .product-swiper-main .swiper-button-prev::after,
-                                            .product-swiper-main .swiper-button-next::after {
-                                                font-size: 14px;
-                                                font-weight: 700;
-                                            }
-
-                                            /* Thumbnail Swiper */
-                                            .product-swiper-thumbs {
-                                                width: 100%;
-                                                margin-top: 8px;
-                                            }
-
-                                            .product-swiper-thumbs .swiper-slide {
-                                                width: 90px !important;
-                                                height: 80px;
-                                                border-radius: 8px;
-                                                overflow: hidden;
-                                                cursor: pointer;
-                                                opacity: 0.6;
-                                                border: 2px solid transparent;
-                                                transition: opacity 0.2s, border-color 0.2s;
-                                            }
-
-                                            .product-swiper-thumbs .swiper-slide-thumb-active {
-                                                opacity: 1;
-                                                border-color: #2d6a4f;
-                                            }
-
-                                            .product-swiper-thumbs .swiper-slide img {
-                                                width: 100%;
-                                                height: 100%;
-                                                object-fit: cover;
-                                                display: block;
-                                            }
-                                        </style>
                                     </div>
                                 </div>
                                 <div class="summary entry-summary product-sticky-layout">
