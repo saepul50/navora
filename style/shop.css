@@ -1,0 +1,7 @@
+.woocommerce-product-search::before {
+    content: none !important;
+}
+
+.cat-item::before {
+    content: none !important;
+}
