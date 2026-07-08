@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
           '<div class="product-caption">' +
             '<h3 class="woocommerce-loop-product__title"><a href="product.html">' + (p.nama || '') + '</a></h3>' +
             '<span class="price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">Rp</span> ' + formatPrice(p.price) + '</span></span>' +
-            '<a href="product.html" class="button_cart add_to_cart_button" rel="nofollow"><span class="button-text">Tambah ke keranjang</span><span class="button-icon"><i class="fas fa-angle-double-right"></i></span></a>' +
+            '<a href="cart.html" class="button_cart add_to_cart_button" rel="nofollow"><span class="button-text">Tambah ke keranjang</span><span class="button-icon"><i class="fas fa-angle-double-right"></i></span></a>' +
           '</div>' +
         '</div>';
       container.appendChild(li);
@@ -89,51 +89,35 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function generateVerticalMenu() {
     var verticalMenu = document.querySelector('#menu-1-05b5675');
-    if (!verticalMenu || !window.dataProducts) return;
-
-    // Extract unique categories dan subcategories
-    var categories = {};
-    window.dataProducts.forEach(function (product) {
-      if (!product.kategori) return;
-      if (!categories[product.kategori]) {
-        categories[product.kategori] = [];
-      }
-      if (product.subKategori && categories[product.kategori].indexOf(product.subKategori) === -1) {
-        categories[product.subKategori].push(product.subKategori);
-      }
-    });
+    if (!verticalMenu || !window.dataCategories || !window.dataSubCategories) return;
 
     // Clear existing menu
     verticalMenu.innerHTML = '';
 
-    // Get category icon map
-    var iconMap = {
-      'Health & Beauty': 'fas fa-spa',
-      'Home & Living': 'fas fa-home',
-      'Food & Beverages': 'fas fa-utensils'
-    };
-
-    // Generate menu items dari data
-    var menuIndex = 1;
-    Object.keys(categories).forEach(function (kategori) {
+    // Generate menu items dari dataCategories dan dataSubCategories
+    (window.dataCategories || []).forEach(function (category, menuIndex) {
       var li = document.createElement('li');
       li.id = 'menu-item-' + (900 + menuIndex);
       li.className = 'menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-' + (900 + menuIndex);
 
-      var iconClass = iconMap[kategori] || 'fas fa-circle';
       var html = '<a href="#">' +
-        '<i class="menu-icon ' + iconClass + '"></i>' +
-        '<span class="menu-title">' + kategori + '</span>' +
+        '<i class="menu-icon ' + (category.ikon || 'fas fa-circle') + '"></i>' +
+        '<span class="menu-title">' + category.nama + '</span>' +
         '</a>';
 
+      // Get subcategories untuk category ini
+      var subCats = (window.dataSubCategories || []).filter(function (subcat) {
+        return subcat.idKategori === category.id;
+      });
+
       // Add subcategories
-      if (categories[kategori] && categories[kategori].length > 0) {
+      if (subCats && subCats.length > 0) {
         html += '<ul class="sub-menu">';
-        categories[kategori].forEach(function (subkat, subIdx) {
+        subCats.forEach(function (subcat, subIdx) {
           var subId = 10000 + menuIndex * 100 + subIdx;
           html += '<li id="menu-item-' + subId + '" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-' + subId + '">' +
             '<a href="#">' +
-            '<span class="menu-title">' + subkat + '</span>' +
+            '<span class="menu-title">' + subcat.nama + '</span>' +
             '</a>' +
             '</li>';
         });
@@ -142,7 +126,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
       li.innerHTML = html;
       verticalMenu.appendChild(li);
-      menuIndex++;
     });
   }
 });

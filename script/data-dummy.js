@@ -346,8 +346,106 @@ dataProducts.forEach(function (p) {
   }
 });
 
+// =========================================================================
+// DATA KATEGORI PRODUK
+// =========================================================================
+const dataCategories = [
+  {
+    id: 'cat-01',
+    nama: 'Kesehatan & Kecantikan',
+    ikon: 'fas fa-spa',
+    deskripsi: 'Produk kesehatan dan kecantikan alami dari bahan-bahan organik pilihan'
+  },
+  {
+    id: 'cat-02',
+    nama: 'Rumah & Gaya Hidup',
+    ikon: 'fas fa-home',
+    deskripsi: 'Produk rumah tangga dan hidup berkelanjutan ramah lingkungan'
+  },
+  {
+    id: 'cat-03',
+    nama: 'Makanan & Minuman',
+    ikon: 'fas fa-utensils',
+    deskripsi: 'Makanan dan minuman organik berkualitas dari petani lokal'
+  }
+];
+
+// =========================================================================
+// DATA SUB-KATEGORI PRODUK
+// =========================================================================
+const dataSubCategories = [
+  // Kesehatan & Kecantikan subcategories
+  {
+    id: 'subcat-01',
+    idKategori: 'cat-01',
+    namaKategori: 'Kesehatan & Kecantikan',
+    nama: 'Perawatan Kulit & Mandi',
+    deskripsi: 'Produk pembersih dan perawatan wajah dengan bahan alami'
+  },
+  {
+    id: 'subcat-02',
+    idKategori: 'cat-01',
+    namaKategori: 'Kesehatan & Kecantikan',
+    nama: 'Perawatan Tubuh',
+    deskripsi: 'Perawatan tubuh lengkap dari tradisional hingga modern'
+  },
+  {
+    id: 'subcat-03',
+    idKategori: 'cat-01',
+    namaKategori: 'Kesehatan & Kecantikan',
+    nama: 'Perawatan Diri & Kesehatan',
+    deskripsi: 'Produk perawatan diri dan kesehatan keluarga'
+  },
+  // Rumah & Gaya Hidup subcategories
+  {
+    id: 'subcat-04',
+    idKategori: 'cat-02',
+    namaKategori: 'Rumah & Gaya Hidup',
+    nama: 'Peralatan Pembersih Ramah Lingkungan',
+    deskripsi: 'Alat dan produk pembersih rumah yang aman untuk lingkungan'
+  },
+  {
+    id: 'subcat-05',
+    idKategori: 'cat-02',
+    namaKategori: 'Rumah & Gaya Hidup',
+    nama: 'Aromaterapi & Kesehatan',
+    deskripsi: 'Produk aromaterapi untuk menciptakan suasana rumah yang nyaman'
+  },
+  {
+    id: 'subcat-06',
+    idKategori: 'cat-02',
+    namaKategori: 'Rumah & Gaya Hidup',
+    nama: 'Dekorasi & Peralatan Makan Berkelanjutan',
+    deskripsi: 'Dekorasi rumah dan peralatan makan berkelanjutan'
+  },
+  // Makanan & Minuman subcategories
+  {
+    id: 'subcat-07',
+    idKategori: 'cat-03',
+    namaKategori: 'Makanan & Minuman',
+    nama: 'Seduhan Nusantara',
+    deskripsi: 'Minuman tradisional dari bahan-bahan pilihan nusantara'
+  },
+  {
+    id: 'subcat-08',
+    idKategori: 'cat-03',
+    namaKategori: 'Makanan & Minuman',
+    nama: 'Sari Alam',
+    deskripsi: 'Produk pangan alami dari hasil alam bumi nusantara'
+  },
+  {
+    id: 'subcat-09',
+    idKategori: 'cat-03',
+    namaKategori: 'Makanan & Minuman',
+    nama: 'Kudapan Sehat',
+    deskripsi: 'Camilan dan snack sehat tanpa pengawet dan MSG'
+  }
+];
+
 // Expose ke global agar skrip non-module dapat menggunakan data
 window.dataProducts = dataProducts;
+window.dataCategories = dataCategories;
+window.dataSubCategories = dataSubCategories;
 
 // Export untuk module-aware usage (tetap kompatibel)
 export default dataProducts;
