@@ -262,5 +262,92 @@ const dataProducts = [
   }
 ];
 
-// Exporting module agar bisa di-import di file JS lain
+// Tambahkan pemetaan nama file gambar dan harga untuk setiap produk
+const _imageMap = {
+  // Health & Beauty
+  'hb-01': 'facewash-lerak.png',
+  'hb-02': 'rose-water.png',
+  'hb-03': 'coconut-serum.png',
+  'hb-04': 'sabun-sampo-lerak.png',
+  'hb-05': 'masker-kelor.png',
+  'hb-06': 'sabun-antiseptik.png',
+  'hb-07': 'bedak-dingin.png',
+  'hb-08': 'lulur-mandi-kopi.png',
+  'hb-09': 'minyak-telon.png',
+  'hb-10': 'minyak-kayuh-putih.png',
+  'hb-11': 'deodorant.png',
+  // Home & Living
+  'hl-01': 'spons-loofah.png',
+  'hl-02': 'sikat-gigi.png',
+  'hl-03': 'sabun-cuci-piring.png',
+  'hl-04': 'sikat-sabut-kelapa.png',
+  'hl-05': 'lilin-melati-cendana.png',
+  'hl-06': 'esensial-oil.png',
+  'hl-07': 'dupa-gaharu.png',
+  'hl-08': 'alat-makan.png',
+  'hl-09': 'tas-anyam.png',
+  'hl-10': 'beeswax-wrap.png',
+  // Food & Beverages
+  'fb-01': 'kopi.png',
+  'fb-02': 'teh-kombucha.png',
+  'fb-03': 'teh-bunga.png',
+  'fb-04': 'wedhang-uwuh.png',
+  'fb-05': 'madu-murni.png',
+  'fb-06': 'minyak-kelapa.png',
+  'fb-07': 'kripik-buah-sayur.png',
+  'fb-08': 'selai-nanas.png',
+  'fb-09': 'coklat.png',
+  'fb-10': 'granola.png'
+};
+
+const _priceMap = {
+  'hb-01': 45.00,
+  'hb-02': 25.00,
+  'hb-03': 78.50,
+  'hb-04': 55.00,
+  'hb-05': 35.00,
+  'hb-06': 30.00,
+  'hb-07': 12.00,
+  'hb-08': 40.00,
+  'hb-09': 28.00,
+  'hb-10': 22.00,
+  'hb-11': 18.00,
+  'hl-01': 15.00,
+  'hl-02': 8.50,
+  'hl-03': 9.00,
+  'hl-04': 11.00,
+  'hl-05': 60.00,
+  'hl-06': 32.00,
+  'hl-07': 14.50,
+  'hl-08': 48.00,
+  'hl-09': 120.00,
+  'hl-10': 22.50,
+  'fb-01': 90.00,
+  'fb-02': 35.00,
+  'fb-03': 20.00,
+  'fb-04': 18.00,
+  'fb-05': 55.00,
+  'fb-06': 42.00,
+  'fb-07': 16.00,
+  'fb-08': 28.00,
+  'fb-09': 65.00,
+  'fb-10': 24.00
+};
+
+// Isi field `image` (path relatif dari halaman) dan `price` bila belum ada
+dataProducts.forEach(function (p) {
+  if (!p.image) {
+    var fname = _imageMap[p.id];
+    if (fname) p.image = '../assets/foto-produk/' + fname;
+  }
+  if (!p.price) {
+    var pr = _priceMap[p.id];
+    p.price = (typeof pr === 'number') ? pr : parseFloat((Math.random() * 80 + 10).toFixed(2));
+  }
+});
+
+// Expose ke global agar skrip non-module dapat menggunakan data
+window.dataProducts = dataProducts;
+
+// Export untuk module-aware usage (tetap kompatibel)
 export default dataProducts;

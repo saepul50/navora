@@ -140,10 +140,10 @@
     transition: color 0.2s;
 }
 
-/* Hide legacy pseudo-icon for wishlist (we use <i> instead) */
+/* Keep the wishlist heart icon visible */
 .shop-action .woosw-btn::after {
-    display: none !important;
-    content: none !important;
+    display: inline-block !important;
+    content: '\f004' !important;
 }
 
 .shop-action .woosq-btn:hover,
