@@ -3446,5 +3446,20 @@
         data-cf-beacon='{"version":"2024.11.0","token":"2262db23ef41480dbb281abb8b2626b5","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
         crossorigin="anonymous"></script>
 </body>
+    <script>
+        (function(){
+            var assets = [
+                '../assets/foto-produk/granola.png','../assets/foto-produk/kopi.png','../assets/foto-produk/coklat.png','../assets/foto-produk/alat-makan.png','../assets/foto-produk/madu-murni.png','../assets/foto-produk/kripik-buah-sayur.png','../assets/foto-produk/minyak-kelapa.png','../assets/foto-produk/sabun-sampo-lerak.png','../assets/foto-produk/selai-nanas.png','../assets/foto-produk/teh-kombucha.png','../assets/foto-produk/rose-water.png'
+            ];
+            function pick(i){ return assets[i % assets.length]; }
+            function replaceAll(){
+                var i=0;
+                document.querySelectorAll('img').forEach(function(img){ if(img.src && img.src.indexOf('demo2.pavothemes.com')!==-1){ img.removeAttribute('srcset'); img.removeAttribute('sizes'); img.src = pick(i++); } });
+                document.querySelectorAll('[data-product_image]').forEach(function(el){ var v = el.getAttribute('data-product_image'); if(v && v.indexOf('demo2.pavothemes.com')!==-1){ el.setAttribute('data-product_image', pick(i++)); } });
+                document.querySelectorAll('[style]').forEach(function(el){ var s = el.style.backgroundImage || ''; if(s.indexOf('demo2.pavothemes.com')!==-1){ el.style.backgroundImage = 'url("'+pick(i++)+'")'; } });
+            }
+            if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', replaceAll); } else replaceAll();
+        })();
+    </script>
 
 </html>

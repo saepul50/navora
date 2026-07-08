@@ -36,6 +36,11 @@
         href='https://demo2.pavothemes.com/freshio/wp-includes/css/dist/block-library/style.min.css?ver=6.9.4'
         media='all' />
     <link rel="stylesheet" href="../style/shop.css">
+    <style>
+        /* Make product images display in 16:9 ratio and cover the area */
+        .product-image { aspect-ratio: 16/9; overflow: hidden; }
+        .product-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    </style>
     <style id='wp-block-library-theme-inline-css'>
         .wp-block-audio :where(figcaption) {
             color: #555;
@@ -3590,27 +3595,48 @@
                 }
             });
 
-            // Terjemahkan teks tombol dan atribut
+            // Terjemahkan teks tombol dan atribut, dan sesuaikan aksi tautan
             document.querySelectorAll('.woosw-btn').forEach(function (b) {
                 b.setAttribute('aria-label', 'Tambah ke wishlist');
                 if (b.textContent && b.textContent.trim().length) b.textContent = 'Tambah ke wishlist';
+                b.style.cursor = 'pointer';
+                b.addEventListener('click', function () { window.location.href = 'wishlist.html'; });
             });
             document.querySelectorAll('.woosq-btn').forEach(function (b) {
                 b.innerHTML = '<i class="fas fa-eye" aria-hidden="true"></i> Lihat cepat';
             });
             document.querySelectorAll('.woosc-btn').forEach(function (b) {
-                b.setAttribute('data-text', 'Bandingkan');
-                b.setAttribute('data-text_added', 'Bandingkan');
-                b.innerHTML = '<i class="fas fa-exchange-alt" aria-hidden="true"></i> Bandingkan';
+                // Re-purpose compare button into Add to Cart that links to cart.html
+                b.setAttribute('data-text', 'Tambah ke keranjang');
+                b.setAttribute('data-text_added', 'Tambah ke keranjang');
+                b.innerHTML = '<i class="fas fa-shopping-cart" aria-hidden="true"></i> Tambah ke keranjang';
+                b.style.cursor = 'pointer';
+                b.addEventListener('click', function () { window.location.href = 'cart.html'; });
             });
             document.querySelectorAll('.button_cart .button-text').forEach(function (s) {
-                if (s.textContent.indexOf('Add to cart') !== -1) s.textContent = 'Tambah ke keranjang';
+                // Change bottom action label to "Lihat detail"
+                if (s.textContent.indexOf('Add to cart') !== -1 || s.textContent.indexOf('Tambah ke keranjang') !== -1) s.textContent = 'Lihat detail';
             });
             document.querySelectorAll('[aria-label^="Add to cart:"]').forEach(function (el) {
-                el.setAttribute('aria-label', el.getAttribute('aria-label').replace('Add to cart:', 'Tambah ke keranjang:'));
+                el.setAttribute('aria-label', el.getAttribute('aria-label').replace('Add to cart:', 'Lihat detail:'));
             });
         });
     </script>
 </body>
+    <script>
+        (function(){
+            var assets = [
+                '../assets/foto-produk/granola.png','../assets/foto-produk/kopi.png','../assets/foto-produk/coklat.png','../assets/foto-produk/alat-makan.png','../assets/foto-produk/madu-murni.png','../assets/foto-produk/kripik-buah-sayur.png','../assets/foto-produk/minyak-kelapa.png','../assets/foto-produk/sabun-sampo-lerak.png','../assets/foto-produk/selai-nanas.png','../assets/foto-produk/teh-kombucha.png','../assets/foto-produk/rose-water.png'
+            ];
+            function pick(i){ return assets[i % assets.length]; }
+            function replaceAll(){
+                var i=0;
+                document.querySelectorAll('img').forEach(function(img){ if(img.src && img.src.indexOf('demo2.pavothemes.com')!==-1){ img.removeAttribute('srcset'); img.removeAttribute('sizes'); img.src = pick(i++); } });
+                document.querySelectorAll('[data-product_image]').forEach(function(el){ var v = el.getAttribute('data-product_image'); if(v && v.indexOf('demo2.pavothemes.com')!==-1){ el.setAttribute('data-product_image', pick(i++)); } });
+                document.querySelectorAll('[style]').forEach(function(el){ var s = el.style.backgroundImage || ''; if(s.indexOf('demo2.pavothemes.com')!==-1){ el.style.backgroundImage = 'url("'+pick(i++)+'")'; } });
+            }
+            if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', replaceAll); } else replaceAll();
+        })();
+    </script>
 
 </html>
