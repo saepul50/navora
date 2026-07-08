@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en-US">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
@@ -3552,6 +3552,63 @@
 
             // Initial run to calculate correct initial counts and visibility
             applyFilters();
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Ubah form pencarian ke lokal dan terjemahkan
+            var form = document.querySelector('form.woocommerce-product-search');
+            if (form && form.action && form.action.indexOf('demo2.pavothemes.com') !== -1) form.action = 'shop.html';
+            var lbl = document.querySelector('label[for="woocommerce-product-search-field-0"]');
+            if (lbl) lbl.textContent = 'Cari:';
+            var input = document.getElementById('woocommerce-product-search-field-0');
+            if (input) input.placeholder = 'Cari produk…';
+            if (form) {
+                var fbtn = form.querySelector('button[type="submit"]');
+                if (fbtn) { fbtn.value = 'Cari'; fbtn.textContent = 'Cari'; }
+            }
+
+            // Ganti semua tautan produk ke product.html
+            document.querySelectorAll('a[href*="/product/"]').forEach(function (a) {
+                a.setAttribute('href', 'product.html');
+            });
+
+            // Ganti tautan demo2.pavothemes.com/freshio ke rute lokal
+            document.querySelectorAll('a[href*="demo2.pavothemes.com/freshio"]').forEach(function (a) {
+                var href = a.getAttribute('href') || '';
+                if (/demo2\.pavothemes\.com\/freshio(\/?$)/.test(href)) {
+                    a.setAttribute('href', 'shop.html');
+                    return;
+                }
+                if (href.indexOf('/about') !== -1 || href.toLowerCase().indexOf('about') !== -1) {
+                    a.setAttribute('href', 'about.html');
+                    return;
+                }
+                if (href.indexOf('contact-us') !== -1) {
+                    a.setAttribute('href', 'contact.html');
+                    return;
+                }
+            });
+
+            // Terjemahkan teks tombol dan atribut
+            document.querySelectorAll('.woosw-btn').forEach(function (b) {
+                b.setAttribute('aria-label', 'Tambah ke wishlist');
+                if (b.textContent && b.textContent.trim().length) b.textContent = 'Tambah ke wishlist';
+            });
+            document.querySelectorAll('.woosq-btn').forEach(function (b) {
+                b.innerHTML = '<i class="fas fa-eye" aria-hidden="true"></i> Lihat cepat';
+            });
+            document.querySelectorAll('.woosc-btn').forEach(function (b) {
+                b.setAttribute('data-text', 'Bandingkan');
+                b.setAttribute('data-text_added', 'Bandingkan');
+                b.innerHTML = '<i class="fas fa-exchange-alt" aria-hidden="true"></i> Bandingkan';
+            });
+            document.querySelectorAll('.button_cart .button-text').forEach(function (s) {
+                if (s.textContent.indexOf('Add to cart') !== -1) s.textContent = 'Tambah ke keranjang';
+            });
+            document.querySelectorAll('[aria-label^="Add to cart:"]').forEach(function (el) {
+                el.setAttribute('aria-label', el.getAttribute('aria-label').replace('Add to cart:', 'Tambah ke keranjang:'));
+            });
         });
     </script>
 </body>

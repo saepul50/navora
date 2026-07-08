@@ -73,3 +73,88 @@
 .elementor-widget-freshio2-icon-box.elementor-position-left .elementor-icon-box-icon {
     margin-right: 0 !important;
 }
+
+/* ─── woosw-btn (wishlist button) ─────────────────────────────────────── */
+/* The button itself carries .woosw-btn, so target it directly */
+.shop-action .woosw-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background: #fff;
+    position: relative;
+    overflow: visible;
+    font-size: 0;
+    /* hide the "Add to wishlist" text */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.shop-action .woosw-btn::after {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: '\f004';
+    /* fa-heart */
+    font-size: 15px;
+    color: #555;
+    pointer-events: none;
+    transition: color 0.2s;
+}
+
+.shop-action .woosw-btn:hover {
+    background: #5fbd74;
+    border-color: #5fbd74;
+}
+
+.shop-action .woosw-btn:hover::after {
+    color: #fff;
+}
+
+.group-action .shop-action .woosw-btn::before {
+    content: none !important;
+}
+
+/* Remove old button-inside-wrapper styles (no longer needed) */
+.shop-action .woosw-btn button {
+    all: unset;
+}
+
+.shop-action .woosw-btn button i {
+    display: none;
+}
+
+/* Use real <i> elements for icons and style them to match wishlist button */
+.shop-action .woosq-btn i,
+.shop-action .woosc-btn i,
+.shop-action .woosw-btn i {
+    font-size: 15px;
+    line-height: 1;
+    display: inline-block;
+    vertical-align: middle;
+    color: #555;
+    pointer-events: none;
+    transition: color 0.2s;
+}
+
+/* Hide legacy pseudo-icon for wishlist (we use <i> instead) */
+.shop-action .woosw-btn::after {
+    display: none !important;
+    content: none !important;
+}
+
+.shop-action .woosq-btn:hover,
+.shop-action .woosc-btn:hover,
+.shop-action .woosw-btn:hover {
+    background: #5fbd74;
+    border-color: #5fbd74;
+}
+
+.shop-action .woosq-btn:hover i,
+.shop-action .woosc-btn:hover i,
+.shop-action .woosw-btn:hover i {
+    color: #fff;
+}
