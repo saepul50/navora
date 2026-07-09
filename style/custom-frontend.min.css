@@ -69,7 +69,6 @@ html[dir=rtl] {
     border-radius: 0;
     box-shadow: none;
     height: auto;
-    max-width: 100%
 }
 
 .elementor .elementor-widget:not(.elementor-widget-text-editor):not(.elementor-widget-theme-post-content) figure {
