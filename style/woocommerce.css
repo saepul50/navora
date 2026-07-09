@@ -4221,10 +4221,40 @@ ul.products li.product img {
 /* Ensure spacing between slides so images don't touch */
 .freshio2-products.products .swiper-wrapper .swiper-slide {
   box-sizing: border-box;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
+@media (max-width: 768px) {
+  .freshio2-products.products .swiper-wrapper .swiper-slide {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .freshio2-products.products .swiper-wrapper .swiper-slide {
+    padding-left: 6px;
+    padding-right: 6px;
+  }
+}
+
+/* Keep slide sizing to Swiper JS on small phones; padding still applied above. */
+
+/* Force visible gap between slides on mid-tablet / small desktop widths */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .freshio2-products.products .swiper-wrapper {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .freshio2-products.products .swiper-wrapper .swiper-slide {
+    margin-right: 12px !important;
+    box-sizing: border-box;
+  }
+  .freshio2-products.products .swiper-wrapper .swiper-slide:last-child {
+    margin-right: 0 !important;
+  }
+}
 
 .single-product div.product .woocommerce-product-gallery-gallery .woocommerce-product-gallery__wrapper {
   display: flex;
@@ -8420,7 +8450,6 @@ table.shop_attributes td ul {
   font-weight: normal;
   line-height: 1;
   vertical-align: middle;
-  content: "";
   color: var(--e-global-color-primary);
   margin-right: 12px;
 }

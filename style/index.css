@@ -6,10 +6,14 @@
     content: none !important;
 }
 
+.woocommerce-product-search {
+    position: relative;
+}
+
 .woocommerce-product-search i.fa-search {
     position: absolute;
     left: 15px;
-    top: 51%;
+    top: 50%;
     transform: translateY(-50%);
     z-index: 2;
     pointer-events: none;

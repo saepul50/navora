@@ -365,21 +365,24 @@ const dataSubCategories = [
     idKategori: 'cat-01',
     namaKategori: 'Kesehatan & Kecantikan',
     nama: 'Perawatan Kulit & Mandi',
-    deskripsi: 'Produk pembersih dan perawatan wajah dengan bahan alami'
+    deskripsi: 'Produk pembersih dan perawatan wajah dengan bahan alami',
+    bannerImage: '../assets/banner-produk/banner-kulit-mandi.png'
   },
   {
     id: 'subcat-02',
     idKategori: 'cat-01',
     namaKategori: 'Kesehatan & Kecantikan',
     nama: 'Perawatan Tubuh',
-    deskripsi: 'Perawatan tubuh lengkap dari tradisional hingga modern'
+    deskripsi: 'Perawatan tubuh lengkap dari tradisional hingga modern',
+    bannerImage: '../assets/banner-produk/banner-perawatan-diri.png'
   },
   {
     id: 'subcat-03',
     idKategori: 'cat-01',
     namaKategori: 'Kesehatan & Kecantikan',
     nama: 'Perawatan Diri & Kesehatan',
-    deskripsi: 'Produk perawatan diri dan kesehatan keluarga'
+    deskripsi: 'Produk perawatan diri dan kesehatan keluarga',
+    bannerImage: '../assets/banner-produk/banner-perawatan-diri.png'
   },
   // Rumah & Gaya Hidup subcategories
   {
@@ -387,21 +390,24 @@ const dataSubCategories = [
     idKategori: 'cat-02',
     namaKategori: 'Rumah & Gaya Hidup',
     nama: 'Peralatan Pembersih Ramah Lingkungan',
-    deskripsi: 'Alat dan produk pembersih rumah yang aman untuk lingkungan'
+    deskripsi: 'Alat dan produk pembersih rumah yang aman untuk lingkungan',
+    bannerImage: '../assets/banner-produk/banner-peralatan-pembersih.png'
   },
   {
     id: 'subcat-05',
     idKategori: 'cat-02',
     namaKategori: 'Rumah & Gaya Hidup',
     nama: 'Aromaterapi & Kesehatan',
-    deskripsi: 'Produk aromaterapi untuk menciptakan suasana rumah yang nyaman'
+    deskripsi: 'Produk aromaterapi untuk menciptakan suasana rumah yang nyaman',
+    bannerImage: '../assets/banner-produk/banner-perawatan-diri.png'
   },
   {
     id: 'subcat-06',
     idKategori: 'cat-02',
     namaKategori: 'Rumah & Gaya Hidup',
     nama: 'Dekorasi & Peralatan Makan Berkelanjutan',
-    deskripsi: 'Dekorasi rumah dan peralatan makan berkelanjutan'
+    deskripsi: 'Dekorasi rumah dan peralatan makan berkelanjutan',
+    bannerImage: '../assets/banner-produk/banner-dekorasi-peralatan-makan.png'
   },
   // Makanan & Minuman subcategories
   {
@@ -409,21 +415,24 @@ const dataSubCategories = [
     idKategori: 'cat-03',
     namaKategori: 'Makanan & Minuman',
     nama: 'Seduhan Nusantara',
-    deskripsi: 'Minuman tradisional dari bahan-bahan pilihan nusantara'
+    deskripsi: 'Minuman tradisional dari bahan-bahan pilihan nusantara',
+    bannerImage: '../assets/banner-produk/Food&Beverages.jpg'
   },
   {
     id: 'subcat-08',
     idKategori: 'cat-03',
     namaKategori: 'Makanan & Minuman',
     nama: 'Sari Alam',
-    deskripsi: 'Produk pangan alami dari hasil alam bumi nusantara'
+    deskripsi: 'Produk pangan alami dari hasil alam bumi nusantara',
+    bannerImage: '../assets/banner-produk/Food&Beverages.jpg'
   },
   {
     id: 'subcat-09',
     idKategori: 'cat-03',
     namaKategori: 'Makanan & Minuman',
     nama: 'Kudapan Sehat',
-    deskripsi: 'Camilan dan snack sehat tanpa pengawet dan MSG'
+    deskripsi: 'Camilan dan snack sehat tanpa pengawet dan MSG',
+    bannerImage: '../assets/banner-produk/banner-kudapan-sehat.png'
   }
 ];
 

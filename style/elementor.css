@@ -3587,7 +3587,7 @@ form.submitting .wpcf7-spinner {
   font-weight: normal;
   line-height: 1;
   vertical-align: middle;
-  content: "";
+  
   color: var(--e-global-color-dark);
   display: flex;
 }
@@ -3715,7 +3715,7 @@ form.submitting .wpcf7-spinner {
   font-weight: normal;
   line-height: 1;
   vertical-align: middle;
-  content: "";
+  
   color: var(--e-global-color-dark);
   display: flex;
   position: absolute;

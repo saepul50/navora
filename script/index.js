@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Generate vertical menu dari kategori produk
   generateVerticalMenu();
+  initSubcategoryBanner();
 
   function renderProducts(container, selectedProducts) {
     container.innerHTML = '';
@@ -67,12 +68,17 @@ document.addEventListener('DOMContentLoaded', function () {
     if (parent && window.Swiper) {
       try { if (parent.swiper && parent.swiper.destroy) parent.swiper.destroy(true, true); } catch (e) {}
       var swiper = new Swiper(parent, {
-        slidesPerView: 4,
-        spaceBetween: 30,
+        slidesPerView: 2,
+        spaceBetween: 12,
         loop: true,
         autoplay: { delay: 5000 },
+        watchOverflow: true,
         navigation: { nextEl: '.elementor-swiper-button-next', prevEl: '.elementor-swiper-button-prev' },
-        breakpoints: { 1024: { slidesPerView: 4 }, 768: { slidesPerView: 3 }, 480: { slidesPerView: 2 }, 0: { slidesPerView: 1 } }
+        breakpoints: {
+          // Keep 4 slides per view from 480px and up
+          480: { slidesPerView: 4, spaceBetween: 20 },
+          1000: { slidesPerView: 4, spaceBetween: 30 }
+        }
       });
       parent.swiper = swiper;
     }
@@ -123,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
         subCats.forEach(function (subcat, subIdx) {
           var subId = 10000 + menuIndex * 100 + subIdx;
           html += '<li id="menu-item-' + subId + '" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-' + subId + '">' +
-            '<a href="#">' +
+              '<a href="#" data-subcategory-id="' + subcat.id + '">' +
             '<span class="menu-title">' + subcat.nama + '</span>' +
             '</a>' +
             '</li>';
@@ -134,6 +140,79 @@ document.addEventListener('DOMContentLoaded', function () {
       li.innerHTML = html;
       verticalMenu.appendChild(li);
     });
+
+      bindSubcategoryBannerLinks();
   }
+
+    function initSubcategoryBanner() {
+      var defaultSubcategoryId = getSubcategoryIdFromUrl() || ((window.dataSubCategories || [])[0] || {}).id;
+      if (defaultSubcategoryId) {
+        updateSubcategoryBannerById(defaultSubcategoryId);
+      }
+    }
+
+    function bindSubcategoryBannerLinks() {
+      var links = document.querySelectorAll('#menu-1-05b5675 a[data-subcategory-id]');
+      links.forEach(function (link) {
+        link.addEventListener('click', function (event) {
+          event.preventDefault();
+          var subcategoryId = this.getAttribute('data-subcategory-id');
+          if (subcategoryId) {
+            updateSubcategoryBannerById(subcategoryId);
+          }
+        });
+      });
+    }
+
+    function getSubcategoryIdFromUrl() {
+      try {
+        return new URLSearchParams(window.location.search).get('subcategory');
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function updateSubcategoryBannerById(subcategoryId) {
+      var subcategory = (window.dataSubCategories || []).find(function (item) {
+        return item.id === subcategoryId;
+      });
+      if (!subcategory) {
+        subcategory = (window.dataSubCategories || [])[0];
+      }
+      renderSubcategoryBanner(subcategory);
+    }
+
+    function renderSubcategoryBanner(subcategory) {
+      if (!subcategory) return;
+      var bannerContainer = document.querySelector('#subcategory-banner .elementor-widget-container');
+      if (!bannerContainer) return;
+
+      var imageUrl = subcategory.bannerImage || '../assets/banner-produk/banner-summersale.png';
+      var title = subcategory.nama || subcategory.namaKategori || 'Subcategory';
+      var description = subcategory.deskripsi || '';
+      var buttonUrl = 'shop.html?subcategory=' + encodeURIComponent(subcategory.id);
+
+      bannerContainer.innerHTML =
+        '<div class="elementor-cta--skin-cover elementor-cta elementor-freshio2-banner">' +
+          '<div class="elementor-cta__bg-wrapper">' +
+            '<div class="elementor-cta__bg-overlay"></div>' +
+            '<div class="elementor-cta__bg elementor-bg" style="background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url(' + imageUrl + ');"></div>' +
+          '</div>' +
+          '<div class="elementor-cta__content">' +
+            '<div class="elementor-cta__content_inner">' +
+              '<div class="elementor-cta__title elementor-cta__content-item elementor-content-item">' + title + '</div>' +
+              '<div class="elementor-cta__description elementor-cta__content-item elementor-content-item">' + description + '</div>' +
+              '<div class="elementor-cta__button-wrapper elementor-cta__content-item elementor-content-item">' +
+                '<a class="elementor-cta__button elementor-button" href="' + buttonUrl + '">' +
+                  '<span class="elementor-button-content-wrapper">' +
+                    '<span class="elementor-button-icon"><i aria-hidden="true" class="fas fa-angle-double-right"></i></span>' +
+                    '<span class="elementor-button-text">Lihat Kategori</span>' +
+                  '</span>' +
+                '</a>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+    }
 });
 
