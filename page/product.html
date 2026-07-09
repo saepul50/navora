@@ -520,10 +520,6 @@
                                             <div class="elementor-widget-container">
                                                 <div class="elementor-header-group-wrapper">
                                                     <div class="header-group-action">
-
-
-
-
                                                         <div class="site-header-cart menu">
                                                             <a class="cart-contents"
                                                                 href="https://demo2.pavothemes.com/freshio/cart/"
@@ -3099,6 +3095,80 @@
         src="https://demo2.pavothemes.com/freshio/wp-content/themes/freshio2/inc/elementor/motion-fx/assets/main.js?ver=2.4.3"
         id="freshio2-elementor-motion-fx-js"></script>
 
+    <script type="module">
+        import dataProducts from '../script/data-dummy.js';
+
+        function getQueryParam(name) {
+            return new URLSearchParams(window.location.search).get(name);
+        }
+
+        function formatPrice(value) {
+            return Number(value || 0).toLocaleString('id-ID');
+        }
+
+        function setHTML(selector, html) {
+            var el = document.querySelector(selector);
+            if (el) el.innerHTML = html;
+        }
+
+        function setText(selector, text) {
+            var el = document.querySelector(selector);
+            if (el) el.textContent = text;
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            var products = window.dataProducts || dataProducts || [];
+            var productId = getQueryParam('id');
+            var product = products.find(function (item) {
+                return item.id === productId;
+            }) || products[0];
+
+            if (!product) return;
+
+            var mainGallery = document.querySelector('.product-swiper-main .swiper-wrapper');
+            var thumbGallery = document.querySelector('.product-swiper-thumbs .swiper-wrapper');
+            if (mainGallery && thumbGallery && Array.isArray(product.images) && product.images.length) {
+                mainGallery.innerHTML = product.images.map(function (img) {
+                    return '<div class="swiper-slide">' +
+                        '<a href="' + img + '">' +
+                        '<img src="' + img + '" alt="' + product.nama + '" class="wp-post-image" width="600" height="520" decoding="async" />' +
+                        '</a>' +
+                        '</div>';
+                }).join('');
+                thumbGallery.innerHTML = product.images.map(function (img) {
+                    return '<div class="swiper-slide"><img src="' + img + '" alt="' + product.nama + '" /></div>';
+                }).join('');
+            }
+
+            setText('.product_title.entry-title', product.nama || '');
+            setHTML('.summary .price', '<span class="woocommerce-Price-amount amount" aria-hidden="true"><bdi><span class="woocommerce-Price-currencySymbol">Rp</span>' + formatPrice(product.price) + '</bdi></span>');
+            setText('.freshio2-sticky-add-to-cart__content-title strong', product.nama || '');
+            setHTML('.freshio2-sticky-add-to-cart__content-price', '<span class="woocommerce-Price-amount amount" aria-hidden="true"><bdi><span class="woocommerce-Price-currencySymbol">Rp</span>' + formatPrice(product.price) + '</bdi></span>');
+
+            if (product.deskripsi || product.komposisi) {
+                setHTML('.product_meta', '<p>' + (product.deskripsi || '') + '</p>' +
+                    '<p class="posted_in">Komposisi: ' + (product.komposisi || '') + '</p>');
+            }
+
+            var ldJson = document.querySelector('script[type="application/ld+json"]');
+            if (ldJson) {
+                try {
+                    var json = JSON.parse(ldJson.textContent);
+                    json.name = product.nama || json.name;
+                    json.description = product.deskripsi || json.description || '';
+                    json.image = Array.isArray(product.images) && product.images.length ? product.images[0] : json.image;
+                    if (json.offers) {
+                        json.offers.lowPrice = product.price;
+                        json.offers.highPrice = product.price;
+                        json.offers.priceCurrency = 'IDR';
+                    }
+                    ldJson.textContent = JSON.stringify(json);
+                } catch (e) {
+                    console.warn('Unable to update structured data', e);
+                }
+            }
+        });
+    </script>
 
     <!-- Inisialisasi Swiper Galeri Produk -->
     <script>

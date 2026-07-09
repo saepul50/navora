@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
           '<div class="product-top">' +
             '<div class="product-transition">' +
               '<div class="product-image">' +
-                '<img loading="lazy" decoding="async" width="350" height="327" src="' + (p.image || '../assets/foto-produk/placeholder.png') + '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="' + (p.nama || '') + '" />' +
+                '<img loading="lazy" decoding="async" width="350" height="327" src="' + (getProductImage(p) || '../assets/foto-produk/placeholder.png') + '" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="' + (p.nama || '') + '" />' +
               '</div>' +
               '<div class="group-action">' +
                 '<div class="shop-action">' +
@@ -42,17 +42,24 @@ document.addEventListener('DOMContentLoaded', function () {
                   '<button class="woosc-btn"><i class="fas fa-exchange-alt"></i> Bandingkan</button>' +
                 '</div>' +
               '</div>' +
-              '<a href="product.html" class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a>' +
+              '<a href="product.html?id=' + encodeURIComponent(p.id || '') + '" class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a>' +
             '</div>' +
           '</div>' +
           '<div class="product-caption">' +
-            '<h3 class="woocommerce-loop-product__title"><a href="product.html">' + (p.nama || '') + '</a></h3>' +
+            '<h3 class="woocommerce-loop-product__title"><a href="product.html?id=' + encodeURIComponent(p.id || '') + '">' + (p.nama || '') + '</a></h3>' +
             '<span class="price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">Rp</span> ' + formatPrice(p.price) + '</span></span>' +
             '<a href="cart.html" class="button_cart add_to_cart_button" rel="nofollow"><span class="button-text">Tambah ke keranjang</span><span class="button-icon"><i class="fas fa-angle-double-right"></i></span></a>' +
           '</div>' +
         '</div>';
       container.appendChild(li);
     });
+  }
+
+  function getProductImage(product) {
+    if (product && product.images && product.images.length) {
+      return product.images[0];
+    }
+    return product && product.image;
   }
 
   function initSwiper(container) {
