@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var slotWrappers = Array.prototype.slice.call(document.querySelectorAll('.elementor-element-b9e1e1f .elementor-widget-freshio2-product-categories[data-subcategory-slot]'));
     if (!slotWrappers.length || !window.dataSubCategories || !window.dataSubCategories.length) return;
 
-    var subcategorySlugs = ['perawatan-kulit-mandi', 'peralatan-pembersih-ramah-lingkungan', 'dekorasi-peralatan-makan-berkelanjutan', 'seduhan-nusantara', 'perawatan-diri-kesehatan'];
+    var subcategorySlugs = ['perawatan-kulit-mandi', 'peralatan-pembersih-ramah-lingkungan', 'dekorasi-peralatan-makan-berkelanjutan', 'kudapan-sehat', 'perawatan-diri-kesehatan'];
     var selectedSubcategories = subcategorySlugs.map(function (slug) {
       return (window.dataSubCategories || []).find(function (subcat) {
         return (subcat.slug || '').toLowerCase() === slug;
@@ -173,7 +173,9 @@ document.addEventListener('DOMContentLoaded', function () {
         li.id = 'menu-item-' + (900 + menuIndex);
         li.className = 'menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-' + (900 + menuIndex);
 
-        var html = '<a href="#">' +
+        // Build category link that points to shop.html with category parameter
+        var categoryUrl = 'shop.html?category=' + encodeURIComponent(category.slug);
+        var html = '<a href="' + categoryUrl + '">' +
           '<i class="menu-icon ' + (category.ikon || 'fas fa-circle') + '"></i>' +
           '<span class="menu-title">' + category.nama + '</span>' +
           '</a>';
@@ -188,8 +190,10 @@ document.addEventListener('DOMContentLoaded', function () {
           html += '<ul class="sub-menu">';
           subCats.forEach(function (subcat, subIdx) {
             var subId = 10000 + menuIndex * 100 + subIdx;
+            // Build subcategory link that includes both category and subcategory parameters
+            var subUrl = 'shop.html?category=' + encodeURIComponent(category.slug) + '&subcategory=' + encodeURIComponent(subcat.slug);
             html += '<li id="menu-item-' + subId + '" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-' + subId + '">' +
-              '<a href="#">' +
+              '<a href="' + subUrl + '">' +
               '<span class="menu-title">' + subcat.nama + '</span>' +
               '</a>' +
               '</li>';

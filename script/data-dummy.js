@@ -473,7 +473,7 @@ const dataSubCategories = [
     nama: 'Perawatan Diri & Kesehatan',
     slug: 'perawatan-diri-kesehatan',
     deskripsi: 'Produk perawatan diri dan kesehatan keluarga',
-    bannerImage: '../assets/banner-produk/banner-perawatan-diri.png'
+    bannerImage: '../assets/banner-produk/banner-perawatan-diri1.png'
   },
   // Rumah & Gaya Hidup subcategories
   {
