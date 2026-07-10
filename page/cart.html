@@ -126,6 +126,269 @@
             -webkit-appearance: none;
             margin: 0;
         }
+
+        @media (max-width: 1024px) {
+            .wishlist-table-outer {
+                padding: 0 16px;
+            }
+
+            .wishlist-table-wrap {
+                overflow-x: hidden;
+            }
+
+            .navora-wishlist-table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            .navora-wishlist-table thead {
+                display: none;
+            }
+
+            .navora-wishlist-table tbody {
+                display: grid;
+                gap: 18px;
+            }
+
+            .navora-wishlist-table tbody tr.cart_item {
+                display: grid;
+                gap: 14px;
+                padding: 18px;
+                background: #ffffff;
+                border: 1px solid #e5e7eb;
+                border-radius: 18px;
+                grid-template-columns: 84px minmax(0, 1fr);
+                position: relative;
+            }
+
+            .navora-wishlist-table tbody tr.cart_item td {
+                display: block;
+                width: 100%;
+                padding: 0;
+                border: none;
+            }
+
+            .td-remove {
+                position: absolute;
+                top: 16px;
+                right: 16px;
+                width: auto;
+                padding: 0;
+                z-index: 1;
+            }
+
+            .td-image {
+                grid-column: 1 / 2;
+            }
+
+            .td-name,
+            .td-price,
+            .td-quantity,
+            .td-subtotal {
+                grid-column: 2 / -1;
+            }
+
+            .product-img-wrapper {
+                display: block;
+                width: 100%;
+                max-width: 100%;
+                overflow: hidden;
+                border-radius: 16px;
+            }
+
+            .product-img-wrapper img {
+                width: 100%;
+                height: auto;
+                display: block;
+                object-fit: cover;
+            }
+
+            .td-name .product-name-link {
+                font-size: 1rem;
+                line-height: 1.4;
+                color: #111827;
+                display: block;
+            }
+
+            .td-price,
+            .td-quantity,
+            .td-subtotal {
+                padding-top: 8px;
+            }
+
+            .td-price {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                align-items: center;
+            }
+
+            .td-price .price-current {
+                font-weight: 700;
+            }
+
+            .quantity_wrap.quantity-stepper {
+                width: 100%;
+            }
+
+            .quantity_wrap.quantity-stepper .quantity {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .cart-collaterals {
+                padding: 0 16px 16px;
+            }
+
+            .cart_totals {
+                width: 100%;
+                box-sizing: border-box;
+                background: #ffffff;
+                border: 1px solid #e5e7eb;
+                padding: 18px;
+                border-radius: 18px;
+            }
+
+            .shop_table_responsive {
+                width: 100%;
+            }
+
+            .shop_table_responsive tr {
+                display: flex;
+                justify-content: space-between;
+                gap: 12px;
+            }
+
+            .shop_table_responsive td,
+            .shop_table_responsive th {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                padding: 8px 0;
+                border: none;
+            }
+
+            .wc-proceed-to-checkout {
+                margin-top: 18px;
+            }
+
+            .checkout-button {
+                width: 100%;
+                display: inline-flex;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .navora-wishlist-table tbody tr.cart_item {
+                grid-template-columns: 80px 1fr;
+                grid-template-areas:
+                    "image name"
+                    "image price"
+                    "image quantity"
+                    "image subtotal";
+                gap: 8px 12px;
+                background: #ffffff;
+                border: 1px solid #e5e7eb;
+                border-radius: 18px;
+                padding: 16px;
+                margin-bottom: 16px;
+                position: relative;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            }
+
+            .navora-wishlist-table tbody tr.cart_item td {
+                border: none;
+                padding: 0;
+            }
+
+            .td-remove {
+                position: absolute !important;
+                top: 12px;
+                right: 12px;
+                padding: 0 !important;
+                width: auto !important;
+                z-index: 10;
+            }
+
+            .td-image {
+                grid-area: image;
+                padding: 0 !important;
+                width: 80px !important;
+                height: 80px !important;
+            }
+
+            .td-image .product-img-wrapper {
+                width: 80px !important;
+                height: 80px !important;
+                margin: 0 !important;
+                border-radius: 16px;
+            }
+
+            .td-name {
+                grid-area: name;
+                padding: 0 !important;
+                padding-right: 24px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .td-name .product-name-link {
+                font-size: 14px;
+                margin-bottom: 4px;
+                line-height: 1.3;
+            }
+
+            .td-price {
+                grid-area: price;
+                padding: 0 !important;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 6px;
+            }
+
+            .td-price .price-current {
+                font-weight: 700;
+            }
+
+            .td-quantity {
+                grid-area: quantity;
+                padding: 0 !important;
+            }
+
+            .td-subtotal {
+                grid-area: subtotal;
+                padding: 0 !important;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-top: 1px dashed #e5e7eb;
+                padding-top: 10px;
+                margin-top: 8px;
+            }
+
+            .td-subtotal .subtotal-value {
+                font-weight: 700;
+            }
+
+            .td-name[data-label]::before,
+            .td-price[data-label]::before,
+            .td-quantity[data-label]::before,
+            .td-subtotal[data-label]::before {
+                display: none;
+            }
+
+            .recommendation-controls {
+                top: 10px;
+                right: 10px;
+            }
+
+            .recommendation-dots {
+                bottom: 10px;
+            }
+        }
     </style>
     <style id='wp-emoji-styles-inline-css'>
         img.wp-smiley,
@@ -3424,26 +3687,26 @@
             const addedDate = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
             return `
                 <tr class="cart_item" data-product-id="${product.id}" data-price="${product.price}">
-                    <td class="td-remove">
+                    <td class="td-remove" data-label="Hapus">
                         <button class="btn-remove-item remove-cart-item" title="Hapus dari keranjang" aria-label="Hapus ${product.nama}">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
                             </svg>
                         </button>
                     </td>
-                    <td class="td-image">
+                    <td class="td-image" data-label="Produk">
                         <a href="#" class="product-img-wrapper">
                             <img src="${product.images[0] || product.image}" alt="${product.nama}" loading="lazy">
                         </a>
                     </td>
-                    <td class="td-name">
+                    <td class="td-name" data-label="Nama Produk">
                         <a class="product-name-link">${product.nama}</a>
                     </td>
-                    <td class="td-price">
+                    <td class="td-price" data-label="Harga">
                         <span class="price-current"><span class="price-currency">Rp</span> ${formatter.format(product.price)}</span>
                         ${product.originalPrice ? `<span class="price-original"><span class="price-currency">Rp</span> ${formatter.format(product.originalPrice)}</span>` : ''}
                     </td>
-                    <td class="td-quantity">
+                    <td class="td-quantity" data-label="Jumlah">
                         <div class="quantity_wrap quantity-stepper">
                             <label class="quantity_label" for="quantity_${product.id}">Jumlah:</label>
                             <div class="quantity">
