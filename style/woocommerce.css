@@ -1,4 +1,4 @@
-da@charset "UTF-8";
+@charset "UTF-8";
 
 /**
  * WooCommerce
@@ -578,7 +578,7 @@ table.shop_table_responsive.my_account_orders .order-actions::before {
 }
 
 .star-rating {
-  font-family: "freshio2-icon";
+  font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: inline-block;
@@ -587,18 +587,17 @@ table.shop_table_responsive.my_account_orders .order-actions::before {
   font-weight: normal;
   line-height: 1;
   vertical-align: middle;
-  font-family: "star";
   overflow: hidden;
   position: relative;
   height: 1em;
   font-size: 11px;
   font-size: 0.6875rem;
   width: 70px;
-  letter-spacing: 0px;
+  letter-spacing: 1px;
 }
 
 .star-rating::before {
-  content: "s s s s s";
+  content: "☆ ☆ ☆ ☆ ☆";
   float: left;
   top: 0;
   left: 0;
@@ -608,16 +607,14 @@ table.shop_table_responsive.my_account_orders .order-actions::before {
 
 .star-rating span {
   overflow: hidden;
-  float: left;
-  top: 0;
-  left: 0;
   position: absolute;
-  padding-top: 23px;
-  color: var(--e-global-color-primary);
+  inset: 0;
+  white-space: nowrap;
+  color: #ffcc33;
 }
 
 .star-rating span:before {
-  content: "S S S S S";
+  content: "★ ★ ★ ★ ★";
   top: 0;
   position: absolute;
   left: 0;

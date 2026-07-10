@@ -2181,15 +2181,16 @@
                     var parts = [];
                     parts.push('<span class="breadcrumbs-item hfe-breadcrumbs-first"><a href="/"><span class="breadcrumbs-text">Home</span></a></span>');
                     
-                    // Map slug to category name from data-dummy
-                    var categoryName = categorySlug;
+                    // Resolve category name directly from data-dummy slugs
+                    var categoryName = '';
                     if (categorySlug && cats && cats.length > 0) {
-                        var catObj = cats.find(function(c) { 
-                            if (!c || !c.nama) return false;
-                            var slug = c.nama.toString().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-                            return slug === categorySlug; 
+                        var catObj = cats.find(function(c) {
+                            return c && c.slug && String(c.slug).toLowerCase() === String(categorySlug).toLowerCase();
                         });
                         if (catObj) categoryName = catObj.nama;
+                    }
+                    if (!categoryName && categorySlug) {
+                        categoryName = decodeURIComponent(categorySlug).replace(/-/g, ' ');
                     }
                     
                     if (categorySlug) {
@@ -2198,15 +2199,16 @@
                         if (titleEl) titleEl.textContent = categoryName;
                     }
                     
-                    // Map slug to subcategory name from data-dummy
-                    var subcategoryName = subcategorySlug;
+                    // Resolve subcategory name directly from data-dummy slugs
+                    var subcategoryName = '';
                     if (subcategorySlug && subs && subs.length > 0) {
-                        var subObj = subs.find(function(s) { 
-                            if (!s || !s.nama) return false;
-                            var slug = s.nama.toString().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-                            return slug === subcategorySlug; 
+                        var subObj = subs.find(function(s) {
+                            return s && s.slug && String(s.slug).toLowerCase() === String(subcategorySlug).toLowerCase();
                         });
                         if (subObj) subcategoryName = subObj.nama;
+                    }
+                    if (!subcategoryName && subcategorySlug) {
+                        subcategoryName = decodeURIComponent(subcategorySlug).replace(/-/g, ' ');
                     }
                     
                     if (subcategorySlug) {
@@ -2247,12 +2249,20 @@
                                 var shopBc = document.getElementById('dynamic-breadcrumb-shop');
                                 var titleEl = document.getElementById('breadcrumb-title');
                                 var parts = [];
+                                var categoryName = p.categoryName || '';
+                                var categorySlug = p.categorySlug || '';
+                                var subcategoryName = p.subcategoryName || '';
+                                var subcategorySlug = p.subcategorySlug || '';
                                 parts.push('<span class="breadcrumbs-item hfe-breadcrumbs-first"><a href="/"><span class="breadcrumbs-text">Home</span></a></span>');
-                                if (p.kategori) parts.push('<span class="breadcrumbs-separator"><i aria-hidden="true" class="fas fa-angle-right"></i></span><span class="breadcrumbs-item"><a href="/shop/?category=' + encodeURIComponent(p.kategori) + '"><span class="breadcrumbs-text">' + p.kategori + '</span></a></span>');
-                                if (p.subKategori) parts.push('<span class="breadcrumbs-separator"><i aria-hidden="true" class="fas fa-angle-right"></i></span><span class="breadcrumbs-item"><a href="/shop/?subcategory=' + encodeURIComponent(p.subKategori) + '"><span class="breadcrumbs-text">' + p.subKategori + '</span></a></span>');
+                                if (categoryName || categorySlug) {
+                                    parts.push('<span class="breadcrumbs-separator"><i aria-hidden="true" class="fas fa-angle-right"></i></span><span class="breadcrumbs-item"><a href="/shop/?category=' + encodeURIComponent(categorySlug) + '"><span class="breadcrumbs-text">' + categoryName + '</span></a></span>');
+                                }
+                                if (subcategoryName || subcategorySlug) {
+                                    parts.push('<span class="breadcrumbs-separator"><i aria-hidden="true" class="fas fa-angle-right"></i></span><span class="breadcrumbs-item"><a href="/shop/?category=' + encodeURIComponent(categorySlug) + '&subcategory=' + encodeURIComponent(subcategorySlug) + '"><span class="breadcrumbs-text">' + subcategoryName + '</span></a></span>');
+                                }
                                 parts.push('<span class="breadcrumbs-separator"><i aria-hidden="true" class="fas fa-angle-right"></i></span><span class="breadcrumbs-item hfe-breadcrumbs-last"><span class="breadcrumbs-text">' + (p.nama || '') + '</span></span>');
                                 if (shopBc) shopBc.innerHTML = parts.join('');
-                                if (titleEl) titleEl.textContent = p.kategori || titleEl.textContent;
+                                if (titleEl) titleEl.textContent = categoryName || titleEl.textContent;
                                 return;
                             }
                         } catch (e) { console.warn(e); }
@@ -2327,70 +2337,129 @@
         </script>
 
         <script>
-            // Wire category and subcategory filter clicks (event delegation)
-            document.addEventListener('DOMContentLoaded', function () {
-                function ensureDataLoaded(cb) {
-                    if (window.dataCategories && window.dataSubCategories) return cb();
-                    var tries = 0;
-                    (function wait() {
-                        if (window.dataCategories && window.dataSubCategories) return cb();
-                        tries++;
-                        if (tries > 100) return cb();
-                        setTimeout(wait, 50);
-                    })();
+            (function () {
+                function getQueryParam(name) {
+                    return new URLSearchParams(window.location.search).get(name);
                 }
 
                 function setQueryParam(key, value) {
                     var url = new URL(window.location.href);
                     if (!value) url.searchParams.delete(key); else url.searchParams.set(key, value);
                     try { history.replaceState(null, '', url.pathname + url.search); } catch (e) { /* ignore */ }
-                    // Rebuild breadcrumb after ensuring data is loaded
-                    ensureDataLoaded(function() {
-                        if (typeof buildShopBreadcrumb === 'function') buildShopBreadcrumb();
-                    });
+                    if (typeof window.buildShopBreadcrumb === 'function') {
+                        window.buildShopBreadcrumb();
+                    }
                 }
 
-                function attachFilterHandlers() {
+                function normalize(value) {
+                    return String(value || '').toLowerCase().trim();
+                }
+
+                function applyFilters(categorySlug, subcategorySlug) {
+                    var selectedCategory = categorySlug !== undefined ? categorySlug : (window.currentShopCategory || '');
+                    var selectedSubcategory = subcategorySlug !== undefined ? subcategorySlug : (window.currentShopSubcategory || '');
                     var catList = document.getElementById('category-filter-list');
+                    var subList = document.getElementById('subcategory-filter-list');
+                    var products = Array.prototype.slice.call(document.querySelectorAll('.freshio2-products.products .product'));
+                    var categoryItems = catList ? catList.querySelectorAll('.cat-item') : [];
+                    var subcategoryItems = subList ? subList.querySelectorAll('.cat-item') : [];
+
+                    if (!products.length) return;
+
+                    categoryItems.forEach(function (item) {
+                        var cat = normalize(item.getAttribute('data-category'));
+                        item.classList.toggle('current-cat', cat === normalize(selectedCategory) || (!selectedCategory && cat === 'all'));
+                    });
+
+                    subcategoryItems.forEach(function (item) {
+                        var sub = normalize(item.getAttribute('data-subcategory'));
+                        item.classList.toggle('current-cat', sub === normalize(selectedSubcategory) || (!selectedSubcategory && sub === 'all'));
+                    });
+
+                    products.forEach(function (product) {
+                        var productCategory = normalize(product.getAttribute('data-category'));
+                        var productSubcategory = normalize(product.getAttribute('data-subcategory'));
+                        var matchesCategory = !selectedCategory || selectedCategory === 'all' || productCategory === normalize(selectedCategory);
+                        var matchesSubcategory = !selectedSubcategory || selectedSubcategory === 'all' || productSubcategory === normalize(selectedSubcategory);
+                        product.style.display = (matchesCategory && matchesSubcategory) ? 'block' : 'none';
+                    });
+
+                    if (catList) {
+                        catList.querySelectorAll('.cat-item').forEach(function (item) {
+                            if (!item.getAttribute('data-category')) return;
+                            if (item.getAttribute('data-category') === 'all') {
+                                item.classList.toggle('current-cat', !selectedCategory || selectedCategory === 'all');
+                            }
+                        });
+                    }
+
+                    if (subList) {
+                        subList.querySelectorAll('.cat-item').forEach(function (item) {
+                            if (!item.getAttribute('data-subcategory')) return;
+                            if (item.getAttribute('data-subcategory') === 'all') {
+                                item.classList.toggle('current-cat', !selectedSubcategory || selectedSubcategory === 'all');
+                            }
+                        });
+                    }
+
+                    window.currentShopCategory = selectedCategory || 'all';
+                    window.currentShopSubcategory = selectedSubcategory || 'all';
+                }
+
+                function syncFromUrl() {
+                    var category = getQueryParam('category') || '';
+                    var subcategory = getQueryParam('subcategory') || '';
+                    applyFilters(category, subcategory);
+                }
+
+                document.addEventListener('DOMContentLoaded', function () {
+                    var catList = document.getElementById('category-filter-list');
+                    var subList = document.getElementById('subcategory-filter-list');
+
                     if (catList) {
                         catList.addEventListener('click', function (e) {
                             var li = e.target.closest('.cat-item');
                             if (!li) return;
                             e.preventDefault();
-                            var cat = li.getAttribute('data-category');
-                            if (cat === 'all') setQueryParam('category', ''); else setQueryParam('category', cat);
-                            // update UI state
-                            document.querySelectorAll('#category-filter-list .cat-item').forEach(function(i){ i.classList.remove('current-cat'); });
-                            li.classList.add('current-cat');
-                            // reset subcategory selection
-                            document.querySelectorAll('#subcategory-filter-list .cat-item').forEach(function(i){ if (i.getAttribute('data-subcategory')==='all') i.classList.add('current-cat'); else i.classList.remove('current-cat'); });
-                            if (typeof applyFilters === 'function') applyFilters();
+                            var category = li.getAttribute('data-category') || 'all';
+                            var nextCategory = category === 'all' ? '' : category;
+                            var nextSubcategory = '';
+                            setQueryParam('category', nextCategory);
+                            setQueryParam('subcategory', nextSubcategory);
+                            applyFilters(nextCategory, nextSubcategory);
                         });
                     }
 
-                    var subList = document.getElementById('subcategory-filter-list');
                     if (subList) {
                         subList.addEventListener('click', function (e) {
                             var li = e.target.closest('.cat-item');
                             if (!li) return;
                             e.preventDefault();
-                            var sub = li.getAttribute('data-subcategory');
-                            if (sub === 'all') setQueryParam('subcategory', ''); else setQueryParam('subcategory', sub);
-                            // update UI state
-                            document.querySelectorAll('#subcategory-filter-list .cat-item').forEach(function(i){ i.classList.remove('current-cat'); });
-                            li.classList.add('current-cat');
-                            // ensure parent category selected
-                            var parent = li.getAttribute('data-parent-cat');
-                            if (parent) {
-                                document.querySelectorAll('#category-filter-list .cat-item').forEach(function(i){ if (i.getAttribute('data-category')===parent) i.classList.add('current-cat'); else i.classList.remove('current-cat'); });
-                            }
-                            if (typeof applyFilters === 'function') applyFilters();
+                            var subcategory = li.getAttribute('data-subcategory') || 'all';
+                            var nextSubcategory = subcategory === 'all' ? '' : subcategory;
+                            var parentCategory = li.getAttribute('data-parent-cat') || '';
+                            var nextCategory = parentCategory || (window.currentShopCategory && window.currentShopCategory !== 'all' ? window.currentShopCategory : '');
+                            setQueryParam('category', nextCategory);
+                            setQueryParam('subcategory', nextSubcategory);
+                            applyFilters(nextCategory, nextSubcategory);
                         });
                     }
-                }
 
-                attachFilterHandlers();
-            });
+                    var observer = new MutationObserver(function () {
+                        syncFromUrl();
+                    });
+
+                    var productsContainer = document.querySelector('.freshio2-products.products');
+                    if (productsContainer) {
+                        observer.observe(productsContainer, { childList: true, subtree: true });
+                    }
+
+                    if (catList) observer.observe(catList, { childList: true, subtree: true });
+                    if (subList) observer.observe(subList, { childList: true, subtree: true });
+
+                    syncFromUrl();
+                });
+            })();
         </script>
 
         <script>
@@ -2423,53 +2492,24 @@
 
                             var ul = document.querySelector('.freshio2-products.products');
                             if (ul) {
-                                // First, build category and subcategory lookup maps
                                 var cats = window.dataCategories || [];
                                 var subs = window.dataSubCategories || [];
-                                var catKeywords = {
-                                    'Kesehatan & Kecantikan': ['health', 'beauty', 'kesehatan', 'kecantikan'],
-                                    'Rumah & Gaya Hidup': ['home', 'living', 'rumah', 'gaya'],
-                                    'Makanan & Minuman': ['food', 'beverages', 'makanan', 'minuman']
-                                };
-                                var subKeywords = {
-                                    'Perawatan Kulit & Mandi': ['skincare', 'bath', 'kulit', 'mandi'],
-                                    'Perawatan Tubuh': ['body', 'tubuh'],
-                                    'Perawatan Diri & Kesehatan': ['personal', 'care', 'wellness', 'kesehatan', 'diri'],
-                                    'Peralatan Pembersih Ramah Lingkungan': ['eco', 'clean', 'cleaning', 'pembersih'],
-                                    'Aromaterapi & Kesehatan': ['aroma', 'aromatherapy', 'aromaterapi'],
-                                    'Dekorasi & Peralatan Makan Berkelanjutan': ['decor', 'sustainable', 'dekorasi', 'peralatan', 'makan'],
-                                    'Seduhan Nusantara': ['seduhan', 'kopi', 'teh', 'wedang', 'seduhan nusantara'],
-                                    'Sari Alam': ['sari', 'madu', 'sari alam'],
-                                    'Kudapan Sehat': ['kudapan', 'kripik', 'selai', 'granola', 'kudapan sehat']
-                                };
+                                var categoryLookup = {};
+                                cats.forEach(function (c) {
+                                    categoryLookup[c.id] = c;
+                                    categoryLookup[c.slug] = c;
+                                });
+                                var subLookup = {};
+                                subs.forEach(function (s) {
+                                    subLookup[s.id] = s;
+                                    subLookup[s.slug] = s;
+                                });
 
                                 ul.innerHTML = products.map(function (p) {
-                                    // Determine which category this product belongs to
-                                    var categoryName = '';
-                                    var categorySlug = '';
-                                    for (var catName in catKeywords) {
-                                        var kws = catKeywords[catName];
-                                        var pk = (p.kategori || '').toString().toLowerCase();
-                                        if (kws.some(function (kw) { return pk.indexOf(kw) !== -1; })) {
-                                            categoryName = catName;
-                                            categorySlug = catName.toString().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-                                            break;
-                                        }
-                                    }
-                                    
-                                    // Determine which subcategory this product belongs to
-                                    var subcategoryName = '';
-                                    var subcategorySlug = '';
-                                    for (var subName in subKeywords) {
-                                        var sKws = subKeywords[subName];
-                                        var sk = (p.subKategori || '').toString().toLowerCase();
-                                        var pn = (p.nama || '').toString().toLowerCase();
-                                        if (sKws.some(function (kw) { return sk.indexOf(kw) !== -1 || pn.indexOf(kw) !== -1; })) {
-                                            subcategoryName = subName;
-                                            subcategorySlug = subName.toString().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-                                            break;
-                                        }
-                                    }
+                                    var category = categoryLookup[p.categoryId] || categoryLookup[p.categorySlug] || null;
+                                    var subcategory = subLookup[p.subcategoryId] || subLookup[p.subcategorySlug] || null;
+                                    var categorySlug = (category && category.slug) || p.categorySlug || '';
+                                    var subcategorySlug = (subcategory && subcategory.slug) || p.subcategorySlug || '';
 
                                     var img = (p.images && p.images.length) ? p.images[0] : '../assets/foto-produk/default.png';
                                     var price = formatPrice(p.price);
@@ -2488,22 +2528,11 @@
                             var catList = document.getElementById('category-filter-list');
                             if (catList) {
                                 var cats = window.dataCategories || [];
-                                // keyword mapping between Indonesian category names and product.kategori values
-                                var catKeywords = {
-                                    'Kesehatan & Kecantikan': ['health', 'beauty', 'kesehatan', 'kecantikan'],
-                                    'Rumah & Gaya Hidup': ['home', 'living', 'rumah', 'gaya'],
-                                    'Makanan & Minuman': ['food', 'beverages', 'makanan', 'minuman']
-                                };
                                 catList.innerHTML = '<li class="cat-item current-cat" data-category="all"><a href="javascript:void(0)">Semua Kategori</a> <span class="count">(' + products.length + ')</span></li>' + cats.map(function (c) {
-                                    var kws = catKeywords[c.nama] || [c.nama.toString().toLowerCase()];
-                                    var matched = (products || []).filter(function (p) {
-                                        var pk = (p.kategori || '').toString().toLowerCase();
-                                        return kws.some(function (kw) { return pk.indexOf(kw) !== -1; });
-                                    });
-                                    // Use category name slug directly (aligned with breadcrumb)
-                                    var catSlug = c.nama.toString().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-                                    var cnt = matched.length;
-                                    return '<li class="cat-item" data-category="' + catSlug + '"><a href="javascript:void(0)">' + c.nama + '</a> <span class="count">(' + cnt + ')</span></li>';
+                                    var cnt = (products || []).filter(function (p) {
+                                        return (p.categorySlug || '') === c.slug || (p.categoryId || '') === c.id;
+                                    }).length;
+                                    return '<li class="cat-item" data-category="' + c.slug + '"><a href="javascript:void(0)">' + c.nama + '</a> <span class="count">(' + cnt + ')</span></li>';
                                 }).join('');
                             }
 
@@ -2511,30 +2540,12 @@
                             var subList = document.getElementById('subcategory-filter-list');
                             if (subList) {
                                 var subs = window.dataSubCategories || [];
-                                // heuristic keywords for subcategories (Indonesian labels -> product.subKategori/content)
-                                var subKeywords = {
-                                    'Perawatan Kulit & Mandi': ['skincare', 'bath', 'kulit', 'mandi'],
-                                    'Perawatan Tubuh': ['body', 'tubuh'],
-                                    'Perawatan Diri & Kesehatan': ['personal', 'care', 'wellness', 'kesehatan', 'diri'],
-                                    'Peralatan Pembersih Ramah Lingkungan': ['eco', 'clean', 'cleaning', 'pembersih'],
-                                    'Aromaterapi & Kesehatan': ['aroma', 'aromatherapy', 'aromaterapi'],
-                                    'Dekorasi & Peralatan Makan Berkelanjutan': ['decor', 'sustainable', 'dekorasi', 'peralatan', 'makan'],
-                                    'Seduhan Nusantara': ['seduhan', 'kopi', 'teh', 'wedang', 'seduhan nusantara'],
-                                    'Sari Alam': ['sari', 'madu', 'sari alam'],
-                                    'Kudapan Sehat': ['kudapan', 'kripik', 'selai', 'granola', 'kudapan sehat']
-                                };
                                 subList.innerHTML = '<li class="cat-item current-cat" data-subcategory="all"><a href="javascript:void(0)">Semua Sub Kategori</a> <span class="count">(' + products.length + ')</span></li>' + subs.map(function (s) {
-                                    var kws = subKeywords[s.nama] || [s.nama.toString().toLowerCase()];
-                                    var matched = (products || []).filter(function (p) {
-                                        var sk = (p.subKategori || '').toString().toLowerCase();
-                                        var pn = (p.nama || '').toString().toLowerCase();
-                                        return kws.some(function (kw) { return sk.indexOf(kw) !== -1 || pn.indexOf(kw) !== -1; });
-                                    });
-                                    // Use subcategory name slug directly (aligned with breadcrumb)
-                                    var subSlug = s.nama.toString().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-                                    var parentSlug = s.namaKategori.toString().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-                                    var cnt = matched.length;
-                                    return '<li class="cat-item" data-subcategory="' + subSlug + '" data-parent-cat="' + parentSlug + '"><a href="javascript:void(0)">' + s.nama + '</a> <span class="count">(' + cnt + ')</span></li>';
+                                    var cnt = (products || []).filter(function (p) {
+                                        return (p.subcategorySlug || '') === s.slug || (p.subcategoryId || '') === s.id;
+                                    }).length;
+                                    var parentSlug = s.kategoriSlug || '';
+                                    return '<li class="cat-item" data-subcategory="' + s.slug + '" data-parent-cat="' + parentSlug + '"><a href="javascript:void(0)">' + s.nama + '</a> <span class="count">(' + cnt + ')</span></li>';
                                 }).join('');
                             }
                         } catch (e) {
@@ -3565,8 +3576,8 @@
         document.addEventListener('DOMContentLoaded', () => {
             const productsContainer = document.querySelector('.freshio2-products.products');
             const searchInput = document.getElementById('woocommerce-product-search-field-sidebar');
-            const categoryItems = document.querySelectorAll('#category-filter-list .cat-item');
-            const subcategoryItems = document.querySelectorAll('#subcategory-filter-list .cat-item');
+            const categoryList = document.getElementById('category-filter-list');
+            const subcategoryList = document.getElementById('subcategory-filter-list');
             const perPageSelect = document.getElementById('products-per-page-select');
             const resultCountEl = document.getElementById('products-result-count');
             const orderbySelect = document.querySelector('.orderby');
@@ -3574,8 +3585,8 @@
             let activeCategory = 'all';
             let activeSubcategory = 'all';
             let searchQuery = '';
+            let refreshTimer = null;
 
-            // Create empty state element
             const emptyState = document.createElement('div');
             emptyState.id = 'shop-empty-state';
             emptyState.style.padding = '60px 20px';
@@ -3586,17 +3597,21 @@
             emptyState.style.color = '#777';
             emptyState.innerHTML = '<i class="fas fa-search" style="font-size: 48px; display: block; margin-bottom: 15px; color: #bbb;"></i>Tidak ada produk yang cocok dengan pencarian atau filter Anda.';
             emptyState.style.display = 'none';
-            if (productsContainer) {
+            if (productsContainer && !productsContainer.querySelector('#shop-empty-state')) {
                 productsContainer.appendChild(emptyState);
             }
 
-            const getProducts = () => {
-                return document.querySelectorAll('.freshio2-products.products .product');
-            };
+            const getProducts = () => document.querySelectorAll('.freshio2-products.products .product');
+            const getCurrentCategoryItems = () => (categoryList ? categoryList.querySelectorAll('.cat-item') : []);
+            const getCurrentSubcategoryItems = () => (subcategoryList ? subcategoryList.querySelectorAll('.cat-item') : []);
 
             function slugify(text) {
                 if (!text) return '';
-                return text.toString().toLowerCase().replace(/&amp;|&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                return String(text).toLowerCase().replace(/&amp;|&/g, ' and ').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+            }
+
+            function normalizeValue(value) {
+                return slugify(value);
             }
 
             const getSortedProducts = (productsList) => {
@@ -3617,42 +3632,39 @@
 
             const updateCounts = () => {
                 const allProducts = getProducts();
-                // For categories
+                const categoryItems = getCurrentCategoryItems();
+                const subcategoryItems = getCurrentSubcategoryItems();
+
                 categoryItems.forEach(item => {
                     const cat = item.getAttribute('data-category');
-                    const liCatSlug = slugify(cat);
+                    const liCatSlug = normalizeValue(cat);
                     let count = 0;
                     allProducts.forEach(p => {
-                        const pCat = (p.getAttribute('data-category') || '').toLowerCase();
+                        const pCat = normalizeValue(p.getAttribute('data-category'));
                         const pName = (p.getAttribute('data-name') || '').toLowerCase();
                         const matchesSearch = !searchQuery || pName.includes(searchQuery);
-
-                        if (matchesSearch) {
-                            if (cat === 'all' || (liCatSlug && pCat === liCatSlug) || (cat.toLowerCase() === pCat)) {
-                                count++;
-                            }
+                        if (matchesSearch && (cat === 'all' || liCatSlug === pCat)) {
+                            count++;
                         }
                     });
                     const countBadge = item.querySelector('.count');
                     if (countBadge) countBadge.textContent = `(${count})`;
                 });
 
-                // For subcategories
                 subcategoryItems.forEach(item => {
                     const subcat = item.getAttribute('data-subcategory');
-                    const liSubSlug = slugify(subcat);
+                    const liSubSlug = normalizeValue(subcat);
                     let count = 0;
                     allProducts.forEach(p => {
-                        const pSubcat = (p.getAttribute('data-subcategory') || '').toLowerCase();
-                        const pCat = (p.getAttribute('data-category') || '').toLowerCase();
+                        const pSubcat = normalizeValue(p.getAttribute('data-subcategory'));
+                        const pCat = normalizeValue(p.getAttribute('data-category'));
                         const pName = (p.getAttribute('data-name') || '').toLowerCase();
                         const matchesSearch = !searchQuery || pName.includes(searchQuery);
+                        const matchesCategory = activeCategory === 'all' || pCat === normalizeValue(activeCategory);
 
-                        if (matchesSearch) {
+                        if (matchesSearch && matchesCategory) {
                             if (subcat === 'all') {
-                                if (activeCategory === 'all' || pCat === slugify(activeCategory)) {
-                                    count++;
-                                }
+                                count++;
                             } else if (liSubSlug && pSubcat === liSubSlug) {
                                 count++;
                             }
@@ -3669,15 +3681,17 @@
                 let matchingCount = 0;
                 let displayedCount = 0;
                 const limit = parseInt(perPageSelect ? perPageSelect.value : 6);
+                const categoryItems = getCurrentCategoryItems();
+                const subcategoryItems = getCurrentSubcategoryItems();
 
                 sortedProducts.forEach(p => {
-                    const pCat = p.getAttribute('data-category');
-                    const pSubcat = p.getAttribute('data-subcategory');
+                    const pCat = normalizeValue(p.getAttribute('data-category'));
+                    const pSubcat = normalizeValue(p.getAttribute('data-subcategory'));
                     const pName = (p.getAttribute('data-name') || '').toLowerCase();
 
                     const matchSearch = !searchQuery || pName.includes(searchQuery);
-                    const matchCat = activeCategory === 'all' || pCat === activeCategory;
-                    const matchSubcat = activeSubcategory === 'all' || pSubcat === activeSubcategory;
+                    const matchCat = activeCategory === 'all' || pCat === normalizeValue(activeCategory);
+                    const matchSubcat = activeSubcategory === 'all' || pSubcat === normalizeValue(activeSubcategory);
 
                     if (matchSearch && matchCat && matchSubcat) {
                         matchingCount++;
@@ -3695,7 +3709,6 @@
                     }
                 });
 
-                // Update results count
                 if (resultCountEl) {
                     if (matchingCount === 0) {
                         resultCountEl.textContent = 'Showing 0 results';
@@ -3706,7 +3719,6 @@
                     }
                 }
 
-                // Show/hide empty state
                 if (matchingCount === 0) {
                     emptyState.style.display = 'block';
                 } else {
@@ -3716,93 +3728,99 @@
                     }
                 }
 
-                // Show/hide subcategories contextually based on selected category
                 subcategoryItems.forEach(item => {
                     const parentCat = item.getAttribute('data-parent-cat');
                     const subcat = item.getAttribute('data-subcategory');
                     if (subcat === 'all') {
                         item.style.display = 'block';
-                    } else if (activeCategory === 'all' || parentCat === activeCategory) {
+                    } else if (activeCategory === 'all' || normalizeValue(parentCat) === normalizeValue(activeCategory)) {
                         item.style.display = 'block';
                     } else {
                         item.style.display = 'none';
                     }
                 });
 
+                categoryItems.forEach(item => {
+                    const categoryValue = item.getAttribute('data-category') || 'all';
+                    item.classList.toggle('current-cat', categoryValue === activeCategory || (activeCategory === 'all' && categoryValue === 'all'));
+                });
+
+                subcategoryItems.forEach(item => {
+                    const subcategoryValue = item.getAttribute('data-subcategory') || 'all';
+                    item.classList.toggle('current-cat', subcategoryValue === activeSubcategory);
+                });
+
                 updateCounts();
             };
 
-            // Category click handler
-            categoryItems.forEach(item => {
-                item.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    categoryItems.forEach(i => i.classList.remove('current-cat'));
-                    item.classList.add('current-cat');
-                    activeCategory = item.getAttribute('data-category');
+            const scheduleRefresh = () => {
+                clearTimeout(refreshTimer);
+                refreshTimer = setTimeout(() => {
+                    applyFilters();
+                }, 60);
+            };
 
-                    // Reset subcategory selection when category changes
+            if (categoryList) {
+                categoryList.addEventListener('click', (e) => {
+                    const item = e.target.closest('.cat-item');
+                    if (!item) return;
+                    e.preventDefault();
+                    activeCategory = item.getAttribute('data-category') || 'all';
                     activeSubcategory = 'all';
-                    subcategoryItems.forEach(i => {
-                        if (i.getAttribute('data-subcategory') === 'all') {
-                            i.classList.add('current-cat');
-                        } else {
-                            i.classList.remove('current-cat');
-                        }
-                    });
-
-                    applyFilters();
+                    scheduleRefresh();
                 });
-            });
+            }
 
-            // Subcategory click handler
-            subcategoryItems.forEach(item => {
-                item.addEventListener('click', (e) => {
+            if (subcategoryList) {
+                subcategoryList.addEventListener('click', (e) => {
+                    const item = e.target.closest('.cat-item');
+                    if (!item) return;
                     e.preventDefault();
-                    subcategoryItems.forEach(i => i.classList.remove('current-cat'));
-                    item.classList.add('current-cat');
-                    activeSubcategory = item.getAttribute('data-subcategory');
-
-                    // If we selected a specific subcategory, make sure the corresponding parent category is selected
+                    activeSubcategory = item.getAttribute('data-subcategory') || 'all';
                     const parentCat = item.getAttribute('data-parent-cat');
-                    if (parentCat && activeCategory !== parentCat) {
+                    if (parentCat) {
                         activeCategory = parentCat;
-                        categoryItems.forEach(i => {
-                            if (i.getAttribute('data-category') === parentCat) {
-                                i.classList.add('current-cat');
-                            } else {
-                                i.classList.remove('current-cat');
-                            }
-                        });
                     }
-
-                    applyFilters();
+                    scheduleRefresh();
                 });
-            });
+            }
 
-            // Search input handler
             if (searchInput) {
                 searchInput.addEventListener('input', (e) => {
                     searchQuery = e.target.value.trim().toLowerCase();
-                    applyFilters();
+                    scheduleRefresh();
                 });
             }
 
-            // Orderby dropdown handler
             if (orderbySelect) {
                 orderbySelect.addEventListener('change', () => {
-                    applyFilters();
+                    scheduleRefresh();
                 });
             }
 
-            // Products per page handler
             if (perPageSelect) {
                 perPageSelect.addEventListener('change', () => {
-                    applyFilters();
+                    scheduleRefresh();
                 });
             }
 
-            // Initial run to calculate correct initial counts and visibility
-            applyFilters();
+            const observer = new MutationObserver(() => {
+                scheduleRefresh();
+            });
+
+            if (productsContainer) {
+                observer.observe(productsContainer, { childList: true, subtree: true });
+            }
+            if (categoryList) {
+                observer.observe(categoryList, { childList: true, subtree: true });
+            }
+            if (subcategoryList) {
+                observer.observe(subcategoryList, { childList: true, subtree: true });
+            }
+
+            window.applyShopFilters = applyFilters;
+            window.refreshShopFilters = scheduleRefresh;
+            scheduleRefresh();
         });
     </script>
     <script>
