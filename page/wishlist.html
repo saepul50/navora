@@ -8,6 +8,9 @@
     <link rel="pingback" href="https://demo2.pavothemes.com/freshio/xmlrpc.php" />
     <title>Favorit &#8211; Navora</title>
     <meta name='robots' content='max-image-preview:large' />
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//s.w.org">
     <link rel='dns-prefetch' href='//demo2.pavothemes.com' />
@@ -911,17 +914,43 @@
                                                 <div class="widget woocommerce widget_product_search">
                                                     <div class="ajax-search-result d-none"></div>
                                                     <div class="ajax-search-result d-none"></div>
+                                                    <style>
+                                                        .woocommerce-product-search {
+                                                            position: relative;
+                                                        }
+
+                                                        .woocommerce-product-search::before,
+                                                        .woocommerce-product-search button::before,
+                                                        .woocommerce-product-search::after,
+                                                        .woocommerce-product-search button::after {
+                                                            display: none !important;
+                                                            content: none !important;
+                                                        }
+
+                                                        .woocommerce-product-search .fa-search {
+                                                            position: absolute;
+                                                            left: 15px;
+                                                            top: 50%;
+                                                            transform: translateY(-50%);
+                                                            z-index: 2;
+                                                            pointer-events: none;
+                                                        }
+
+                                                        .woocommerce-product-search .search-field {
+                                                            padding-left: 40px !important;
+                                                        }
+                                                    </style>
                                                     <form role="search" method="get" class="woocommerce-product-search"
                                                         action="../page/shop.html">
                                                         <label class="screen-reader-text"
                                                             for="woocommerce-product-search-field-0">Cari
                                                             produk:</label>
                                                         <i class="fas fa-search" style="
-                                                            height: 16px;
-                                                            width: 18px;
-                                                            color: #000000;
-                                                            font-size: 0.875rem;
-                                                        "></i>
+                                  height: 16px;
+                                  width: 18px;
+                                  color: #000000;
+                                  font-size: 0.875rem;
+                                "></i>
                                                         <input type="search" id="woocommerce-product-search-field-0"
                                                             class="search-field" placeholder="Cari produk…" value=""
                                                             name="s" />
@@ -1002,16 +1031,6 @@
                                                             <a class="header-wishlist" href="cart.html">
                                                                 <i class="fas fa-cart-arrow-down"></i>
                                                                 <span class="count">0</span>
-                                                            </a>
-                                                        </div>
-                                                        <div class="site-header-cart menu">
-                                                            <a class="cart-contents" href="cart.html"
-                                                                title="Lihat keranjang belanja Anda">
-                                                                <span class="woocommerce-Price-amount amount">
-                                                                    <span
-                                                                        class="woocommerce-Price-currencySymbol">Rp</span>
-                                                                    25.000
-                                                                </span>
                                                             </a>
                                                         </div>
                                                     </div>
@@ -2532,7 +2551,7 @@
                                 data-widget_type="icon.default">
                                 <div class="elementor-icon-wrapper">
                                     <a class="elementor-icon" href="https://demo2.pavothemes.com/freshio/shop/">
-                                        <i aria-hidden="true" class="freshio2-icon- freshio2-icon-store"></i> </a>
+                                        <i aria-hidden="true" class="fas fa-store"></i> </a>
                                 </div>
                             </div>
                             <div class="elementor-element elementor-element-ae63d66 heading-effect-no elementor-widget elementor-widget-heading"
@@ -2553,7 +2572,7 @@
 
                                             <div class="site-header-account">
                                                 <a href="https://demo2.pavothemes.com/freshio/my-account/">
-                                                    <i class="freshio2-icon-user"></i>
+                                                    <i class="fas fa-user"></i>
                                                 </a>
                                                 <div class="account-dropdown"></div>
                                             </div>
@@ -2581,7 +2600,7 @@
 
                                             <div class="site-header-search">
                                                 <a href="#" class="button-search-popup">
-                                                    <i class="freshio2-icon-search"></i>
+                                                    <i class="fas fa-search"></i>
                                                 </a>
                                             </div>
 
@@ -2612,7 +2631,7 @@
                                             <div class="site-header-wishlist">
                                                 <a class="header-wishlist"
                                                     href="https://demo2.pavothemes.com/freshio/wishlist/6YFPL6">
-                                                    <i class="freshio2-icon-heart"></i>
+                                                    <i class="fas fa-heart"></i>
                                                     <span class="count">0</span>
                                                 </a>
                                             </div>
@@ -2942,7 +2961,7 @@
                                     <div class="elementor-element elementor-element-3a5f21f elementor-widget elementor-widget-text-editor"
                                         data-id="3a5f21f" data-element_type="widget" data-e-type="widget"
                                         data-widget_type="text-editor.default">
-                                        <p>Copyright © 2025 <a style="color: #a8b324;" href="#">Freshio</a>. All Rights
+                                        <p>Copyright © 2026 <a style="color: #a8b324;" href="#">Navora</a>. All Rights
                                             Reserved.</p>
                                     </div>
                                 </div>
