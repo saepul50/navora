@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Generate vertical menu dari kategori produk
   generateVerticalMenu();
+  renderSubcategoryBanners();
 
   function renderProducts(container, selectedProducts) {
     container.innerHTML = '';
@@ -103,6 +104,57 @@ document.addEventListener('DOMContentLoaded', function () {
   function formatPrice(n) {
     var num = Number(n) || 0;
     return num.toLocaleString('id-ID');
+  }
+
+  function renderSubcategoryBanners() {
+    var slotWrappers = Array.prototype.slice.call(document.querySelectorAll('.elementor-element-b9e1e1f .elementor-widget-freshio2-product-categories[data-subcategory-slot]'));
+    if (!slotWrappers.length || !window.dataSubCategories || !window.dataSubCategories.length) return;
+
+    var subcategorySlugs = ['perawatan-kulit-mandi', 'peralatan-pembersih-ramah-lingkungan', 'dekorasi-peralatan-makan-berkelanjutan', 'perawatan-diri-kesehatan', 'kudapan-sehat'];
+    var selectedSubcategories = subcategorySlugs.map(function (slug) {
+      return (window.dataSubCategories || []).find(function (subcat) {
+        return (subcat.slug || '').toLowerCase() === slug;
+      });
+    }).filter(Boolean);
+
+    slotWrappers.forEach(function (wrapper, index) {
+      var subcat = selectedSubcategories[index];
+      if (!subcat) return;
+
+      var container = wrapper.querySelector('.elementor-widget-container');
+      if (!container) return;
+
+      container.innerHTML = '' +
+        '<div class="elementor-categories-item-wrapper freshio2-wrapper">' +
+          '<div data-count="1" class="freshio2-con">' +
+            '<div class="layout-1 freshio2-con-inner elementor-grid">' +
+              '<div class="elementor-categories-item">' +
+                '<div class="elementor-categories-item" style="background-image:url(\'' + (subcat.bannerImage || '../assets/banner-produk/all-kategori.png') + '\');">' +
+                  '<a class="category-product-link" href="shop.html" title="' + escapeHtml(subcat.nama || '') + '"></a>' +
+                  '<div class="category-product-caption">' +
+                    '<div class="caption">' +
+                      '<div class="category-title">' +
+                        '<a class="category-product-link" href="shop.html" title="' + escapeHtml(subcat.nama || '') + '">' +
+                          '<span class="category-title-span">' + escapeHtml(subcat.nama || '') + '</span>' +
+                        '</a>' +
+                      '</div>' +
+                    '</div>' +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+    });
+  }
+
+  function escapeHtml(value) {
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/\"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 
   function generateVerticalMenu() {
