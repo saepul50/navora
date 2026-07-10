@@ -2286,10 +2286,12 @@ body.home #page .freshio2-breadcrumb, body.error404 #page .freshio2-breadcrumb {
   height: 44px;
   border-radius: 50%;
   background-color: #F6F3E3;
+  color: #000 !important;
 }
 .header-group-action .site-header-wishlist a i {
   font-size: 19px;
   font-size: 1.1875rem;
+  color: #000 !important;
 }
 .header-group-action .site-header-wishlist a:hover i {
   color: var(--e-global-color-primary);
@@ -2316,6 +2318,7 @@ body.home #page .freshio2-breadcrumb, body.error404 #page .freshio2-breadcrumb {
   align-items: center;
   gap: 4px;
   transition: 0.4s all ease;
+  color: #000 !important;
 }
 .header-group-action .site-header-cart .cart-contents:before {
   font-size: 16px;
@@ -2329,7 +2332,8 @@ body.home #page .freshio2-breadcrumb, body.error404 #page .freshio2-breadcrumb {
   font-weight: normal;
   line-height: 1;
   vertical-align: middle;
-  color: var(--e-global-color-accent);
+  background-color: #F6F3E3 !important;
+  color: #000 !important;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3317,7 +3321,7 @@ button.menu-toggle {
   font-weight: normal;
   line-height: 1;
   vertical-align: middle;
-  content: "";
+  
 }
 .mobile-navigation ul > li.menu-item.menu-item-has-children > a.toggled-on::after, .mobile-navigation ul > li.menu-item .page_item_has_children > a.toggled-on::after,
 .mobile-navigation-categories ul > li.menu-item.menu-item-has-children > a.toggled-on::after,
@@ -3388,7 +3392,7 @@ button.menu-toggle {
   font-weight: normal;
   line-height: 1;
   vertical-align: middle;
-  content: "";
+  
 }
 .mobile-navigation ul button.toggled-on::after,
 .mobile-navigation-categories ul button.toggled-on::after {

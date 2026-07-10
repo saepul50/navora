@@ -679,8 +679,8 @@
     <link rel='stylesheet' id='elementor-gf-plusjakartasans-css'
         href='https://fonts.googleapis.com/css?family=Plus+Jakarta+Sans:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&#038;display=swap'
         media='all' />
-    <link rel="stylesheet" href="../style/fontawesome.min.css">
-    <link rel="stylesheet" href="../style/brands.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css">
     <script src="../script/jquery.min.js"></script>
     <script src="../script/jquery-migrate.min.js"></script>
     <script
@@ -1373,7 +1373,7 @@
 
             .faq-grid {
                 display: grid;
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: 1fr;
                 gap: 16px;
             }
 
@@ -1578,43 +1578,54 @@
                                 <div class="faq-grid">
                                     <div class="faq-item">
                                         <div class="faq-question" onclick="toggleFaq(this)">
-                                            Berapa lama waktu respons pesan?
+                                            Bagaimana Navora memastikan proses pengiriman produk tetap ramah lingkungan?
                                             <div class="faq-icon"><i class="fas fa-plus"></i></div>
                                         </div>
                                         <div class="faq-answer">
-                                            <p>Kami biasanya merespons dalam 1×24 jam kerja. Untuk keperluan mendesak,
-                                                hubungi kami melalui telepon di jam operasional.</p>
+                                            <p>Kami berkomitmen penuh pada prinsip zero-waste packaging. Setiap paket
+                                                yang kami kirimkan tidak menggunakan plastik sekali pakai (bubble wrap
+                                                plastik), melainkan diganti dengan pembungkus kertas daur ulang,
+                                                potongan kertas bekas (shredded paper), pelindung kain katun, serta
+                                                kotak kardus yang dapat dikomposkan kembali oleh tanah.</p>
                                         </div>
                                     </div>
                                     <div class="faq-item">
                                         <div class="faq-question" onclick="toggleFaq(this)">
-                                            Apakah tersedia layanan wholesale?
+                                            Apakah bahan baku yang digunakan Navora benar-benar aman dan organik?
                                             <div class="faq-icon"><i class="fas fa-plus"></i></div>
                                         </div>
                                         <div class="faq-answer">
-                                            <p>Ya! Kami menyediakan program kemitraan dan wholesale untuk pembelian
-                                                dalam jumlah besar. Pilih topik "Kemitraan / Wholesale" pada formulir di
-                                                atas.</p>
+                                            <p>Ya, seluruh produk Navora dijamin bebas dari bahan kimia sintetis
+                                                berbahaya seperti paraben, SLS, atau triclosan yang dapat merusak kulit
+                                                maupun mencemari ekosistem air. Kami berkolaborasi langsung dengan
+                                                petani dan penyuling lokal untuk memastikan keaslian serta kemurnian
+                                                bahan baku organik langsung dari alam Nusantara.</p>
                                         </div>
                                     </div>
                                     <div class="faq-item">
                                         <div class="faq-question" onclick="toggleFaq(this)">
-                                            Bagaimana cara melacak pesanan saya?
+                                            Bagaimana sistem kemitraan Navora dengan produsen lokal?
                                             <div class="faq-icon"><i class="fas fa-plus"></i></div>
                                         </div>
                                         <div class="faq-answer">
-                                            <p>Setelah pesanan dikirim, Anda akan menerima email berisi nomor resi.
-                                                Lacak melalui halaman akun atau langsung ke situs jasa pengiriman.</p>
+                                            <p>Kami menerapkan sistem kemitraan adil (fair trade) dengan para pengrajin,
+                                                petani, dan komunitas penyuling tradisional di berbagai daerah. Melalui
+                                                kolaborasi ini, kami memastikan para mitra lokal mendapatkan apresiasi
+                                                ekonomi yang layak untuk terus memproduksi bahan baku secara
+                                                berkelanjutan.</p>
                                         </div>
                                     </div>
                                     <div class="faq-item">
                                         <div class="faq-question" onclick="toggleFaq(this)">
-                                            Apakah ada kebijakan pengembalian produk?
+                                            Mengapa sisa bilasan produk sabun dan pembersih Navora aman bagi sungai?
                                             <div class="faq-icon"><i class="fas fa-plus"></i></div>
                                         </div>
                                         <div class="faq-answer">
-                                            <p>Produk dapat dikembalikan dalam 7 hari setelah diterima jika terdapat
-                                                kerusakan atau ketidaksesuaian. Hubungi kami untuk proses lebih lanjut.
+                                            <p>Produk pembersih kami (seperti Sabun Cuci Muka Sari Lerak dan Sabun Sampo
+                                                2-in-1) memanfaatkan busa alami dari zat saponin buah lerak liar, bukan
+                                                deterjen kimia buatan. Karena formulanya 100% organik, sisa air bilasan
+                                                mandi atau cuci tangan akan terurai secara alami di dalam tanah dan air
+                                                tanpa meracuni biota sungai.
                                             </p>
                                         </div>
                                     </div>
@@ -2454,8 +2465,10 @@
 
         </div>
     </div>
-    <div id="woosw_wishlist" class="woosw-popup woosw-popup-center"></div><a href="#" class="scrollup"><i
-            class="fas fa-arrow-up"></i></a>
+    <div id="woosw_wishlist" class="woosw-popup woosw-popup-center"></div>
+    <a href="#" class="scrollup">
+        <i class="fas fa-arrow-up"></i>
+    </a>
     <script type="text/html" id="tmpl-ajax-live-search-template">
         <div class="product-item-search">
             <# if(data.url){ #>
@@ -2960,36 +2973,37 @@
             });
             document.querySelectorAll('.woosc-btn').forEach(function (b) {
                 // Re-purpose compare button into Add to Cart that links to cart.html
-                b.setAttribute('data-text', 'Tambah ke keranjang');
-                b.setAttribute('data-text_added', 'Tambah ke keranjang');
-                b.innerHTML = '<i class="fas fa-shopping-cart" aria-hidden="true"></i> Tambah ke keranjang';
+                b.setAttribute('data-text', 'Masukkan keranjang');
+                b.setAttribute('data-text_added', 'Masukkan keranjang');
+                b.innerHTML = '<i class="fas fa-shopping-cart" aria-hidden="true"></i> Masukkan keranjang';
                 b.style.cursor = 'pointer';
                 b.addEventListener('click', function () { window.location.href = 'cart.html'; });
             });
             document.querySelectorAll('.button_cart .button-text').forEach(function (s) {
                 // Change bottom action label to "Lihat detail"
-                if (s.textContent.indexOf('Add to cart') !== -1 || s.textContent.indexOf('Tambah ke keranjang') !== -1) s.textContent = 'Lihat detail';
+                if (s.textContent.indexOf('Add to cart') !== -1 || s.textContent.indexOf('Masukkan keranjang') !== -1) s.textContent = 'Lihat detail';
             });
             document.querySelectorAll('[aria-label^="Add to cart:"]').forEach(function (el) {
                 el.setAttribute('aria-label', el.getAttribute('aria-label').replace('Add to cart:', 'Lihat detail:'));
             });
         });
     </script>
+    <script type="module" src="../script/data-dummy.js"></script>
+    <script type="module" src="../script/index.js"></script>
+    <script>
+        (function () {
+            var assets = [
+                '../assets/foto-produk/granola.png', '../assets/foto-produk/kopi.png', '../assets/foto-produk/coklat.png', '../assets/foto-produk/alat-makan.png', '../assets/foto-produk/madu-murni.png', '../assets/foto-produk/kripik-buah-sayur.png', '../assets/foto-produk/minyak-kelapa.png', '../assets/foto-produk/sabun-sampo-lerak.png', '../assets/foto-produk/selai-nanas.png', '../assets/foto-produk/teh-kombucha.png', '../assets/foto-produk/rose-water.png'
+            ];
+            function pick(i) { return assets[i % assets.length]; }
+            function replaceAll() {
+                var i = 0;
+                document.querySelectorAll('img').forEach(function (img) { if (img.src && img.src.indexOf('demo2.pavothemes.com') !== -1) { img.removeAttribute('srcset'); img.removeAttribute('sizes'); img.src = pick(i++); } });
+                document.querySelectorAll('[data-product_image]').forEach(function (el) { var v = el.getAttribute('data-product_image'); if (v && v.indexOf('demo2.pavothemes.com') !== -1) { el.setAttribute('data-product_image', pick(i++)); } });
+                document.querySelectorAll('[style]').forEach(function (el) { var s = el.style.backgroundImage || ''; if (s.indexOf('demo2.pavothemes.com') !== -1) { el.style.backgroundImage = 'url("' + pick(i++) + '")'; } });
+            }
+            if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', replaceAll); } else replaceAll();
+        })();
+    </script>
 </body>
-<script>
-    (function () {
-        var assets = [
-            '../assets/foto-produk/granola.png', '../assets/foto-produk/kopi.png', '../assets/foto-produk/coklat.png', '../assets/foto-produk/alat-makan.png', '../assets/foto-produk/madu-murni.png', '../assets/foto-produk/kripik-buah-sayur.png', '../assets/foto-produk/minyak-kelapa.png', '../assets/foto-produk/sabun-sampo-lerak.png', '../assets/foto-produk/selai-nanas.png', '../assets/foto-produk/teh-kombucha.png', '../assets/foto-produk/rose-water.png'
-        ];
-        function pick(i) { return assets[i % assets.length]; }
-        function replaceAll() {
-            var i = 0;
-            document.querySelectorAll('img').forEach(function (img) { if (img.src && img.src.indexOf('demo2.pavothemes.com') !== -1) { img.removeAttribute('srcset'); img.removeAttribute('sizes'); img.src = pick(i++); } });
-            document.querySelectorAll('[data-product_image]').forEach(function (el) { var v = el.getAttribute('data-product_image'); if (v && v.indexOf('demo2.pavothemes.com') !== -1) { el.setAttribute('data-product_image', pick(i++)); } });
-            document.querySelectorAll('[style]').forEach(function (el) { var s = el.style.backgroundImage || ''; if (s.indexOf('demo2.pavothemes.com') !== -1) { el.style.backgroundImage = 'url("' + pick(i++) + '")'; } });
-        }
-        if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', replaceAll); } else replaceAll();
-    })();
-</script>
-
 </html>

@@ -192,8 +192,10 @@ const dataProducts = [
     id: "hl-08",
     kategori: "Home & Living",
     subKategori: "Sustainable Decor & Dining",
-    nama: "Alat Makan Kayu",
+    nama: "Alat Makan Kayu Jati",
     price: 48000,
+    rating: 4.25,
+    reviewCount: 5,
     images: [ "../assets/foto-produk/alat-makan.png", "../assets/foto-produk/belakang-alat-makan.png", "../assets/foto-produk/isi-alat-makan.png" ],
     deskripsi: "Set sendok dan garpu ini diproduksi dengan memanfaatkan potongan kayu jati sisa dari industri furnitur lokal, yang kemudian dihaluskan dan dilapisi food-grade beeswax (lilin lebah). Karakteristik serat padat dari kayu jati sisa ini memiliki ketahanan tinggi terhadap kelembapan, suhu panas makanan, dan tidak mudah retak. Lapisan lilin lebah alami berkhasiat menutup pori-pori kayu agar sisa makanan tidak meresap dan memicu pertumbuhan bakteri, tanpa menggunakan pernis kimia berbahaya.",
     komposisi: "Kayu jati (Tectona grandis) sisa industri furnitur lokal (upcycled), dan pelapis food-grade beeswax (lilin lebah murni)."
@@ -403,6 +405,14 @@ dataProducts.forEach(function (p) {
   }
 });
 
+function slugifyValue(value) {
+  return String(value || '')
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+
 // =========================================================================
 // DATA KATEGORI PRODUK
 // =========================================================================
@@ -410,18 +420,21 @@ const dataCategories = [
   {
     id: 'cat-01',
     nama: 'Kesehatan & Kecantikan',
+    slug: 'kesehatan-kecantikan',
     ikon: 'fas fa-spa',
     deskripsi: 'Produk kesehatan dan kecantikan alami dari bahan-bahan organik pilihan'
   },
   {
     id: 'cat-02',
     nama: 'Rumah & Gaya Hidup',
+    slug: 'rumah-gaya-hidup',
     ikon: 'fas fa-home',
     deskripsi: 'Produk rumah tangga dan hidup berkelanjutan ramah lingkungan'
   },
   {
     id: 'cat-03',
     nama: 'Makanan & Minuman',
+    slug: 'makanan-minuman',
     ikon: 'fas fa-utensils',
     deskripsi: 'Makanan dan minuman organik berkualitas dari petani lokal'
   }
@@ -435,24 +448,30 @@ const dataSubCategories = [
   {
     id: 'subcat-01',
     idKategori: 'cat-01',
+    kategoriSlug: 'kesehatan-kecantikan',
     namaKategori: 'Kesehatan & Kecantikan',
     nama: 'Perawatan Kulit & Mandi',
+    slug: 'perawatan-kulit-mandi',
     deskripsi: 'Produk pembersih dan perawatan wajah dengan bahan alami',
     bannerImage: '../assets/banner-produk/banner-kulit-mandi.png'
   },
   {
     id: 'subcat-02',
     idKategori: 'cat-01',
+    kategoriSlug: 'kesehatan-kecantikan',
     namaKategori: 'Kesehatan & Kecantikan',
     nama: 'Perawatan Tubuh',
+    slug: 'perawatan-tubuh',
     deskripsi: 'Perawatan tubuh lengkap dari tradisional hingga modern',
     bannerImage: '../assets/banner-produk/banner-perawatan-diri.png'
   },
   {
     id: 'subcat-03',
     idKategori: 'cat-01',
+    kategoriSlug: 'kesehatan-kecantikan',
     namaKategori: 'Kesehatan & Kecantikan',
     nama: 'Perawatan Diri & Kesehatan',
+    slug: 'perawatan-diri-kesehatan',
     deskripsi: 'Produk perawatan diri dan kesehatan keluarga',
     bannerImage: '../assets/banner-produk/banner-perawatan-diri.png'
   },
@@ -460,24 +479,30 @@ const dataSubCategories = [
   {
     id: 'subcat-04',
     idKategori: 'cat-02',
+    kategoriSlug: 'rumah-gaya-hidup',
     namaKategori: 'Rumah & Gaya Hidup',
     nama: 'Peralatan Pembersih Ramah Lingkungan',
+    slug: 'peralatan-pembersih-ramah-lingkungan',
     deskripsi: 'Alat dan produk pembersih rumah yang aman untuk lingkungan',
     bannerImage: '../assets/banner-produk/banner-peralatan-pembersih.png'
   },
   {
     id: 'subcat-05',
     idKategori: 'cat-02',
+    kategoriSlug: 'rumah-gaya-hidup',
     namaKategori: 'Rumah & Gaya Hidup',
     nama: 'Aromaterapi & Kesehatan',
+    slug: 'aromaterapi-kesehatan',
     deskripsi: 'Produk aromaterapi untuk menciptakan suasana rumah yang nyaman',
     bannerImage: '../assets/banner-produk/banner-perawatan-diri.png'
   },
   {
     id: 'subcat-06',
     idKategori: 'cat-02',
+    kategoriSlug: 'rumah-gaya-hidup',
     namaKategori: 'Rumah & Gaya Hidup',
     nama: 'Dekorasi & Peralatan Makan Berkelanjutan',
+    slug: 'dekorasi-peralatan-makan-berkelanjutan',
     deskripsi: 'Dekorasi rumah dan peralatan makan berkelanjutan',
     bannerImage: '../assets/banner-produk/banner-dekorasi-peralatan-makan.png'
   },
@@ -485,28 +510,76 @@ const dataSubCategories = [
   {
     id: 'subcat-07',
     idKategori: 'cat-03',
+    kategoriSlug: 'makanan-minuman',
     namaKategori: 'Makanan & Minuman',
     nama: 'Seduhan Nusantara',
+    slug: 'seduhan-nusantara',
     deskripsi: 'Minuman tradisional dari bahan-bahan pilihan nusantara',
     bannerImage: '../assets/banner-produk/Food&Beverages.jpg'
   },
   {
     id: 'subcat-08',
     idKategori: 'cat-03',
+    kategoriSlug: 'makanan-minuman',
     namaKategori: 'Makanan & Minuman',
     nama: 'Sari Alam',
+    slug: 'sari-alam',
     deskripsi: 'Produk pangan alami dari hasil alam bumi nusantara',
     bannerImage: '../assets/banner-produk/Food&Beverages.jpg'
   },
   {
     id: 'subcat-09',
     idKategori: 'cat-03',
+    kategoriSlug: 'makanan-minuman',
     namaKategori: 'Makanan & Minuman',
     nama: 'Kudapan Sehat',
+    slug: 'kudapan-sehat',
     deskripsi: 'Camilan dan snack sehat tanpa pengawet dan MSG',
     bannerImage: '../assets/banner-produk/banner-kudapan-sehat.png'
   }
 ];
+
+var categoryMap = {
+  'Health & Beauty': { id: 'cat-01', nama: 'Kesehatan & Kecantikan', slug: 'kesehatan-kecantikan' },
+  'Home & Living': { id: 'cat-02', nama: 'Rumah & Gaya Hidup', slug: 'rumah-gaya-hidup' },
+  'Food & Beverages': { id: 'cat-03', nama: 'Makanan & Minuman', slug: 'makanan-minuman' }
+};
+
+var subcategoryMap = {
+  'Skincare & Bath': { id: 'subcat-01', nama: 'Perawatan Kulit & Mandi', slug: 'perawatan-kulit-mandi' },
+  'Body Treatment': { id: 'subcat-02', nama: 'Perawatan Tubuh', slug: 'perawatan-tubuh' },
+  'Personal Care & Wellness': { id: 'subcat-03', nama: 'Perawatan Diri & Kesehatan', slug: 'perawatan-diri-kesehatan' },
+  'Eco-Cleaning Kit': { id: 'subcat-04', nama: 'Peralatan Pembersih Ramah Lingkungan', slug: 'peralatan-pembersih-ramah-lingkungan' },
+  'Aromatherapy & Wellness': { id: 'subcat-05', nama: 'Aromaterapi & Kesehatan', slug: 'aromaterapi-kesehatan' },
+  'Sustainable Decor & Dining': { id: 'subcat-06', nama: 'Dekorasi & Peralatan Makan Berkelanjutan', slug: 'dekorasi-peralatan-makan-berkelanjutan' },
+  'Seduhan Nusantara': { id: 'subcat-07', nama: 'Seduhan Nusantara', slug: 'seduhan-nusantara' },
+  'Sari Alam': { id: 'subcat-08', nama: 'Sari Alam', slug: 'sari-alam' },
+  'Kudapan Sehat': { id: 'subcat-09', nama: 'Kudapan Sehat', slug: 'kudapan-sehat' }
+};
+
+// Enrich products with explicit links to category/subcategory metadata
+// so rendering logic can stay deterministic and clean.
+dataProducts.forEach(function (p) {
+  var categoryMeta = categoryMap[p.kategori] || dataCategories.find(function (c) {
+    return c.id === p.categoryId || c.nama === p.kategori || c.slug === p.categorySlug;
+  }) || null;
+  var subcategoryMeta = subcategoryMap[p.subKategori] || dataSubCategories.find(function (s) {
+    return s.id === p.subcategoryId || s.nama === p.subKategori || s.slug === p.subcategorySlug;
+  }) || null;
+
+  p.categoryId = categoryMeta ? categoryMeta.id : (p.categoryId || '');
+  p.categoryName = categoryMeta ? categoryMeta.nama : (p.categoryName || p.kategori || '');
+  p.categorySlug = categoryMeta ? categoryMeta.slug : (p.categorySlug || slugifyValue(p.kategori));
+  p.subcategoryId = subcategoryMeta ? subcategoryMeta.id : (p.subcategoryId || '');
+  p.subcategoryName = subcategoryMeta ? subcategoryMeta.nama : (p.subcategoryName || p.subKategori || '');
+  p.subcategorySlug = subcategoryMeta ? subcategoryMeta.slug : (p.subcategorySlug || slugifyValue(p.subKategori));
+  p.rating = Number.isFinite(Number(p.rating)) && Number(p.rating) > 0 ? Number(p.rating) : 0;
+  p.reviewCount = Number.isFinite(Number(p.reviewCount)) && Number(p.reviewCount) > 0 ? Number(p.reviewCount) : 0;
+
+  if (!p.image && p.images && p.images.length) {
+    p.image = p.images[0];
+  }
+});
 
 // Expose ke global agar skrip non-module dapat menggunakan data
 window.dataProducts = dataProducts;
@@ -514,4 +587,4 @@ window.dataCategories = dataCategories;
 window.dataSubCategories = dataSubCategories;
 
 // Export untuk module-aware usage (tetap kompatibel)
-export default dataProducts;
+// export default dataProducts;
