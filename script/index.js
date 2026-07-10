@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var slotWrappers = Array.prototype.slice.call(document.querySelectorAll('.elementor-element-b9e1e1f .elementor-widget-freshio2-product-categories[data-subcategory-slot]'));
     if (!slotWrappers.length || !window.dataSubCategories || !window.dataSubCategories.length) return;
 
-    var subcategorySlugs = ['perawatan-kulit-mandi', 'peralatan-pembersih-ramah-lingkungan', 'dekorasi-peralatan-makan-berkelanjutan', 'perawatan-diri-kesehatan', 'kudapan-sehat'];
+    var subcategorySlugs = ['perawatan-kulit-mandi', 'peralatan-pembersih-ramah-lingkungan', 'dekorasi-peralatan-makan-berkelanjutan', 'seduhan-nusantara', 'perawatan-diri-kesehatan'];
     var selectedSubcategories = subcategorySlugs.map(function (slug) {
       return (window.dataSubCategories || []).find(function (subcat) {
         return (subcat.slug || '').toLowerCase() === slug;
@@ -124,17 +124,19 @@ document.addEventListener('DOMContentLoaded', function () {
       var container = wrapper.querySelector('.elementor-widget-container');
       if (!container) return;
 
+      var shopHref = 'shop.html?category=' + encodeURIComponent(subcat.kategoriSlug || '') + '&subcategory=' + encodeURIComponent(subcat.slug || '');
+
       container.innerHTML = '' +
         '<div class="elementor-categories-item-wrapper freshio2-wrapper">' +
           '<div data-count="1" class="freshio2-con">' +
             '<div class="layout-1 freshio2-con-inner elementor-grid">' +
               '<div class="elementor-categories-item">' +
                 '<div class="elementor-categories-item" style="background-image:url(\'' + (subcat.bannerImage || '../assets/banner-produk/all-kategori.png') + '\');">' +
-                  '<a class="category-product-link" href="shop.html" title="' + escapeHtml(subcat.nama || '') + '"></a>' +
+                  '<a class="category-product-link" href="' + shopHref + '" title="' + escapeHtml(subcat.nama || '') + '"></a>' +
                   '<div class="category-product-caption">' +
                     '<div class="caption">' +
                       '<div class="category-title">' +
-                        '<a class="category-product-link" href="shop.html" title="' + escapeHtml(subcat.nama || '') + '">' +
+                        '<a class="category-product-link" href="' + shopHref + '" title="' + escapeHtml(subcat.nama || '') + '">' +
                           '<span class="category-title-span">' + escapeHtml(subcat.nama || '') + '</span>' +
                         '</a>' +
                       '</div>' +
