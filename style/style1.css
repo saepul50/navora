@@ -3317,7 +3317,7 @@ button.menu-toggle {
   font-weight: normal;
   line-height: 1;
   vertical-align: middle;
-  content: "";
+  
 }
 .mobile-navigation ul > li.menu-item.menu-item-has-children > a.toggled-on::after, .mobile-navigation ul > li.menu-item .page_item_has_children > a.toggled-on::after,
 .mobile-navigation-categories ul > li.menu-item.menu-item-has-children > a.toggled-on::after,
@@ -3388,7 +3388,7 @@ button.menu-toggle {
   font-weight: normal;
   line-height: 1;
   vertical-align: middle;
-  content: "";
+  
 }
 .mobile-navigation ul button.toggled-on::after,
 .mobile-navigation-categories ul button.toggled-on::after {

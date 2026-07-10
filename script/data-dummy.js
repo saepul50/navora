@@ -192,8 +192,10 @@ const dataProducts = [
     id: "hl-08",
     kategori: "Home & Living",
     subKategori: "Sustainable Decor & Dining",
-    nama: "Alat Makan Kayu",
+    nama: "Alat Makan Kayu Jati",
     price: 48000,
+    rating: 4.25,
+    reviewCount: 5,
     images: [ "../assets/foto-produk/alat-makan.png", "../assets/foto-produk/belakang-alat-makan.png", "../assets/foto-produk/isi-alat-makan.png" ],
     deskripsi: "Set sendok dan garpu ini diproduksi dengan memanfaatkan potongan kayu jati sisa dari industri furnitur lokal, yang kemudian dihaluskan dan dilapisi food-grade beeswax (lilin lebah). Karakteristik serat padat dari kayu jati sisa ini memiliki ketahanan tinggi terhadap kelembapan, suhu panas makanan, dan tidak mudah retak. Lapisan lilin lebah alami berkhasiat menutup pori-pori kayu agar sisa makanan tidak meresap dan memicu pertumbuhan bakteri, tanpa menggunakan pernis kimia berbahaya.",
     komposisi: "Kayu jati (Tectona grandis) sisa industri furnitur lokal (upcycled), dan pelapis food-grade beeswax (lilin lebah murni)."
