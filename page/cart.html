@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <link rel="profile" href="//gmpg.org/xfn/11">
     <link rel="pingback" href="https://demo2.pavothemes.com/freshio/xmlrpc.php" />
-    <title>Cart &#8211; freshio</title>
+    <title>Keranjang &#8211; Navora</title>
     <meta name='robots' content='max-image-preview:large, noindex, follow' />
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//s.w.org">
@@ -1959,7 +1959,7 @@
                             <div class="elementor-widget-container">
                                 <div class="breadcrumb" typeof="BreadcrumbList" vocab="https://schema.org/">
                                     <h2 class="freshio2-title">
-                                        Cart </h2>
+                                        Keranjang</h2>
 
                                     <div class="breadcrumb-listItem"><span
                                             class="breadcrumbs-item hfe-breadcrumbs-first"><a
@@ -1968,7 +1968,7 @@
                                             class="breadcrumbs-separator"><i aria-hidden="true"
                                                 class="freshio2-icon-angle-right"></i></span><span
                                             class="breadcrumbs-item hfe-breadcrumbs-last"><span
-                                                class="breadcrumbs-text">Cart</span></span></div>
+                                                class="breadcrumbs-text">Keranjang</span></span></div>
                                 </div>
                             </div>
                         </div>
@@ -1985,7 +1985,7 @@
 
                         <article id="post-75" class="post-75 page type-page status-publish hentry">
                             <header class="entry-header">
-                                <h1 class="entry-title">Cart</h1>
+                                <h1 class="entry-title">Keranjang</h1>
                             </header><!-- .entry-header -->
                             <div class="entry-content">
                                 <div class="woocommerce">
@@ -1993,175 +1993,42 @@
                                     <form class="woocommerce-cart-form"
                                         action="https://demo2.pavothemes.com/freshio/cart/" method="post">
 
-                                        <table
-                                            class="shop_table shop_table_responsive cart woocommerce-cart-form__contents"
-                                            cellspacing="0">
-                                            <thead>
-                                                <tr>
-                                                    <th class="product-remove">
-                                                        <span class="screen-reader-text">Remove item</span>
-                                                    </th>
-                                                    <th class="product-thumbnail">
-                                                        <span class="screen-reader-text">Thumbnail image</span>
-                                                    </th>
-                                                    <th class="product-name">Product</th>
-                                                    <th class="product-price">Price</th>
-                                                    <th class="product-quantity">Quantity</th>
-                                                    <th class="product-subtotal">Subtotal</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                                        <div class="wishlist-table-outer">
+                                            <div class="wishlist-table-wrap">
+                                                <table class="navora-wishlist-table" cellspacing="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="th-remove"><span class="screen-reader-text">Hapus item</span></th>
+                                                            <th class="th-image"><span class="screen-reader-text">Gambar</span></th>
+                                                            <th class="th-name">Produk</th>
+                                                            <th class="th-price">Harga</th>
+                                                            <th class="th-qty">Jumlah</th>
+                                                            <th class="th-subtotal">Subtotal</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="cart-items-container"></tbody>
+                                                </table>
+                                            </div><!-- /wishlist-table-wrap -->
+                                        </div><!-- /wishlist-table-outer -->
 
-                                                <tr class="woocommerce-cart-form__cart-item cart_item">
+                                        <!-- keep form (nonce) hidden fields if required by backend -->
+                                        <input type="hidden" id="woocommerce-cart-nonce" name="woocommerce-cart-nonce" value="e7b647a96d" />
+                                        <input type="hidden" name="_wp_http_referer" value="/freshio/cart/" />
 
-                                                    <td class="product-remove">
-                                                        <a href="https://demo2.pavothemes.com/freshio/cart/?remove_item=f7664060cc52bc6f3d620bcedc94a4b6&#038;_wpnonce=e7b647a96d"
-                                                            class="remove"
-                                                            aria-label="Remove Durable Aluminum Shoes from cart"
-                                                            data-product_id="266"
-                                                            data-product_sku="durable-aluminum-shoes-62990271">&times;</a>
-                                                    </td>
-
-                                                    <td class="product-thumbnail">
-                                                        <a
-                                                            href="https://demo2.pavothemes.com/freshio/product/durable-aluminum-shoes/#woosq-266"><img
-                                                                fetchpriority="high" decoding="async" width="350"
-                                                                height="327"
-                                                                src="https://demo2.pavothemes.com/freshio/wp-content/uploads/2020/08/27-350x327.jpg"
-                                                                class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                                                                alt="Durable Aluminum Shoes" /></a>
-                                                    </td>
-
-                                                    <td class="product-name" data-title="Product">
-                                                        <a
-                                                            href="https://demo2.pavothemes.com/freshio/product/durable-aluminum-shoes/#woosq-266">Durable
-                                                            Aluminum Shoes</a>
-                                                    </td>
-
-                                                    <td class="product-price" data-title="Price">
-                                                        <span class="woocommerce-Price-amount amount"><bdi><span
-                                                                    class="woocommerce-Price-currencySymbol">&#36;</span>366.90</bdi></span>
-                                                    </td>
-
-                                                    <td class="product-quantity" data-title="Quantity">
-                                                        <div class="quantity_wrap">
-                                                            <label class="quantity_label"
-                                                                for="quantity_6a4cf32eafc72">Quantity:</label>
-                                                            <div class="quantity">
-                                                                <input type="number" readonly="readonly"
-                                                                    id="quantity_6a4cf32eafc72"
-                                                                    class="input-text qty text"
-                                                                    name="cart[f7664060cc52bc6f3d620bcedc94a4b6][qty]"
-                                                                    value="1" aria-label="Product quantity" size="4"
-                                                                    min="0" max="97" step="1" placeholder=""
-                                                                    inputmode="numeric" autocomplete="off" />
-                                                            </div>
-                                                        </div>
-                                                    </td>
-
-                                                    <td class="product-subtotal" data-title="Subtotal">
-                                                        <span class="woocommerce-Price-amount amount"><bdi><span
-                                                                    class="woocommerce-Price-currencySymbol">&#36;</span>366.90</bdi></span>
-                                                    </td>
-                                                </tr>
-                                                <tr class="woocommerce-cart-form__cart-item cart_item">
-
-                                                    <td class="product-remove">
-                                                        <a href="https://demo2.pavothemes.com/freshio/cart/?remove_item=289dff07669d7a23de0ef88d2f7129e7&#038;_wpnonce=e7b647a96d"
-                                                            class="remove"
-                                                            aria-label="Remove Gorgeous Steel Wallet from cart"
-                                                            data-product_id="234"
-                                                            data-product_sku="gorgeous-steel-wallet-62887588">&times;</a>
-                                                    </td>
-
-                                                    <td class="product-thumbnail">
-                                                        <a
-                                                            href="https://demo2.pavothemes.com/freshio/product/gorgeous-steel-wallet/#woosq-234"><img
-                                                                decoding="async" width="350" height="327"
-                                                                src="https://demo2.pavothemes.com/freshio/wp-content/uploads/2020/08/5-350x327.jpg"
-                                                                class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                                                                alt="Gorgeous Steel Wallet" /></a>
-                                                    </td>
-
-                                                    <td class="product-name" data-title="Product">
-                                                        <a
-                                                            href="https://demo2.pavothemes.com/freshio/product/gorgeous-steel-wallet/#woosq-234">Gorgeous
-                                                            Steel Wallet</a>
-                                                    </td>
-
-                                                    <td class="product-price" data-title="Price">
-                                                        <span class="woocommerce-Price-amount amount"><bdi><span
-                                                                    class="woocommerce-Price-currencySymbol">&#36;</span>801.06</bdi></span>
-                                                    </td>
-
-                                                    <td class="product-quantity" data-title="Quantity">
-                                                        <div class="quantity_wrap">
-                                                            <label class="quantity_label"
-                                                                for="quantity_6a4cf32eb0eb5">Quantity:</label>
-                                                            <div class="quantity">
-                                                                <input type="number" readonly="readonly"
-                                                                    id="quantity_6a4cf32eb0eb5"
-                                                                    class="input-text qty text"
-                                                                    name="cart[289dff07669d7a23de0ef88d2f7129e7][qty]"
-                                                                    value="1" aria-label="Product quantity" size="4"
-                                                                    min="0" max="" step="1" placeholder=""
-                                                                    inputmode="numeric" autocomplete="off" />
-                                                            </div>
-                                                        </div>
-                                                    </td>
-
-                                                    <td class="product-subtotal" data-title="Subtotal">
-                                                        <span class="woocommerce-Price-amount amount"><bdi><span
-                                                                    class="woocommerce-Price-currencySymbol">&#36;</span>801.06</bdi></span>
-                                                    </td>
-                                                </tr>
-
-
-                                                <tr>
-                                                    <td colspan="6" class="actions">
-
-                                                        <div class="coupon">
-                                                            <label for="coupon_code"
-                                                                class="screen-reader-text">Coupon:</label>
-                                                            <input type="text" name="coupon_code" class="input-text"
-                                                                id="coupon_code" value="" placeholder="Coupon code" />
-                                                            <button type="submit" class="button" name="apply_coupon"
-                                                                value="Apply coupon">
-                                                                <span>Apply coupon</span></button>
-                                                        </div>
-
-                                                        <button type="submit" class="button" name="update_cart"
-                                                            value="Update cart">
-                                                            <span>Update cart</span></button>
-
-
-                                                        <input type="hidden" id="woocommerce-cart-nonce"
-                                                            name="woocommerce-cart-nonce" value="e7b647a96d" /><input
-                                                            type="hidden" name="_wp_http_referer"
-                                                            value="/freshio/cart/" />
-                                                    </td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
                                     </form>
 
 
                                     <div class="cart-collaterals">
                                         <div class="cart_totals ">
-
-
-                                            <h2>Cart totals</h2>
-
+                                            <h2>Ringkasan Belanja</h2>
                                             <table cellspacing="0" class="shop_table shop_table_responsive">
-
-                                                <tr class="cart-subtotal">
-                                                    <th>Subtotal</th>
-                                                    <td data-title="Subtotal"><span
-                                                            class="woocommerce-Price-amount amount"><bdi><span
-                                                                    class="woocommerce-Price-currencySymbol">&#36;</span>1,167.96</bdi></span>
-                                                    </td>
-                                                </tr>
+                                                <tbody>
+                                                    <tr class="cart-subtotal">
+                                                        <th>Subtotal</th>
+                                                        <td data-title="Subtotal"><span
+                                                                class="woocommerce-Price-amount amount"><bdi id="cart-subtotal-value">Rp 0</bdi></span>
+                                                        </td>
+                                                    </tr>
 
 
 
@@ -2171,19 +2038,17 @@
                                                 <tr class="order-total">
                                                     <th>Total</th>
                                                     <td data-title="Total"><strong><span
-                                                                class="woocommerce-Price-amount amount"><bdi><span
-                                                                        class="woocommerce-Price-currencySymbol">&#36;</span>1,167.96</bdi></span></strong>
+                                                                class="woocommerce-Price-amount amount"><bdi id="cart-total-value">Rp 0</bdi></span></strong>
                                                     </td>
                                                 </tr>
-
-
+                                                </tbody>
                                             </table>
 
                                             <div class="wc-proceed-to-checkout">
 
                                                 <a href="checkout.html"
                                                     class="checkout-button button alt wc-forward">
-                                                    Proceed to checkout</a>
+                                                    Lanjutkan ke pembayaran</a>
                                             </div>
 
 
@@ -2193,8 +2058,8 @@
 
                                     <div class="cross-sells elementor-element">
                                         <div class="woocommerce-cross-sells-product-wrapper">
-                                            <h2 class="woocommerce-title-cross-sells-product">You may be interested
-                                                in&hellip; </h2>
+                                            <h2 class="woocommerce-title-cross-sells-product">Produk yang mungkin
+                                                Anda suka</h2>
                                         </div>
                                         <div class="woocommerce">
                                             <div class="freshio2-swiper swiper"
@@ -3445,6 +3310,150 @@
         integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ=="
         data-cf-beacon='{"version":"2024.11.0","token":"2262db23ef41480dbb281abb8b2626b5","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
         crossorigin="anonymous"></script>
+    <script type="module">
+        import dataProducts from '../script/data-dummy.js';
+
+        const formatter = new Intl.NumberFormat('id-ID');
+        const cartProductIds = ['hb-01', 'hb-04', 'fb-01'];
+        const recommendedProductIds = ['hb-02', 'hb-03', 'hl-01', 'hl-02'];
+
+        function formatPrice(value) {
+            return 'Rp ' + formatter.format(value);
+        }
+
+        function createCartItemRow(product, quantity = 1) {
+            const subtotal = product.price * quantity;
+            return `
+                <tr class="cart_item" data-product-id="${product.id}" data-price="${product.price}">
+                    <td class="td-remove">
+                        <button class="btn-remove-item remove-cart-item" title="Hapus dari keranjang" aria-label="Hapus ${product.nama}">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                            </svg>
+                        </button>
+                    </td>
+                    <td class="td-image">
+                        <a href="#" class="product-img-wrapper">
+                            <img src="${product.images[0] || product.image}" alt="${product.nama}" loading="lazy">
+                        </a>
+                    </td>
+                    <td class="td-name">
+                        <a class="product-name-link">${product.nama}</a>
+                    </td>
+                    <td class="td-price">
+                        <span class="price-current"><span class="price-currency">Rp</span> ${formatter.format(product.price)}</span>
+                    </td>
+                    <td class="td-qty">
+                        <div class="quantity_wrap">
+                            <label class="quantity_label" for="quantity_${product.id}">Jumlah:</label>
+                            <div class="quantity">
+                                <input type="number" id="quantity_${product.id}" class="input-text qty text" name="cart[${product.id}][qty]" value="${quantity}" min="1" step="1" />
+                            </div>
+                        </div>
+                    </td>
+                    <td class="td-subtotal">
+                        <span class="price-current"><span class="price-currency">Rp</span> ${formatter.format(subtotal)}</span>
+                    </td>
+                </tr>
+            `;
+        }
+
+        function updateCartTotals() {
+            const rows = Array.from(document.querySelectorAll('#cart-items-container tr.cart_item'));
+            let subtotal = 0;
+
+            rows.forEach(row => {
+                const qtyInput = row.querySelector('input.qty');
+                const quantity = Math.max(1, Number(qtyInput.value) || 1);
+                qtyInput.value = quantity;
+
+                const price = Number(row.dataset.price || 0);
+                const rowSubtotal = price * quantity;
+                subtotal += rowSubtotal;
+
+                const rowSubtotalEl = row.querySelector('.td-subtotal .price-current');
+                if (rowSubtotalEl) {
+                    rowSubtotalEl.innerHTML = `<span class="price-currency">Rp</span> ${formatter.format(rowSubtotal)}`;
+                }
+            });
+
+            const subtotalEl = document.getElementById('cart-subtotal-value');
+            const totalEl = document.getElementById('cart-total-value');
+            if (subtotalEl) subtotalEl.textContent = formatPrice(subtotal);
+            if (totalEl) totalEl.textContent = formatPrice(subtotal);
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items-container');
+            if (!container) return;
+
+            container.innerHTML = cartProductIds.map(id => {
+                const product = dataProducts.find(item => item.id === id);
+                return product ? createCartItemRow(product) : '';
+            }).join('');
+        }
+
+        function createRecommendedCard(product) {
+            return `
+                <li class="swiper-slide product type-product post-${product.id} status-publish instock has-post-thumbnail purchasable product-type-simple">
+                    <div class="product-block">
+                        <div class="product-top">
+                            <div class="product-transition">
+                                <div class="product-image"><img decoding="async" width="350" height="327"
+                                        src="${product.images[0] || product.image}"
+                                        class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+                                        alt="${product.nama}" /></div>
+                            </div>
+                        </div>
+                        <div class="product-caption">
+                            <h3 class="woocommerce-loop-product__title"><a href="#">${product.nama}</a></h3>
+                            <span class="price"><span class="woocommerce-Price-amount amount"><bdi>${formatPrice(product.price)}</bdi></span></span>
+                            <a href="#" class="button_cart product_type_simple add_to_cart_button">
+                                <span class="button_text">Tambah ke keranjang</span>
+                                <span class="button-icon"><i aria-hidden="true" class="freshio2-icon-angle-double-right"></i></span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            `;
+        }
+
+        function renderRecommendedProducts() {
+            const productList = document.querySelector('.freshio2-products.products.swiper-wrapper');
+            if (!productList) return;
+
+            productList.innerHTML = recommendedProductIds.map(id => {
+                const product = dataProducts.find(item => item.id === id);
+                return product ? createRecommendedCard(product) : '';
+            }).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCartItems();
+            renderRecommendedProducts();
+            updateCartTotals();
+
+            const cartItemsContainer = document.getElementById('cart-items-container');
+            if (!cartItemsContainer) return;
+
+            cartItemsContainer.addEventListener('input', event => {
+                if (event.target.matches('input.qty')) {
+                    updateCartTotals();
+                }
+            });
+
+            cartItemsContainer.addEventListener('click', event => {
+                const removeButton = event.target.closest('.remove-cart-item');
+                if (removeButton) {
+                    const row = removeButton.closest('tr.cart_item');
+                    if (row) {
+                        row.remove();
+                        updateCartTotals();
+                    }
+                }
+            });
+        });
+    </script>
 </body>
     <script>
         (function(){

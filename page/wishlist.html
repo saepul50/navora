@@ -1962,1010 +1962,1407 @@
                             </header><!-- .entry-header -->
                             <div class="entry-content">
 
-<!-- ======= NAVORA WISHLIST STYLES ======= -->
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-
-:root {
-    --navora-green: #5fbd74;
-    --navora-green-dark: #4aa862;
-    --navora-green-light: #e8f7ec;
-    --navora-red: #e55757;
-    --navora-text: #2d3142;
-    --navora-muted: #8a8fa3;
-    --navora-border: #eef0f5;
-    --navora-bg: #f9fbfc;
-    --navora-white: #ffffff;
-    --navora-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    --navora-shadow-hover: 0 8px 30px rgba(0,0,0,0.14);
-    --navora-radius: 14px;
-    --navora-transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.navora-wishlist-wrap {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    padding: 0 0 60px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* --- Wishlist Header Bar --- */
-.wishlist-header-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: var(--navora-white);
-    border-radius: var(--navora-radius);
-    padding: 20px 28px;
-    margin-bottom: 24px;
-    box-shadow: var(--navora-shadow);
-    border: 1px solid var(--navora-border);
-    flex-wrap: wrap;
-    gap: 14px;
-}
-
-.wishlist-title-group {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-.wishlist-icon-badge {
-    width: 48px;
-    height: 48px;
-    background: linear-gradient(135deg, #ffecef 0%, #ffe0e5 100%);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.wishlist-icon-badge svg {
-    width: 22px;
-    height: 22px;
-    fill: var(--navora-red);
-}
-
-.wishlist-title-text h2 {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--navora-text);
-    margin: 0 0 2px;
-    line-height: 1.2;
-}
-
-.wishlist-title-text span {
-    font-size: 13px;
-    color: var(--navora-muted);
-    font-weight: 400;
-}
-
-.wishlist-actions {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.btn-wishlist-action {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 9px 18px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    cursor: pointer;
-    transition: var(--navora-transition);
-    border: none;
-    text-decoration: none;
-}
-
-.btn-wishlist-share {
-    background: var(--navora-bg);
-    color: var(--navora-text);
-    border: 1.5px solid var(--navora-border);
-}
-
-.btn-wishlist-share:hover {
-    background: var(--navora-border);
-    color: var(--navora-text);
-}
-
-.btn-wishlist-clear {
-    background: #fff0f0;
-    color: var(--navora-red);
-    border: 1.5px solid #ffd6d6;
-}
-
-.btn-wishlist-clear:hover {
-    background: var(--navora-red);
-    color: white;
-    border-color: var(--navora-red);
-}
-
-.btn-wishlist-cart-all {
-    background: linear-gradient(135deg, var(--navora-green) 0%, #4caf66 100%);
-    color: white;
-    border: 1.5px solid transparent;
-}
-
-.btn-wishlist-cart-all:hover {
-    background: linear-gradient(135deg, var(--navora-green-dark) 0%, #3d9a56 100%);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 14px rgba(95, 189, 116, 0.4);
-}
-
-/* --- Table Container --- */
-.wishlist-table-outer {
-    background: var(--navora-white);
-    border-radius: var(--navora-radius);
-    box-shadow: var(--navora-shadow);
-    border: 1px solid var(--navora-border);
-    overflow: hidden;
-}
-
-.wishlist-table-wrap {
-    overflow-x: auto;
-}
-
-/* --- Table --- */
-.navora-wishlist-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-}
-
-/* Table Head */
-.navora-wishlist-table thead tr {
-    background: linear-gradient(135deg, #f7f9fb 0%, #eef2f6 100%);
-}
-
-.navora-wishlist-table thead th {
-    padding: 14px 20px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.1px;
-    text-transform: uppercase;
-    color: var(--navora-muted);
-    border-bottom: 1.5px solid var(--navora-border);
-    white-space: nowrap;
-    text-align: left;
-}
-
-.navora-wishlist-table thead th.th-remove { width: 40px; }
-.navora-wishlist-table thead th.th-image { width: 110px; }
-.navora-wishlist-table thead th.th-name { min-width: 220px; }
-.navora-wishlist-table thead th.th-price { width: 120px; }
-.navora-wishlist-table thead th.th-stock { width: 110px; }
-.navora-wishlist-table thead th.th-date { width: 120px; }
-.navora-wishlist-table thead th.th-action { width: 180px; text-align: right; }
-
-/* Table Body Row */
-.navora-wishlist-table tbody tr {
-    border-bottom: 1px solid var(--navora-border);
-    transition: var(--navora-transition);
-}
-
-.navora-wishlist-table tbody tr:last-child {
-    border-bottom: none;
-}
-
-.navora-wishlist-table tbody tr:hover {
-    background: #fafcff;
-}
-
-.navora-wishlist-table tbody td {
-    padding: 18px 20px;
-    vertical-align: middle;
-    font-size: 14px;
-    color: var(--navora-text);
-}
-
-/* Remove Button */
-.td-remove .btn-remove-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color: #c8ccd8;
-    transition: var(--navora-transition);
-    padding: 0;
-}
-
-.td-remove .btn-remove-item:hover {
-    background: #fff0f0;
-    color: var(--navora-red);
-}
-
-.td-remove .btn-remove-item svg {
-    width: 14px;
-    height: 14px;
-}
-
-/* Product Image */
-.td-image .product-img-wrapper {
-    position: relative;
-    width: 88px;
-    height: 88px;
-    border-radius: 12px;
-    overflow: hidden;
-    background: var(--navora-bg);
-    border: 1.5px solid var(--navora-border);
-    transition: var(--navora-transition);
-    display: block;
-    flex-shrink: 0;
-}
-
-.td-image .product-img-wrapper:hover {
-    border-color: var(--navora-green);
-    box-shadow: 0 0 0 3px rgba(95, 189, 116, 0.15);
-}
-
-.td-image .product-img-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: var(--navora-transition);
-}
-
-.td-image .product-img-wrapper:hover img {
-    transform: scale(1.06);
-}
-
-/* Product Label Badge */
-.product-badge {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    border-radius: 5px;
-    margin-bottom: 6px;
-}
-
-.badge-sale { background: #fff0f0; color: var(--navora-red); }
-.badge-new { background: var(--navora-green-light); color: var(--navora-green-dark); }
-.badge-hot { background: #fff5e6; color: #e8851a; }
-.badge-organic { background: #e8f4fd; color: #1a7bbf; }
-
-/* Product Name */
-.td-name .product-name-link {
-    font-size: 14.5px;
-    font-weight: 600;
-    color: var(--navora-text);
-    text-decoration: none;
-    line-height: 1.4;
-    display: block;
-    transition: var(--navora-transition);
-    margin-bottom: 4px;
-}
-
-.td-name .product-name-link:hover {
-    color: var(--navora-green);
-}
-
-.td-name .product-sku {
-    font-size: 11.5px;
-    color: var(--navora-muted);
-    font-weight: 400;
-}
-
-/* Price */
-.td-price .price-current {
-    font-size: 15.5px;
-    font-weight: 700;
-    color: var(--navora-text);
-    display: block;
-}
-
-.td-price .price-original {
-    font-size: 12px;
-    color: var(--navora-muted);
-    text-decoration: line-through;
-    font-weight: 400;
-}
-
-.td-price .price-discount {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    color: white;
-    background: var(--navora-red);
-    padding: 2px 6px;
-    border-radius: 4px;
-    margin-top: 3px;
-}
-
-/* Stock Status */
-.stock-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 12px;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 20px;
-}
-
-.stock-badge::before {
-    content: '';
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    display: inline-block;
-    flex-shrink: 0;
-}
-
-.stock-instock {
-    background: var(--navora-green-light);
-    color: var(--navora-green-dark);
-}
-
-.stock-instock::before { background: var(--navora-green); }
-
-.stock-outofstock {
-    background: #fff0f0;
-    color: var(--navora-red);
-}
-
-.stock-outofstock::before { background: var(--navora-red); }
-
-.stock-lowstock {
-    background: #fff8e6;
-    color: #c77c0e;
-}
-
-.stock-lowstock::before { background: #f5a623; }
-
-/* Date Added */
-.td-date {
-    font-size: 12.5px;
-    color: var(--navora-muted);
-    white-space: nowrap;
-}
-
-/* Action Buttons */
-.td-action {
-    text-align: right;
-}
-
-.btn-atc {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 9px 16px;
-    background: linear-gradient(135deg, var(--navora-green) 0%, #4caf66 100%);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    cursor: pointer;
-    transition: var(--navora-transition);
-    text-decoration: none;
-    white-space: nowrap;
-}
-
-.btn-atc:hover {
-    background: linear-gradient(135deg, var(--navora-green-dark) 0%, #3d9a56 100%);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 14px rgba(95, 189, 116, 0.4);
-    color: white;
-}
-
-.btn-atc svg {
-    width: 15px;
-    height: 15px;
-}
-
-.btn-select-options {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 9px 16px;
-    background: var(--navora-bg);
-    color: var(--navora-text);
-    border: 1.5px solid var(--navora-border);
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    cursor: pointer;
-    transition: var(--navora-transition);
-    text-decoration: none;
-    white-space: nowrap;
-}
-
-.btn-select-options:hover {
-    border-color: var(--navora-green);
-    color: var(--navora-green);
-    background: var(--navora-green-light);
-}
-
-/* --- Table Footer --- */
-.wishlist-table-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 24px;
-    background: linear-gradient(135deg, #f7f9fb 0%, #eef2f6 100%);
-    border-top: 1.5px solid var(--navora-border);
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.wishlist-count-info {
-    font-size: 13px;
-    color: var(--navora-muted);
-    font-weight: 500;
-}
-
-.wishlist-count-info strong {
-    color: var(--navora-text);
-    font-weight: 700;
-}
-
-.btn-continue-shop {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 9px 18px;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background: var(--navora-white);
-    color: var(--navora-text);
-    text-decoration: none;
-    border: 1.5px solid var(--navora-border);
-    transition: var(--navora-transition);
-}
-
-.btn-continue-shop:hover {
-    border-color: var(--navora-green);
-    color: var(--navora-green);
-    background: var(--navora-green-light);
-}
-
-/* --- Share URL popup --- */
-.wishlist-share-url {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    background: rgba(0,0,0,0.5);
-    align-items: center;
-    justify-content: center;
-}
-
-.wishlist-share-url.active { display: flex; }
-
-.share-url-box {
-    background: white;
-    border-radius: 16px;
-    padding: 32px 28px;
-    max-width: 460px;
-    width: 90%;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-    animation: popIn 0.25s ease;
-}
-
-@keyframes popIn {
-    from { transform: scale(0.9); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-.share-url-box h3 {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--navora-text);
-    margin: 0 0 8px;
-}
-
-.share-url-box p {
-    font-size: 13px;
-    color: var(--navora-muted);
-    margin: 0 0 18px;
-}
-
-.share-url-copy-row {
-    display: flex;
-    gap: 8px;
-}
-
-.share-url-input {
-    flex: 1;
-    padding: 10px 14px;
-    border: 1.5px solid var(--navora-border);
-    border-radius: 8px;
-    font-size: 13px;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    color: var(--navora-text);
-    background: var(--navora-bg);
-    outline: none;
-}
-
-.btn-copy-url {
-    padding: 10px 16px;
-    background: var(--navora-green);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    cursor: pointer;
-    transition: var(--navora-transition);
-    white-space: nowrap;
-}
-
-.btn-copy-url:hover {
-    background: var(--navora-green-dark);
-}
-
-.btn-share-close {
-    margin-top: 16px;
-    width: 100%;
-    padding: 9px;
-    background: transparent;
-    border: 1.5px solid var(--navora-border);
-    border-radius: 8px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--navora-muted);
-    cursor: pointer;
-    transition: var(--navora-transition);
-    font-family: 'Plus Jakarta Sans', sans-serif;
-}
-
-.btn-share-close:hover {
-    background: var(--navora-border);
-    color: var(--navora-text);
-}
-
-/* Notification Toast */
-.wishlist-toast {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background: var(--navora-text);
-    color: white;
-    padding: 12px 22px;
-    border-radius: 10px;
-    font-size: 13.5px;
-    font-weight: 500;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.22);
-    z-index: 9999;
-    display: none;
-    animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-    from { transform: translateY(20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-.wishlist-toast.show { display: block; }
-
-/* Responsive */
-@media (max-width: 768px) {
-    .navora-wishlist-table thead th.th-date,
-    .navora-wishlist-table tbody td.td-date { display: none; }
-
-    .navora-wishlist-table thead th.th-sku,
-    .navora-wishlist-table tbody td.td-sku { display: none; }
-
-    .wishlist-header-bar { padding: 16px 16px; }
-    .navora-wishlist-table tbody td { padding: 14px 12px; }
-    .navora-wishlist-table thead th { padding: 12px 12px; }
-    .td-image .product-img-wrapper { width: 70px; height: 70px; }
-}
-
-@media (max-width: 560px) {
-    .navora-wishlist-table thead th.th-stock,
-    .navora-wishlist-table tbody td.td-stock { display: none; }
-
-    .btn-atc span { display: none; }
-}
-</style>
-
-<!-- ======= NAVORA WISHLIST MARKUP ======= -->
-<div class="navora-wishlist-wrap">
-
-    <!-- Header Bar -->
-    <div class="wishlist-header-bar">
-        <div class="wishlist-title-group">
-            <div class="wishlist-icon-badge">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/>
-                </svg>
-            </div>
-            <div class="wishlist-title-text">
-                <h2>Wishlist Saya</h2>
-                <span>8 produk tersimpan</span>
-            </div>
-        </div>
-        <div class="wishlist-actions">
-            <button class="btn-wishlist-action btn-wishlist-share" onclick="document.querySelector('.wishlist-share-url').classList.add('active')">
-                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
-                Bagikan Wishlist
-            </button>
-            <button class="btn-wishlist-action btn-wishlist-clear" onclick="showToast('Wishlist telah dikosongkan')">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
-                Hapus Semua
-            </button>
-            <button class="btn-wishlist-action btn-wishlist-cart-all" onclick="showToast('Semua produk ditambahkan ke keranjang! 🛒')">
-                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></svg>
-                Tambah Semua ke Keranjang
-            </button>
-        </div>
-    </div>
-
-    <!-- Product Table -->
-    <div class="wishlist-table-outer">
-        <div class="wishlist-table-wrap">
-            <table class="navora-wishlist-table">
-                <thead>
-                    <tr>
-                        <th class="th-remove"></th>
-                        <th class="th-image">Produk</th>
-                        <th class="th-name"></th>
-                        <th class="th-price">Harga</th>
-                        <th class="th-stock">Stok</th>
-                        <th class="th-date">Ditambahkan</th>
-                        <th class="th-action">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <!-- Product Row 1 -->
-                    <tr>
-                        <td class="td-remove">
-                            <button class="btn-remove-item" onclick="removeWishlistItem(this)" title="Hapus dari Wishlist">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                            </button>
-                        </td>
-                        <td class="td-image">
-                            <a href="#" class="product-img-wrapper">
-                                <img src="../assets/foto-produk/madu-murni.png" alt="Madu Murni Hutan" loading="lazy">
-                            </a>
-                        </td>
-                        <td class="td-name">
-                            <span class="product-badge badge-organic">Organik</span>
-                            <a href="#" class="product-name-link">Madu Murni Hutan Liar 500ml</a>
-                            <span class="product-sku">SKU: NVR-MDU-001</span>
-                        </td>
-                        <td class="td-price">
-                            <span class="price-current">Rp 89.000</span>
-                            <span class="price-original">Rp 115.000</span>
-                            <span class="price-discount">-23%</span>
-                        </td>
-                        <td class="td-stock">
-                            <span class="stock-badge stock-instock">In Stock</span>
-                        </td>
-                        <td class="td-date">8 Jul 2026</td>
-                        <td class="td-action">
-                            <button class="btn-atc" onclick="showToast('Madu Murni ditambahkan ke keranjang 🛒')">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></svg>
-                                <span>Add to Cart</span>
-                            </button>
-                        </td>
-                    </tr>
-
-                    <!-- Product Row 2 -->
-                    <tr>
-                        <td class="td-remove">
-                            <button class="btn-remove-item" onclick="removeWishlistItem(this)" title="Hapus dari Wishlist">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                            </button>
-                        </td>
-                        <td class="td-image">
-                            <a href="#" class="product-img-wrapper">
-                                <img src="../assets/foto-produk/sabun-sampo-lerak.png" alt="Sabun Sampo Lerak" loading="lazy">
-                            </a>
-                        </td>
-                        <td class="td-name">
-                            <span class="product-badge badge-new">Baru</span>
-                            <a href="#" class="product-name-link">Shampo & Sabun Alami Lerak 250ml</a>
-                            <span class="product-sku">SKU: NVR-SBN-012</span>
-                        </td>
-                        <td class="td-price">
-                            <span class="price-current">Rp 45.000</span>
-                        </td>
-                        <td class="td-stock">
-                            <span class="stock-badge stock-instock">In Stock</span>
-                        </td>
-                        <td class="td-date">7 Jul 2026</td>
-                        <td class="td-action">
-                            <button class="btn-atc" onclick="showToast('Sabun Lerak ditambahkan ke keranjang 🛒')">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></svg>
-                                <span>Add to Cart</span>
-                            </button>
-                        </td>
-                    </tr>
-
-                    <!-- Product Row 3 -->
-                    <tr>
-                        <td class="td-remove">
-                            <button class="btn-remove-item" onclick="removeWishlistItem(this)" title="Hapus dari Wishlist">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                            </button>
-                        </td>
-                        <td class="td-image">
-                            <a href="#" class="product-img-wrapper">
-                                <img src="../assets/foto-produk/coconut-serum.png" alt="Coconut Serum" loading="lazy">
-                            </a>
-                        </td>
-                        <td class="td-name">
-                            <span class="product-badge badge-sale">Sale</span>
-                            <a href="#" class="product-name-link">Coconut Brightening Serum 30ml</a>
-                            <span class="product-sku">SKU: NVR-SRM-007</span>
-                        </td>
-                        <td class="td-price">
-                            <span class="price-current">Rp 175.000</span>
-                            <span class="price-original">Rp 230.000</span>
-                            <span class="price-discount">-24%</span>
-                        </td>
-                        <td class="td-stock">
-                            <span class="stock-badge stock-lowstock">Stok Terbatas</span>
-                        </td>
-                        <td class="td-date">5 Jul 2026</td>
-                        <td class="td-action">
-                            <button class="btn-atc" onclick="showToast('Coconut Serum ditambahkan ke keranjang 🛒')">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></svg>
-                                <span>Add to Cart</span>
-                            </button>
-                        </td>
-                    </tr>
-
-                    <!-- Product Row 4 -->
-                    <tr>
-                        <td class="td-remove">
-                            <button class="btn-remove-item" onclick="removeWishlistItem(this)" title="Hapus dari Wishlist">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                            </button>
-                        </td>
-                        <td class="td-image">
-                            <a href="#" class="product-img-wrapper">
-                                <img src="../assets/foto-produk/kopi.png" alt="Kopi Lokal" loading="lazy">
-                            </a>
-                        </td>
-                        <td class="td-name">
-                            <span class="product-badge badge-hot">Terlaris</span>
-                            <a href="#" class="product-name-link">Kopi Arabika Toraja Premium 200g</a>
-                            <span class="product-sku">SKU: NVR-KPI-003</span>
-                        </td>
-                        <td class="td-price">
-                            <span class="price-current">Rp 68.000</span>
-                        </td>
-                        <td class="td-stock">
-                            <span class="stock-badge stock-instock">In Stock</span>
-                        </td>
-                        <td class="td-date">4 Jul 2026</td>
-                        <td class="td-action">
-                            <button class="btn-atc" onclick="showToast('Kopi Arabika ditambahkan ke keranjang 🛒')">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></svg>
-                                <span>Add to Cart</span>
-                            </button>
-                        </td>
-                    </tr>
-
-                    <!-- Product Row 5 -->
-                    <tr>
-                        <td class="td-remove">
-                            <button class="btn-remove-item" onclick="removeWishlistItem(this)" title="Hapus dari Wishlist">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                            </button>
-                        </td>
-                        <td class="td-image">
-                            <a href="#" class="product-img-wrapper">
-                                <img src="../assets/foto-produk/esensial-oil.png" alt="Essential Oil" loading="lazy">
-                            </a>
-                        </td>
-                        <td class="td-name">
-                            <span class="product-badge badge-organic">Organik</span>
-                            <a href="#" class="product-name-link">Essential Oil Lavender Pure 15ml</a>
-                            <span class="product-sku">SKU: NVR-EO-015</span>
-                        </td>
-                        <td class="td-price">
-                            <span class="price-current">Rp 95.000</span>
-                            <span class="price-original">Rp 120.000</span>
-                            <span class="price-discount">-21%</span>
-                        </td>
-                        <td class="td-stock">
-                            <span class="stock-badge stock-instock">In Stock</span>
-                        </td>
-                        <td class="td-date">3 Jul 2026</td>
-                        <td class="td-action">
-                            <button class="btn-atc" onclick="showToast('Essential Oil ditambahkan ke keranjang 🛒')">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></svg>
-                                <span>Add to Cart</span>
-                            </button>
-                        </td>
-                    </tr>
-
-                    <!-- Product Row 6 -->
-                    <tr>
-                        <td class="td-remove">
-                            <button class="btn-remove-item" onclick="removeWishlistItem(this)" title="Hapus dari Wishlist">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                            </button>
-                        </td>
-                        <td class="td-image">
-                            <a href="#" class="product-img-wrapper">
-                                <img src="../assets/foto-produk/alat-makan.png" alt="Alat Makan Bambu" loading="lazy">
-                            </a>
-                        </td>
-                        <td class="td-name">
-                            <span class="product-badge badge-new">Baru</span>
-                            <a href="#" class="product-name-link">Set Alat Makan Bambu Eco (5 pcs)</a>
-                            <span class="product-sku">SKU: NVR-ALT-022</span>
-                        </td>
-                        <td class="td-price">
-                            <span class="price-current">Rp 125.000</span>
-                        </td>
-                        <td class="td-stock">
-                            <span class="stock-badge stock-outofstock">Out of Stock</span>
-                        </td>
-                        <td class="td-date">1 Jul 2026</td>
-                        <td class="td-action">
-                            <a href="#" class="btn-select-options">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-                                Beri Tahu Saya
-                            </a>
-                        </td>
-                    </tr>
-
-                    <!-- Product Row 7 -->
-                    <tr>
-                        <td class="td-remove">
-                            <button class="btn-remove-item" onclick="removeWishlistItem(this)" title="Hapus dari Wishlist">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                            </button>
-                        </td>
-                        <td class="td-image">
-                            <a href="#" class="product-img-wrapper">
-                                <img src="../assets/foto-produk/teh-bunga.png" alt="Teh Bunga" loading="lazy">
-                            </a>
-                        </td>
-                        <td class="td-name">
-                            <span class="product-badge badge-organic">Organik</span>
-                            <a href="#" class="product-name-link">Teh Bunga Rosella & Chamomile 50g</a>
-                            <span class="product-sku">SKU: NVR-TEH-008</span>
-                        </td>
-                        <td class="td-price">
-                            <span class="price-current">Rp 55.000</span>
-                            <span class="price-original">Rp 70.000</span>
-                            <span class="price-discount">-21%</span>
-                        </td>
-                        <td class="td-stock">
-                            <span class="stock-badge stock-instock">In Stock</span>
-                        </td>
-                        <td class="td-date">29 Jun 2026</td>
-                        <td class="td-action">
-                            <button class="btn-atc" onclick="showToast('Teh Bunga ditambahkan ke keranjang 🛒')">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></svg>
-                                <span>Add to Cart</span>
-                            </button>
-                        </td>
-                    </tr>
-
-                    <!-- Product Row 8 -->
-                    <tr>
-                        <td class="td-remove">
-                            <button class="btn-remove-item" onclick="removeWishlistItem(this)" title="Hapus dari Wishlist">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                            </button>
-                        </td>
-                        <td class="td-image">
-                            <a href="#" class="product-img-wrapper">
-                                <img src="../assets/foto-produk/beeswax-wrap.png" alt="Beeswax Wrap" loading="lazy">
-                            </a>
-                        </td>
-                        <td class="td-name">
-                            <span class="product-badge badge-hot">Terlaris</span>
-                            <a href="#" class="product-name-link">Beeswax Wrap Pengganti Plastik (3 pcs)</a>
-                            <span class="product-sku">SKU: NVR-BWX-019</span>
-                        </td>
-                        <td class="td-price">
-                            <span class="price-current">Rp 79.000</span>
-                        </td>
-                        <td class="td-stock">
-                            <span class="stock-badge stock-lowstock">Stok Terbatas</span>
-                        </td>
-                        <td class="td-date">27 Jun 2026</td>
-                        <td class="td-action">
-                            <button class="btn-atc" onclick="showToast('Beeswax Wrap ditambahkan ke keranjang 🛒')">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z"/></svg>
-                                <span>Add to Cart</span>
-                            </button>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Table Footer -->
-        <div class="wishlist-table-footer">
-            <div class="wishlist-count-info">
-                Menampilkan <strong>8</strong> produk di wishlist Anda
-            </div>
-            <a href="../page/shop.html" class="btn-continue-shop">
-                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
-                Lanjut Belanja
-            </a>
-        </div>
-    </div><!-- /wishlist-table-outer -->
-
-</div><!-- /navora-wishlist-wrap -->
-
-<!-- Share Popup -->
-<div class="wishlist-share-url">
-    <div class="share-url-box">
-        <h3>🔗 Bagikan Wishlist Anda</h3>
-        <p>Salin link di bawah dan bagikan ke teman atau keluarga.</p>
-        <div class="share-url-copy-row">
-            <input type="text" class="share-url-input" id="wishlistShareUrl" value="https://navora.id/wishlist/U8K9PQ" readonly>
-            <button class="btn-copy-url" onclick="copyWishlistUrl()">Salin</button>
-        </div>
-        <button class="btn-share-close" onclick="document.querySelector('.wishlist-share-url').classList.remove('active')">Tutup</button>
-    </div>
-</div>
-
-<!-- Toast Notification -->
-<div class="wishlist-toast" id="wishlistToast"></div>
-
-<script>
-function removeWishlistItem(btn) {
-    const row = btn.closest('tr');
-    row.style.transition = 'all 0.3s ease';
-    row.style.opacity = '0';
-    row.style.transform = 'translateX(-20px)';
-    setTimeout(() => {
-        row.remove();
-        updateWishlistCount();
-    }, 300);
-    showToast('Produk dihapus dari wishlist');
-}
-
-function updateWishlistCount() {
-    const rows = document.querySelectorAll('.navora-wishlist-table tbody tr');
-    const countEl = document.querySelector('.wishlist-title-text span');
-    const footerEl = document.querySelector('.wishlist-count-info');
-    if (countEl) countEl.textContent = rows.length + ' produk tersimpan';
-    if (footerEl) footerEl.innerHTML = 'Menampilkan <strong>' + rows.length + '</strong> produk di wishlist Anda';
-}
-
-function copyWishlistUrl() {
-    const input = document.getElementById('wishlistShareUrl');
-    input.select();
-    document.execCommand('copy');
-    showToast('Link wishlist berhasil disalin! 📋');
-}
-
-function showToast(message) {
-    const toast = document.getElementById('wishlistToast');
-    toast.textContent = message;
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 3000);
-}
-
-// Close share popup on overlay click
-document.querySelector('.wishlist-share-url').addEventListener('click', function(e) {
-    if (e.target === this) this.classList.remove('active');
-});
-</script>
+                                <!-- ======= NAVORA WISHLIST STYLES ======= -->
+                                <style>
+                                    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+                                    :root {
+                                        --navora-green: #5fbd74;
+                                        --navora-green-dark: #4aa862;
+                                        --navora-green-light: #e8f7ec;
+                                        --navora-red: #e55757;
+                                        --navora-text: #2d3142;
+                                        --navora-muted: #8a8fa3;
+                                        --navora-border: #eef0f5;
+                                        --navora-bg: #f9fbfc;
+                                        --navora-white: #ffffff;
+                                        --navora-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                                        --navora-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.14);
+                                        --navora-radius: 14px;
+                                        --navora-transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+                                    }
+
+                                    .navora-wishlist-wrap {
+                                        font-family: 'Plus Jakarta Sans', sans-serif;
+                                        padding: 0 0 60px;
+                                        max-width: 1200px;
+                                        margin: 0 auto;
+                                    }
+
+                                    /* --- Wishlist Header Bar --- */
+                                    .wishlist-header-bar {
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: space-between;
+                                        background: var(--navora-white);
+                                        border-radius: var(--navora-radius);
+                                        padding: 20px 28px;
+                                        margin-bottom: 24px;
+                                        box-shadow: var(--navora-shadow);
+                                        border: 1px solid var(--navora-border);
+                                        flex-wrap: wrap;
+                                        gap: 14px;
+                                    }
+
+                                    .wishlist-title-group {
+                                        display: flex;
+                                        align-items: center;
+                                        gap: 14px;
+                                    }
+
+                                    .wishlist-icon-badge {
+                                        width: 48px;
+                                        height: 48px;
+                                        background: linear-gradient(135deg, #ffecef 0%, #ffe0e5 100%);
+                                        border-radius: 12px;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                    }
+
+                                    .wishlist-icon-badge svg {
+                                        width: 22px;
+                                        height: 22px;
+                                        fill: var(--navora-red);
+                                    }
+
+                                    .wishlist-title-text h2 {
+                                        font-size: 20px;
+                                        font-weight: 700;
+                                        color: var(--navora-text);
+                                        margin: 0 0 2px;
+                                        line-height: 1.2;
+                                    }
+
+                                    .wishlist-title-text span {
+                                        font-size: 13px;
+                                        color: var(--navora-muted);
+                                        font-weight: 400;
+                                    }
+
+                                    .wishlist-actions {
+                                        display: flex;
+                                        gap: 10px;
+                                        align-items: center;
+                                        flex-wrap: wrap;
+                                    }
+
+                                    .btn-wishlist-action {
+                                        display: inline-flex;
+                                        align-items: center;
+                                        gap: 7px;
+                                        padding: 9px 18px;
+                                        border-radius: 8px;
+                                        font-size: 13px;
+                                        font-weight: 600;
+                                        font-family: 'Plus Jakarta Sans', sans-serif;
+                                        cursor: pointer;
+                                        transition: var(--navora-transition);
+                                        border: none;
+                                        text-decoration: none;
+                                    }
+
+                                    .btn-wishlist-share {
+                                        background: var(--navora-bg);
+                                        color: var(--navora-text);
+                                        border: 1.5px solid var(--navora-border);
+                                    }
+
+                                    .btn-wishlist-share:hover {
+                                        background: var(--navora-border);
+                                        color: var(--navora-text);
+                                    }
+
+                                    .btn-wishlist-clear {
+                                        background: #fff0f0;
+                                        color: var(--navora-red);
+                                        border: 1.5px solid #ffd6d6;
+                                    }
+
+                                    .btn-wishlist-clear:hover {
+                                        background: var(--navora-red);
+                                        color: white;
+                                        border-color: var(--navora-red);
+                                    }
+
+                                    .btn-wishlist-cart-all {
+                                        background-color: #0a472e;
+                                        color: white;
+                                        border: 1.5px solid transparent;
+                                    }
+
+                                    .btn-wishlist-cart-all:hover {
+                                        background: linear-gradient(135deg, var(--navora-green-dark) 0%, #3d9a56 100%);
+                                        transform: translateY(-1px);
+                                        box-shadow: 0 4px 14px rgba(95, 189, 116, 0.4);
+                                    }
+
+                                    /* --- Table Container --- */
+                                    .wishlist-table-outer {
+                                        background: var(--navora-white);
+                                        border-radius: var(--navora-radius);
+                                        box-shadow: var(--navora-shadow);
+                                        border: 1px solid var(--navora-border);
+                                        overflow: hidden;
+                                    }
+
+                                    .wishlist-table-wrap {
+                                        overflow-x: auto;
+                                    }
+
+                                    /* --- Table --- */
+                                    .navora-wishlist-table {
+                                        width: 100%;
+                                        border-collapse: collapse;
+                                        font-family: 'Plus Jakarta Sans', sans-serif;
+                                    }
+
+                                    /* Table Head */
+                                    .navora-wishlist-table thead tr {
+                                        background: linear-gradient(135deg, #f7f9fb 0%, #eef2f6 100%);
+                                    }
+
+                                    .navora-wishlist-table thead th {
+                                        padding: 14px 20px;
+                                        font-size: 11px;
+                                        font-weight: 700;
+                                        letter-spacing: 1.1px;
+                                        text-transform: uppercase;
+                                        color: var(--navora-muted);
+                                        border-bottom: 1.5px solid var(--navora-border);
+                                        white-space: nowrap;
+                                        text-align: left;
+                                    }
+
+                                    .navora-wishlist-table thead th.th-remove {
+                                        width: 40px;
+                                        text-align: center;
+                                    }
+
+                                    .navora-wishlist-table thead th.th-image {
+                                        width: 110px;
+                                    }
+
+                                    .navora-wishlist-table thead th.th-name {
+                                        min-width: 220px;
+                                    }
+
+                                    .navora-wishlist-table thead th.th-price {
+                                        width: 160px;
+                                        text-align: right;
+                                    }
+
+                                    .navora-wishlist-table thead th.th-stock {
+                                        width: 110px;
+                                        text-align: center;
+                                    }
+
+                                    .navora-wishlist-table thead th.th-date {
+                                        width: 120px;
+                                        text-align: left;
+                                    }
+
+                                    .navora-wishlist-table thead th.th-action {
+                                        width: 200px;
+                                        text-align: center;
+                                    }
+
+                                    /* Table Body Row */
+                                    .navora-wishlist-table tbody tr {
+                                        border-bottom: 1px solid var(--navora-border);
+                                        transition: var(--navora-transition);
+                                    }
+
+                                    .navora-wishlist-table tbody tr:last-child {
+                                        border-bottom: none;
+                                    }
+
+                                    .navora-wishlist-table tbody tr:hover {
+                                        background: #fafcff;
+                                    }
+
+                                    .navora-wishlist-table tbody td {
+                                        padding: 18px 20px;
+                                        vertical-align: middle;
+                                        font-size: 14px;
+                                        color: var(--navora-text);
+                                        text-align: left;
+                                    }
+
+                                    /* Remove Button */
+                                    .td-remove {
+                                        width: 40px;
+                                        padding: 18px 10px;
+                                    }
+
+                                    .td-remove .btn-remove-item {
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: center;
+                                        width: 32px;
+                                        height: 32px;
+                                        border-radius: 50%;
+                                        background: transparent;
+                                        border: 1px solid #e5e7eb;
+                                        cursor: pointer;
+                                        color: #6b7280;
+                                        transition: var(--navora-transition);
+                                        padding: 0;
+                                    }
+
+                                    .td-remove .btn-remove-item:hover {
+                                        background: #fef2f2;
+                                        color: var(--navora-red);
+                                        border-color: rgba(239, 68, 68, 0.25);
+                                    }
+
+                                    .td-remove .btn-remove-item:hover svg {
+                                        transform: scale(1.1);
+                                        fill: var(--navora-red);
+                                    }
+
+                                    .td-remove .btn-remove-item svg {
+                                        width: 14px;
+                                        height: 14px;
+                                        transition: transform 0.2s ease, fill 0.2s ease;
+                                    }
+
+                                    /* Product Image */
+                                    .td-image .product-img-wrapper {
+                                        position: relative;
+                                        width: 88px;
+                                        height: 88px;
+                                        border-radius: 12px;
+                                        overflow: hidden;
+                                        background: var(--navora-bg);
+                                        border: 1.5px solid var(--navora-border);
+                                        transition: var(--navora-transition);
+                                        display: block;
+                                        flex-shrink: 0;
+                                    }
+
+                                    .td-image .product-img-wrapper:hover {
+                                        border-color: var(--navora-green);
+                                        box-shadow: 0 0 0 3px rgba(95, 189, 116, 0.15);
+                                    }
+
+                                    .td-image .product-img-wrapper img {
+                                        width: 100%;
+                                        height: 100%;
+                                        object-fit: cover;
+                                        transition: var(--navora-transition);
+                                    }
+
+                                    .td-image .product-img-wrapper:hover img {
+                                        transform: scale(1.06);
+                                    }
+
+                                    /* Product Label Badge */
+                                    .product-badge {
+                                        display: inline-block;
+                                        font-size: 10px;
+                                        font-weight: 700;
+                                        letter-spacing: 0.5px;
+                                        text-transform: uppercase;
+                                        padding: 3px 8px;
+                                        border-radius: 5px;
+                                        margin-bottom: 6px;
+                                    }
+
+                                    .badge-sale {
+                                        background: #fff0f0;
+                                        color: var(--navora-red);
+                                    }
+
+                                    .badge-new {
+                                        background: var(--navora-green-light);
+                                        color: var(--navora-green-dark);
+                                    }
+
+                                    .badge-hot {
+                                        background: #fff5e6;
+                                        color: #e8851a;
+                                    }
+
+                                    .badge-organic {
+                                        background: #e8f4fd;
+                                        color: #1a7bbf;
+                                    }
+
+                                    /* Product Name */
+                                    .td-name .product-name-link {
+                                        font-size: 14.5px;
+                                        font-weight: 600;
+                                        color: var(--navora-text);
+                                        text-decoration: none;
+                                        line-height: 1.4;
+                                        display: block;
+                                        transition: var(--navora-transition);
+                                        margin-bottom: 4px;
+                                    }
+
+                                    .td-name .product-name-link:hover {
+                                        color: var(--navora-green);
+                                    }
+
+                                    .td-name .product-sku {
+                                        font-size: 11.5px;
+                                        color: var(--navora-muted);
+                                        font-weight: 400;
+                                    }
+
+                                    /* Price */
+                                    .navora-wishlist-table thead th.th-price {
+                                        width: 160px;
+                                    }
+
+                                    .navora-wishlist-table tbody td.td-price {
+                                        text-align: right;
+                                    }
+
+                                    .td-price .price-current {
+                                        font-size: 15.5px;
+                                        font-weight: 700;
+                                        color: var(--navora-text);
+                                        display: block;
+                                        line-height: 1.4;
+                                        white-space: nowrap;
+                                    }
+
+                                    .td-price .price-original,
+                                    .td-price .price-discount {
+                                        white-space: nowrap;
+                                    }
+
+                                    .td-price .price-original {
+                                        font-size: 12px;
+                                        color: var(--navora-muted);
+                                        text-decoration: line-through;
+                                        font-weight: 400;
+                                        display: block;
+                                        margin-top: 2px;
+                                        line-height: 1.4;
+                                    }
+
+                                    .td-price .price-discount {
+                                        display: inline-block;
+                                        font-size: 11px;
+                                        font-weight: 600;
+                                        color: white;
+                                        background: var(--navora-red);
+                                        padding: 2px 6px;
+                                        border-radius: 4px;
+                                        margin-top: 3px;
+                                    }
+
+                                    .price-currency {
+                                        vertical-align: baseline !important;
+                                        font-size: inherit !important;
+                                        font-weight: inherit !important;
+                                        color: inherit !important;
+                                        display: inline-block !important;
+                                        position: static !important;
+                                        line-height: inherit !important;
+                                        margin-right: 2px;
+                                    }
+
+                                    /* Stock Status */
+                                    .stock-badge {
+                                        display: inline-flex;
+                                        align-items: center;
+                                        gap: 5px;
+                                        font-size: 12px;
+                                        font-weight: 600;
+                                        padding: 4px 10px;
+                                        border-radius: 20px;
+                                    }
+
+                                    .stock-badge::before {
+                                        content: '';
+                                        width: 7px;
+                                        height: 7px;
+                                        border-radius: 50%;
+                                        display: inline-block;
+                                        flex-shrink: 0;
+                                    }
+
+                                    .stock-instock {
+                                        background: var(--navora-green-light);
+                                        color: var(--navora-green-dark);
+                                    }
+
+                                    .stock-instock::before {
+                                        background: var(--navora-green);
+                                    }
+
+                                    .stock-outofstock {
+                                        background: #fff0f0;
+                                        color: var(--navora-red);
+                                    }
+
+                                    .stock-outofstock::before {
+                                        background: var(--navora-red);
+                                    }
+
+                                    .stock-lowstock {
+                                        background: #fff8e6;
+                                        color: #c77c0e;
+                                    }
+
+                                    .stock-lowstock::before {
+                                        background: #f5a623;
+                                    }
+
+                                    /* Date Added */
+                                    .td-date {
+                                        font-size: 12.5px;
+                                        color: var(--navora-muted);
+                                        white-space: nowrap;
+                                    }
+
+                                    /* Action Buttons */
+                                    .td-action {
+                                        text-align: right;
+                                    }
+
+                                    .btn-atc {
+                                        display: inline-flex;
+                                        align-items: center;
+                                        gap: 7px;
+                                        padding: 9px 16px;
+                                        background-color: #0a472e;
+                                        color: white;
+                                        border: none;
+                                        border-radius: 8px;
+                                        font-size: 13px;
+                                        font-weight: 600;
+                                        font-family: 'Plus Jakarta Sans', sans-serif;
+                                        cursor: pointer;
+                                        transition: var(--navora-transition);
+                                        text-decoration: none;
+                                        white-space: nowrap;
+                                    }
+
+                                    .btn-atc:hover {
+                                        background: linear-gradient(135deg, var(--navora-green-dark) 0%, #3d9a56 100%);
+                                        transform: translateY(-1px);
+                                        box-shadow: 0 4px 14px rgba(95, 189, 116, 0.4);
+                                        color: white;
+                                    }
+
+                                    .btn-atc svg {
+                                        width: 15px;
+                                        height: 15px;
+                                    }
+
+                                    .btn-select-options {
+                                        display: inline-flex;
+                                        align-items: center;
+                                        gap: 7px;
+                                        padding: 9px 16px;
+                                        background: var(--navora-bg);
+                                        color: var(--navora-text);
+                                        border: 1.5px solid var(--navora-border);
+                                        border-radius: 8px;
+                                        font-size: 13px;
+                                        font-weight: 600;
+                                        font-family: 'Plus Jakarta Sans', sans-serif;
+                                        cursor: pointer;
+                                        transition: var(--navora-transition);
+                                        text-decoration: none;
+                                        white-space: nowrap;
+                                    }
+
+                                    .btn-select-options:hover {
+                                        border-color: var(--navora-green);
+                                        color: var(--navora-green);
+                                        background: var(--navora-green-light);
+                                    }
+
+                                    /* --- Table Footer --- */
+                                    .wishlist-table-footer {
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: space-between;
+                                        padding: 18px 24px;
+                                        background: linear-gradient(135deg, #f7f9fb 0%, #eef2f6 100%);
+                                        border-top: 1.5px solid var(--navora-border);
+                                        flex-wrap: wrap;
+                                        gap: 12px;
+                                    }
+
+                                    .wishlist-count-info {
+                                        font-size: 13px;
+                                        color: var(--navora-muted);
+                                        font-weight: 500;
+                                    }
+
+                                    .wishlist-count-info strong {
+                                        color: var(--navora-text);
+                                        font-weight: 700;
+                                    }
+
+                                    .btn-continue-shop {
+                                        display: inline-flex;
+                                        align-items: center;
+                                        gap: 8px;
+                                        padding: 9px 18px;
+                                        border-radius: 8px;
+                                        font-size: 13px;
+                                        font-weight: 600;
+                                        font-family: 'Plus Jakarta Sans', sans-serif;
+                                        background: var(--navora-white);
+                                        color: var(--navora-text);
+                                        text-decoration: none;
+                                        border: 1.5px solid var(--navora-border);
+                                        transition: var(--navora-transition);
+                                    }
+
+                                    .btn-continue-shop:hover {
+                                        border-color: var(--navora-green);
+                                        color: var(--navora-green);
+                                        background: var(--navora-green-light);
+                                    }
+
+                                    /* --- Share URL popup --- */
+                                    .wishlist-share-url {
+                                        display: none;
+                                        position: fixed;
+                                        inset: 0;
+                                        z-index: 9999;
+                                        background: rgba(0, 0, 0, 0.5);
+                                        align-items: center;
+                                        justify-content: center;
+                                    }
+
+                                    .wishlist-share-url.active {
+                                        display: flex;
+                                    }
+
+                                    .share-url-box {
+                                        background: white;
+                                        border-radius: 16px;
+                                        padding: 32px 28px;
+                                        max-width: 460px;
+                                        width: 90%;
+                                        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+                                        animation: popIn 0.25s ease;
+                                    }
+
+                                    @keyframes popIn {
+                                        from {
+                                            transform: scale(0.9);
+                                            opacity: 0;
+                                        }
+
+                                        to {
+                                            transform: scale(1);
+                                            opacity: 1;
+                                        }
+                                    }
+
+                                    .share-url-box h3 {
+                                        font-size: 18px;
+                                        font-weight: 700;
+                                        color: var(--navora-text);
+                                        margin: 0 0 8px;
+                                    }
+
+                                    .share-url-box p {
+                                        font-size: 13px;
+                                        color: var(--navora-muted);
+                                        margin: 0 0 18px;
+                                    }
+
+                                    .share-url-copy-row {
+                                        display: flex;
+                                        gap: 8px;
+                                    }
+
+                                    .share-url-input {
+                                        flex: 1;
+                                        padding: 10px 14px;
+                                        border: 1.5px solid var(--navora-border);
+                                        border-radius: 8px;
+                                        font-size: 13px;
+                                        font-family: 'Plus Jakarta Sans', sans-serif;
+                                        color: var(--navora-text);
+                                        background: var(--navora-bg);
+                                        outline: none;
+                                    }
+
+                                    .btn-copy-url {
+                                        padding: 10px 16px;
+                                        background: var(--navora-green);
+                                        color: white;
+                                        border: none;
+                                        border-radius: 8px;
+                                        font-size: 13px;
+                                        font-weight: 600;
+                                        font-family: 'Plus Jakarta Sans', sans-serif;
+                                        cursor: pointer;
+                                        transition: var(--navora-transition);
+                                        white-space: nowrap;
+                                    }
+
+                                    .btn-copy-url:hover {
+                                        background: var(--navora-green-dark);
+                                    }
+
+                                    .btn-share-close {
+                                        margin-top: 16px;
+                                        width: 100%;
+                                        padding: 9px;
+                                        background: transparent;
+                                        border: 1.5px solid var(--navora-border);
+                                        border-radius: 8px;
+                                        font-size: 13px;
+                                        font-weight: 600;
+                                        color: var(--navora-muted);
+                                        cursor: pointer;
+                                        transition: var(--navora-transition);
+                                        font-family: 'Plus Jakarta Sans', sans-serif;
+                                    }
+
+                                    .btn-share-close:hover {
+                                        background: var(--navora-border);
+                                        color: var(--navora-text);
+                                    }
+
+                                    /* Notification Toast */
+                                    .wishlist-toast {
+                                        position: fixed;
+                                        bottom: 30px;
+                                        right: 30px;
+                                        background: var(--navora-text);
+                                        color: white;
+                                        padding: 12px 22px;
+                                        border-radius: 10px;
+                                        font-size: 13.5px;
+                                        font-weight: 500;
+                                        font-family: 'Plus Jakarta Sans', sans-serif;
+                                        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+                                        z-index: 9999;
+                                        display: none;
+                                        animation: slideUp 0.3s ease;
+                                    }
+
+                                    @keyframes slideUp {
+                                        from {
+                                            transform: translateY(20px);
+                                            opacity: 0;
+                                        }
+
+                                        to {
+                                            transform: translateY(0);
+                                            opacity: 1;
+                                        }
+                                    }
+
+                                    .wishlist-toast.show {
+                                        display: block;
+                                    }
+
+                                    /* Responsive */
+                                    @media (max-width: 991px) {
+
+                                        .navora-wishlist-table thead th.th-date,
+                                        .navora-wishlist-table tbody td.td-date {
+                                            display: none !important;
+                                        }
+
+                                        .navora-wishlist-table thead th.th-sku,
+                                        .navora-wishlist-table tbody td.td-sku {
+                                            display: none !important;
+                                        }
+
+                                        .wishlist-header-bar {
+                                            padding: 16px 20px;
+                                        }
+
+                                        .navora-wishlist-table tbody td {
+                                            padding: 14px 16px;
+                                        }
+
+                                        .navora-wishlist-table thead th {
+                                            padding: 12px 16px;
+                                        }
+
+                                        .td-image .product-img-wrapper {
+                                            width: 70px;
+                                            height: 70px;
+                                        }
+                                    }
+
+                                    @media (max-width: 767px) {
+
+                                        .wishlist-actions {
+                                            display: flex !important;
+                                            width: 100% !important;
+                                            gap: 8px !important;
+                                            flex-wrap: nowrap !important;
+                                        }
+
+                                        .btn-wishlist-action {
+                                            flex: 1 !important;
+                                            justify-content: center !important;
+                                            padding: 10px 8px !important;
+                                            font-size: 11px !important;
+                                            white-space: nowrap !important;
+                                        }
+
+                                        /* Hide table header */
+                                        .navora-wishlist-table thead {
+                                            display: none !important;
+                                        }
+
+                                        .navora-wishlist-table,
+                                        .navora-wishlist-table tbody,
+                                        .navora-wishlist-table tr,
+                                        .navora-wishlist-table td {
+                                            display: block;
+                                            width: 100%;
+                                            box-sizing: border-box;
+                                        }
+
+                                        .navora-wishlist-table tbody tr {
+                                            display: grid !important;
+                                            grid-template-columns: 80px 1fr 1fr;
+                                            grid-template-areas:
+                                                "image name name"
+                                                "image price price"
+                                                "stock stock action";
+                                            gap: 8px 12px;
+                                            background: var(--navora-white);
+                                            border: 1px solid var(--navora-border);
+                                            border-radius: var(--navora-radius);
+                                            padding: 16px;
+                                            margin-bottom: 16px;
+                                            position: relative;
+                                            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+                                        }
+
+                                        .navora-wishlist-table tbody tr:hover {
+                                            background: var(--navora-white);
+                                        }
+
+                                        /* Close/remove button top right */
+                                        .td-remove {
+                                            position: absolute !important;
+                                            top: 12px;
+                                            right: 12px;
+                                            padding: 0 !important;
+                                            width: auto !important;
+                                            height: auto !important;
+                                            z-index: 10;
+                                        }
+
+                                        .td-image {
+                                            grid-area: image;
+                                            padding: 0 !important;
+                                            width: 80px !important;
+                                            height: 80px !important;
+                                        }
+
+                                        .td-image .product-img-wrapper {
+                                            width: 80px !important;
+                                            height: 80px !important;
+                                            margin: 0 !important;
+                                        }
+
+                                        .td-name {
+                                            grid-area: name;
+                                            padding: 0 !important;
+                                            padding-right: 24px;
+                                            /* Avoid overlapping close button */
+                                            display: flex;
+                                            flex-direction: column;
+                                            justify-content: center;
+                                        }
+
+                                        .td-name .product-name-link {
+                                            font-size: 13.5px;
+                                            margin-bottom: 2px;
+                                        }
+
+                                        .td-price {
+                                            grid-area: price;
+                                            padding: 0 !important;
+                                            display: flex;
+                                            flex-wrap: wrap;
+                                            align-items: center;
+                                            gap: 6px;
+                                        }
+
+                                        .td-price span {
+                                            display: inline-block !important;
+                                        }
+
+                                        .td-stock {
+                                            grid-area: stock;
+                                            padding: 12px 0 0 !important;
+                                            border-top: 1px dashed var(--navora-border);
+                                            display: flex;
+                                            align-items: center;
+                                            margin-top: 4px;
+                                        }
+
+                                        .td-action {
+                                            grid-area: action;
+                                            padding: 12px 0 0 !important;
+                                            border-top: 1px dashed var(--navora-border);
+                                            text-align: right;
+                                            display: flex;
+                                            justify-content: flex-end;
+                                            align-items: center;
+                                            margin-top: 4px;
+                                        }
+
+                                        .td-action .btn-atc,
+                                        .td-action .btn-select-options {
+                                            padding: 8px 14px;
+                                            font-size: 12px;
+                                            height: 36px;
+                                            box-sizing: border-box;
+                                            display: inline-flex;
+                                            align-items: center;
+                                            justify-content: center;
+                                            width: 100%;
+                                        }
+
+                                        .td-action .btn-atc span,
+                                        .td-action .btn-select-options span {
+                                            display: inline !important;
+                                        }
+
+                                        .navora-wishlist-table tbody td {
+                                            border: none !important;
+                                        }
+
+                                        .navora-wishlist-table tbody td.td-date {
+                                            display: none !important;
+                                        }
+                                    }
+                                </style>
+
+                                <!-- ======= NAVORA WISHLIST MARKUP ======= -->
+                                <div class="navora-wishlist-wrap">
+
+                                    <!-- Header Bar -->
+                                    <div class="wishlist-header-bar">
+                                        <div class="wishlist-title-group">
+                                            <div class="wishlist-icon-badge">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                                    <path
+                                                        d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z" />
+                                                </svg>
+                                            </div>
+                                            <div class="wishlist-title-text">
+                                                <h2>Wishlist Saya</h2>
+                                                <span>8 produk tersimpan</span>
+                                            </div>
+                                        </div>
+                                        <div class="wishlist-actions">
+                                            <button class="btn-wishlist-action btn-wishlist-clear"
+                                                onclick="showToast('Wishlist telah dikosongkan')">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                    fill="currentColor" viewBox="0 0 24 24">
+                                                    <path
+                                                        d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+                                                </svg>
+                                                Hapus Semua
+                                            </button>
+                                            <button class="btn-wishlist-action btn-wishlist-cart-all"
+                                                onclick="showToast('Semua produk ditambahkan ke keranjang! 🛒')">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                                    fill="currentColor" viewBox="0 0 24 24">
+                                                    <path
+                                                        d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z" />
+                                                </svg>
+                                                Tambah Semua ke Keranjang
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Product Table -->
+                                    <div class="wishlist-table-outer">
+                                        <div class="wishlist-table-wrap">
+                                            <table class="navora-wishlist-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="th-remove"></th>
+                                                        <th class="th-image">Produk</th>
+                                                        <th class="th-name"></th>
+                                                        <th class="th-price">Harga</th>
+                                                        <th class="th-stock">Stok</th>
+                                                        <th class="th-date">Ditambahkan</th>
+                                                        <th class="th-action">Aksi</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    <!-- Product Row 1 -->
+                                                    <tr>
+                                                        <td class="td-remove">
+                                                            <button class="btn-remove-item"
+                                                                onclick="removeWishlistItem(this)"
+                                                                title="Hapus dari Wishlist">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    fill="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                                                </svg>
+                                                            </button>
+                                                        </td>
+                                                        <td class="td-image">
+                                                            <a href="#" class="product-img-wrapper">
+                                                                <img src="../assets/foto-produk/madu-murni.png"
+                                                                    alt="Madu Murni Hutan" loading="lazy">
+                                                            </a>
+                                                        </td>
+                                                        <td class="td-name">
+                                                            <span class="product-badge badge-organic">Organik</span>
+                                                            <a href="#" class="product-name-link">Madu Murni Hutan Liar
+                                                                500ml</a>
+                                                            <span class="product-sku">SKU: NVR-MDU-001</span>
+                                                        </td>
+                                                        <td class="td-price">
+                                                            <span class="price-current"><span
+                                                                    class="price-currency">Rp</span> 89.000</span>
+                                                            <span class="price-original"><span
+                                                                    class="price-currency">Rp</span> 115.000</span>
+                                                            <span class="price-discount">-23%</span>
+                                                        </td>
+                                                        <td class="td-stock">
+                                                            <span class="stock-badge stock-instock">In Stock</span>
+                                                        </td>
+                                                        <td class="td-date">8 Jul 2026</td>
+                                                        <td class="td-action">
+                                                            <button class="btn-atc"
+                                                                onclick="showToast('Madu Murni ditambahkan ke keranjang 🛒')">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    fill="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z" />
+                                                                </svg>
+                                                                <span>Add to Cart</span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+
+                                                    <!-- Product Row 2 -->
+                                                    <tr>
+                                                        <td class="td-remove">
+                                                            <button class="btn-remove-item"
+                                                                onclick="removeWishlistItem(this)"
+                                                                title="Hapus dari Wishlist">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    fill="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                                                </svg>
+                                                            </button>
+                                                        </td>
+                                                        <td class="td-image">
+                                                            <a href="#" class="product-img-wrapper">
+                                                                <img src="../assets/foto-produk/sabun-sampo-lerak.png"
+                                                                    alt="Sabun Sampo Lerak" loading="lazy">
+                                                            </a>
+                                                        </td>
+                                                        <td class="td-name">
+                                                            <span class="product-badge badge-new">Baru</span>
+                                                            <a href="#" class="product-name-link">Shampo & Sabun Alami
+                                                                Lerak 250ml</a>
+                                                            <span class="product-sku">SKU: NVR-SBN-012</span>
+                                                        </td>
+                                                        <td class="td-price">
+                                                            <span class="price-current"><span
+                                                                    class="price-currency">Rp</span> 45.000</span>
+                                                        </td>
+                                                        <td class="td-stock">
+                                                            <span class="stock-badge stock-instock">In Stock</span>
+                                                        </td>
+                                                        <td class="td-date">7 Jul 2026</td>
+                                                        <td class="td-action">
+                                                            <button class="btn-atc"
+                                                                onclick="showToast('Sabun Lerak ditambahkan ke keranjang 🛒')">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    fill="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z" />
+                                                                </svg>
+                                                                <span>Add to Cart</span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+
+                                                    <!-- Product Row 3 -->
+                                                    <tr>
+                                                        <td class="td-remove">
+                                                            <button class="btn-remove-item"
+                                                                onclick="removeWishlistItem(this)"
+                                                                title="Hapus dari Wishlist">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    fill="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                                                </svg>
+                                                            </button>
+                                                        </td>
+                                                        <td class="td-image">
+                                                            <a href="#" class="product-img-wrapper">
+                                                                <img src="../assets/foto-produk/coconut-serum.png"
+                                                                    alt="Coconut Serum" loading="lazy">
+                                                            </a>
+                                                        </td>
+                                                        <td class="td-name">
+                                                            <span class="product-badge badge-sale">Sale</span>
+                                                            <a href="#" class="product-name-link">Coconut Brightening
+                                                                Serum 30ml</a>
+                                                            <span class="product-sku">SKU: NVR-SRM-007</span>
+                                                        </td>
+                                                        <td class="td-price">
+                                                            <span class="price-current"><span
+                                                                    class="price-currency">Rp</span> 175.000</span>
+                                                            <span class="price-original"><span
+                                                                    class="price-currency">Rp</span> 230.000</span>
+                                                            <span class="price-discount">-24%</span>
+                                                        </td>
+                                                        <td class="td-stock">
+                                                            <span class="stock-badge stock-lowstock">Stok
+                                                                Terbatas</span>
+                                                        </td>
+                                                        <td class="td-date">5 Jul 2026</td>
+                                                        <td class="td-action">
+                                                            <button class="btn-atc"
+                                                                onclick="showToast('Coconut Serum ditambahkan ke keranjang 🛒')">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    fill="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z" />
+                                                                </svg>
+                                                                <span>Add to Cart</span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+
+                                                    <!-- Product Row 4 -->
+                                                    <tr>
+                                                        <td class="td-remove">
+                                                            <button class="btn-remove-item"
+                                                                onclick="removeWishlistItem(this)"
+                                                                title="Hapus dari Wishlist">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    fill="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                                                </svg>
+                                                            </button>
+                                                        </td>
+                                                        <td class="td-image">
+                                                            <a href="#" class="product-img-wrapper">
+                                                                <img src="../assets/foto-produk/kopi.png"
+                                                                    alt="Kopi Lokal" loading="lazy">
+                                                            </a>
+                                                        </td>
+                                                        <td class="td-name">
+                                                            <span class="product-badge badge-hot">Terlaris</span>
+                                                            <a href="#" class="product-name-link">Kopi Arabika Toraja
+                                                                Premium 200g</a>
+                                                            <span class="product-sku">SKU: NVR-KPI-003</span>
+                                                        </td>
+                                                        <td class="td-price">
+                                                            <span class="price-current"><span
+                                                                    class="price-currency">Rp</span> 68.000</span>
+                                                        </td>
+                                                        <td class="td-stock">
+                                                            <span class="stock-badge stock-instock">In Stock</span>
+                                                        </td>
+                                                        <td class="td-date">4 Jul 2026</td>
+                                                        <td class="td-action">
+                                                            <button class="btn-atc"
+                                                                onclick="showToast('Kopi Arabika ditambahkan ke keranjang 🛒')">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    fill="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z" />
+                                                                </svg>
+                                                                <span>Add to Cart</span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+
+                                                    <!-- Product Row 5 -->
+                                                    <tr>
+                                                        <td class="td-remove">
+                                                            <button class="btn-remove-item"
+                                                                onclick="removeWishlistItem(this)"
+                                                                title="Hapus dari Wishlist">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    fill="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                                                </svg>
+                                                            </button>
+                                                        </td>
+                                                        <td class="td-image">
+                                                            <a href="#" class="product-img-wrapper">
+                                                                <img src="../assets/foto-produk/esensial-oil.png"
+                                                                    alt="Essential Oil" loading="lazy">
+                                                            </a>
+                                                        </td>
+                                                        <td class="td-name">
+                                                            <span class="product-badge badge-organic">Organik</span>
+                                                            <a href="#" class="product-name-link">Essential Oil Lavender
+                                                                Pure 15ml</a>
+                                                            <span class="product-sku">SKU: NVR-EO-015</span>
+                                                        </td>
+                                                        <td class="td-price">
+                                                            <span class="price-current"><span
+                                                                    class="price-currency">Rp</span> 95.000</span>
+                                                            <span class="price-original"><span
+                                                                    class="price-currency">Rp</span> 120.000</span>
+                                                            <span class="price-discount">-21%</span>
+                                                        </td>
+                                                        <td class="td-stock">
+                                                            <span class="stock-badge stock-instock">In Stock</span>
+                                                        </td>
+                                                        <td class="td-date">3 Jul 2026</td>
+                                                        <td class="td-action">
+                                                            <button class="btn-atc"
+                                                                onclick="showToast('Essential Oil ditambahkan ke keranjang 🛒')">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    fill="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z" />
+                                                                </svg>
+                                                                <span>Add to Cart</span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+
+                                                    <!-- Product Row 6 -->
+                                                    <tr>
+                                                        <td class="td-remove">
+                                                            <button class="btn-remove-item"
+                                                                onclick="removeWishlistItem(this)"
+                                                                title="Hapus dari Wishlist">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    fill="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                                                </svg>
+                                                            </button>
+                                                        </td>
+                                                        <td class="td-image">
+                                                            <a href="#" class="product-img-wrapper">
+                                                                <img src="../assets/foto-produk/alat-makan.png"
+                                                                    alt="Alat Makan Bambu" loading="lazy">
+                                                            </a>
+                                                        </td>
+                                                        <td class="td-name">
+                                                            <span class="product-badge badge-new">Baru</span>
+                                                            <a href="#" class="product-name-link">Set Alat Makan Bambu
+                                                                Eco (5 pcs)</a>
+                                                            <span class="product-sku">SKU: NVR-ALT-022</span>
+                                                        </td>
+                                                        <td class="td-price">
+                                                            <span class="price-current"><span
+                                                                    class="price-currency">Rp</span> 125.000</span>
+                                                        </td>
+                                                        <td class="td-stock">
+                                                            <span class="stock-badge stock-outofstock">Out of
+                                                                Stock</span>
+                                                        </td>
+                                                        <td class="td-date">1 Jul 2026</td>
+                                                        <td class="td-action">
+                                                            <a href="#" class="btn-select-options">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="14"
+                                                                    height="14" fill="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+                                                                </svg>
+                                                                Beri Tahu Saya
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+
+                                                    <!-- Product Row 7 -->
+                                                    <tr>
+                                                        <td class="td-remove">
+                                                            <button class="btn-remove-item"
+                                                                onclick="removeWishlistItem(this)"
+                                                                title="Hapus dari Wishlist">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    fill="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                                                </svg>
+                                                            </button>
+                                                        </td>
+                                                        <td class="td-image">
+                                                            <a href="#" class="product-img-wrapper">
+                                                                <img src="../assets/foto-produk/teh-bunga.png"
+                                                                    alt="Teh Bunga" loading="lazy">
+                                                            </a>
+                                                        </td>
+                                                        <td class="td-name">
+                                                            <span class="product-badge badge-organic">Organik</span>
+                                                            <a href="#" class="product-name-link">Teh Bunga Rosella &
+                                                                Chamomile 50g</a>
+                                                            <span class="product-sku">SKU: NVR-TEH-008</span>
+                                                        </td>
+                                                        <td class="td-price">
+                                                            <span class="price-current"><span
+                                                                    class="price-currency">Rp</span> 55.000</span>
+                                                            <span class="price-original"><span
+                                                                    class="price-currency">Rp</span> 70.000</span>
+                                                            <span class="price-discount">-21%</span>
+                                                        </td>
+                                                        <td class="td-stock">
+                                                            <span class="stock-badge stock-instock">In Stock</span>
+                                                        </td>
+                                                        <td class="td-date">29 Jun 2026</td>
+                                                        <td class="td-action">
+                                                            <button class="btn-atc"
+                                                                onclick="showToast('Teh Bunga ditambahkan ke keranjang 🛒')">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    fill="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z" />
+                                                                </svg>
+                                                                <span>Add to Cart</span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+
+                                                    <!-- Product Row 8 -->
+                                                    <tr>
+                                                        <td class="td-remove">
+                                                            <button class="btn-remove-item"
+                                                                onclick="removeWishlistItem(this)"
+                                                                title="Hapus dari Wishlist">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    fill="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                                                </svg>
+                                                            </button>
+                                                        </td>
+                                                        <td class="td-image">
+                                                            <a href="#" class="product-img-wrapper">
+                                                                <img src="../assets/foto-produk/beeswax-wrap.png"
+                                                                    alt="Beeswax Wrap" loading="lazy">
+                                                            </a>
+                                                        </td>
+                                                        <td class="td-name">
+                                                            <span class="product-badge badge-hot">Terlaris</span>
+                                                            <a href="#" class="product-name-link">Beeswax Wrap Pengganti
+                                                                Plastik (3 pcs)</a>
+                                                            <span class="product-sku">SKU: NVR-BWX-019</span>
+                                                        </td>
+                                                        <td class="td-price">
+                                                            <span class="price-current"><span
+                                                                    class="price-currency">Rp</span> 79.000</span>
+                                                        </td>
+                                                        <td class="td-stock">
+                                                            <span class="stock-badge stock-lowstock">Stok
+                                                                Terbatas</span>
+                                                        </td>
+                                                        <td class="td-date">27 Jun 2026</td>
+                                                        <td class="td-action">
+                                                            <button class="btn-atc"
+                                                                onclick="showToast('Beeswax Wrap ditambahkan ke keranjang 🛒')">
+                                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                                    fill="currentColor" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z" />
+                                                                </svg>
+                                                                <span>Add to Cart</span>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                        <!-- Table Footer -->
+                                        <div class="wishlist-table-footer">
+                                            <div class="wishlist-count-info">
+                                                Menampilkan <strong>8</strong> produk di wishlist Anda
+                                            </div>
+                                            <a href="../page/shop.html" class="btn-continue-shop">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                                    fill="currentColor" viewBox="0 0 24 24">
+                                                    <path
+                                                        d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+                                                </svg>
+                                                Lanjut Belanja
+                                            </a>
+                                        </div>
+                                    </div><!-- /wishlist-table-outer -->
+
+                                </div><!-- /navora-wishlist-wrap -->
+
+                                <!-- Share Popup -->
+                                <div class="wishlist-share-url">
+                                    <div class="share-url-box">
+                                        <h3>🔗 Bagikan Wishlist Anda</h3>
+                                        <p>Salin link di bawah dan bagikan ke teman atau keluarga.</p>
+                                        <div class="share-url-copy-row">
+                                            <input type="text" class="share-url-input" id="wishlistShareUrl"
+                                                value="https://navora.id/wishlist/U8K9PQ" readonly>
+                                            <button class="btn-copy-url" onclick="copyWishlistUrl()">Salin</button>
+                                        </div>
+                                        <button class="btn-share-close"
+                                            onclick="document.querySelector('.wishlist-share-url').classList.remove('active')">Tutup</button>
+                                    </div>
+                                </div>
+
+                                <!-- Toast Notification -->
+                                <div class="wishlist-toast" id="wishlistToast"></div>
+
+                                <script>
+                                    function removeWishlistItem(btn) {
+                                        const row = btn.closest('tr');
+                                        row.style.transition = 'all 0.3s ease';
+                                        row.style.opacity = '0';
+                                        row.style.transform = 'translateX(-20px)';
+                                        setTimeout(() => {
+                                            row.remove();
+                                            updateWishlistCount();
+                                        }, 300);
+                                        showToast('Produk dihapus dari wishlist');
+                                    }
+
+                                    function updateWishlistCount() {
+                                        const rows = document.querySelectorAll('.navora-wishlist-table tbody tr');
+                                        const countEl = document.querySelector('.wishlist-title-text span');
+                                        const footerEl = document.querySelector('.wishlist-count-info');
+                                        if (countEl) countEl.textContent = rows.length + ' produk tersimpan';
+                                        if (footerEl) footerEl.innerHTML = 'Menampilkan <strong>' + rows.length + '</strong> produk di wishlist Anda';
+                                    }
+
+                                    function copyWishlistUrl() {
+                                        const input = document.getElementById('wishlistShareUrl');
+                                        input.select();
+                                        document.execCommand('copy');
+                                        showToast('Link wishlist berhasil disalin! 📋');
+                                    }
+
+                                    function showToast(message) {
+                                        const toast = document.getElementById('wishlistToast');
+                                        toast.textContent = message;
+                                        toast.classList.add('show');
+                                        setTimeout(() => toast.classList.remove('show'), 3000);
+                                    }
+
+                                    // Close share popup on overlay click
+                                    document.querySelector('.wishlist-share-url').addEventListener('click', function (e) {
+                                        if (e.target === this) this.classList.remove('active');
+                                    });
+                                </script>
 
                             </div><!-- .entry-content -->
                         </article><!-- #post-## -->
