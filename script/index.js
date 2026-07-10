@@ -1,27 +1,27 @@
 document.addEventListener('DOMContentLoaded', function () {
   var containers = Array.prototype.slice.call(document.querySelectorAll('.freshio2-products.products.swiper-wrapper'));
-  if (!containers.length) return;
-
   var products = (window.dataProducts || []).slice();
-  // Fisher-Yates shuffle
-  for (var i = products.length - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1));
-    var tmp = products[i]; products[i] = products[j]; products[j] = tmp;
+
+  if (containers.length) {
+    // Fisher-Yates shuffle
+    for (var i = products.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = products[i]; products[i] = products[j]; products[j] = tmp;
+    }
+
+    var featuredProducts = getSectionProducts(products, 0, 8);
+    var bestSellerProducts = getSectionProducts(products, 8, 8);
+
+    containers.forEach(function (container, index) {
+      var selectedProducts = index === 1 ? bestSellerProducts : featuredProducts;
+
+      renderProducts(container, selectedProducts);
+      initSwiper(container);
+    });
   }
-
-  var featuredProducts = getSectionProducts(products, 0, 8);
-  var bestSellerProducts = getSectionProducts(products, 8, 8);
-
-  containers.forEach(function (container, index) {
-    var selectedProducts = index === 1 ? bestSellerProducts : featuredProducts;
-
-    renderProducts(container, selectedProducts);
-    initSwiper(container);
-  });
 
   // Generate vertical menu dari kategori produk
   generateVerticalMenu();
-  initSubcategoryBanner();
 
   function renderProducts(container, selectedProducts) {
     container.innerHTML = '';
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
           '<div class="product-caption">' +
             '<h3 class="woocommerce-loop-product__title"><a href="product.html?id=' + encodeURIComponent(p.id || '') + '">' + (p.nama || '') + '</a></h3>' +
             '<span class="price"><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">Rp</span> ' + formatPrice(p.price) + '</span></span>' +
-            '<a href="cart.html" class="button_cart add_to_cart_button" rel="nofollow"><span class="button-text">Tambah ke keranjang</span><span class="button-icon"><i class="fas fa-angle-double-right"></i></span></a>' +
+            '<a href="cart.html" class="button_cart add_to_cart_button" rel="nofollow"><span class="button-text">Masukkan keranjang</span><span class="button-icon"><i class="fas fa-angle-double-right"></i></span></a>' +
           '</div>' +
         '</div>';
       container.appendChild(li);
@@ -68,16 +68,21 @@ document.addEventListener('DOMContentLoaded', function () {
     if (parent && window.Swiper) {
       try { if (parent.swiper && parent.swiper.destroy) parent.swiper.destroy(true, true); } catch (e) {}
       var swiper = new Swiper(parent, {
-        slidesPerView: 2,
-        spaceBetween: 12,
+        slidesPerView: 4,
+        spaceBetween: 30,
         loop: true,
         autoplay: { delay: 5000 },
         watchOverflow: true,
         navigation: { nextEl: '.elementor-swiper-button-next', prevEl: '.elementor-swiper-button-prev' },
         breakpoints: {
-          // Keep 4 slides per view from 480px and up
-          480: { slidesPerView: 4, spaceBetween: 20 },
-          1000: { slidesPerView: 4, spaceBetween: 30 }
+          // Keep 4 slides up to 1000px width
+          1000: { slidesPerView: 4, spaceBetween: 30 },
+          // Fallback for medium screens (tablets)
+          768: { slidesPerView: 4, spaceBetween: 20 },
+          // Small screens (large phones): use auto sizing so CSS can control 2-per-row
+          480: { slidesPerView: 'auto', spaceBetween: 16 },
+          // Very small screens: use auto sizing to allow two slides side-by-side
+          0: { slidesPerView: 'auto', spaceBetween: 12 }
         }
       });
       parent.swiper = swiper;
@@ -101,118 +106,47 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function generateVerticalMenu() {
-    var verticalMenu = document.querySelector('#menu-1-05b5675');
-    if (!verticalMenu || !window.dataCategories || !window.dataSubCategories) return;
+    var menus = Array.prototype.slice.call(document.querySelectorAll('#menu-1-05b5675, #menu-1-a21f572'));
+    if (!menus.length || !window.dataCategories || !window.dataSubCategories) return;
 
-    // Clear existing menu
-    verticalMenu.innerHTML = '';
+    // Render menu daftar di setiap placeholder yang ditemukan
+    menus.forEach(function (verticalMenu) {
+      verticalMenu.innerHTML = '';
 
-    // Generate menu items dari dataCategories dan dataSubCategories
-    (window.dataCategories || []).forEach(function (category, menuIndex) {
-      var li = document.createElement('li');
-      li.id = 'menu-item-' + (900 + menuIndex);
-      li.className = 'menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-' + (900 + menuIndex);
+      // Generate menu items dari dataCategories dan dataSubCategories
+      (window.dataCategories || []).forEach(function (category, menuIndex) {
+        var li = document.createElement('li');
+        li.id = 'menu-item-' + (900 + menuIndex);
+        li.className = 'menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-' + (900 + menuIndex);
 
-      var html = '<a href="#">' +
-        '<i class="menu-icon ' + (category.ikon || 'fas fa-circle') + '"></i>' +
-        '<span class="menu-title">' + category.nama + '</span>' +
-        '</a>';
+        var html = '<a href="#">' +
+          '<i class="menu-icon ' + (category.ikon || 'fas fa-circle') + '"></i>' +
+          '<span class="menu-title">' + category.nama + '</span>' +
+          '</a>';
 
-      // Get subcategories untuk category ini
-      var subCats = (window.dataSubCategories || []).filter(function (subcat) {
-        return subcat.idKategori === category.id;
-      });
-
-      // Add subcategories
-      if (subCats && subCats.length > 0) {
-        html += '<ul class="sub-menu">';
-        subCats.forEach(function (subcat, subIdx) {
-          var subId = 10000 + menuIndex * 100 + subIdx;
-          html += '<li id="menu-item-' + subId + '" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-' + subId + '">' +
-              '<a href="#" data-subcategory-id="' + subcat.id + '">' +
-            '<span class="menu-title">' + subcat.nama + '</span>' +
-            '</a>' +
-            '</li>';
+        // Get subcategories untuk category ini
+        var subCats = (window.dataSubCategories || []).filter(function (subcat) {
+          return subcat.idKategori === category.id;
         });
-        html += '</ul>';
-      }
 
-      li.innerHTML = html;
-      verticalMenu.appendChild(li);
+        // Add subcategories
+        if (subCats && subCats.length > 0) {
+          html += '<ul class="sub-menu">';
+          subCats.forEach(function (subcat, subIdx) {
+            var subId = 10000 + menuIndex * 100 + subIdx;
+            html += '<li id="menu-item-' + subId + '" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-' + subId + '">' +
+              '<a href="#">' +
+              '<span class="menu-title">' + subcat.nama + '</span>' +
+              '</a>' +
+              '</li>';
+          });
+          html += '</ul>';
+        }
+
+        li.innerHTML = html;
+        verticalMenu.appendChild(li);
+      });
     });
-
-      bindSubcategoryBannerLinks();
   }
-
-    function initSubcategoryBanner() {
-      var defaultSubcategoryId = getSubcategoryIdFromUrl() || ((window.dataSubCategories || [])[0] || {}).id;
-      if (defaultSubcategoryId) {
-        updateSubcategoryBannerById(defaultSubcategoryId);
-      }
-    }
-
-    function bindSubcategoryBannerLinks() {
-      var links = document.querySelectorAll('#menu-1-05b5675 a[data-subcategory-id]');
-      links.forEach(function (link) {
-        link.addEventListener('click', function (event) {
-          event.preventDefault();
-          var subcategoryId = this.getAttribute('data-subcategory-id');
-          if (subcategoryId) {
-            updateSubcategoryBannerById(subcategoryId);
-          }
-        });
-      });
-    }
-
-    function getSubcategoryIdFromUrl() {
-      try {
-        return new URLSearchParams(window.location.search).get('subcategory');
-      } catch (e) {
-        return null;
-      }
-    }
-
-    function updateSubcategoryBannerById(subcategoryId) {
-      var subcategory = (window.dataSubCategories || []).find(function (item) {
-        return item.id === subcategoryId;
-      });
-      if (!subcategory) {
-        subcategory = (window.dataSubCategories || [])[0];
-      }
-      renderSubcategoryBanner(subcategory);
-    }
-
-    function renderSubcategoryBanner(subcategory) {
-      if (!subcategory) return;
-      var bannerContainer = document.querySelector('#subcategory-banner .elementor-widget-container');
-      if (!bannerContainer) return;
-
-      var imageUrl = subcategory.bannerImage || '../assets/banner-produk/banner-summersale.png';
-      var title = subcategory.nama || subcategory.namaKategori || 'Subcategory';
-      var description = subcategory.deskripsi || '';
-      var buttonUrl = 'shop.html?subcategory=' + encodeURIComponent(subcategory.id);
-
-      bannerContainer.innerHTML =
-        '<div class="elementor-cta--skin-cover elementor-cta elementor-freshio2-banner">' +
-          '<div class="elementor-cta__bg-wrapper">' +
-            '<div class="elementor-cta__bg-overlay"></div>' +
-            '<div class="elementor-cta__bg elementor-bg" style="background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url(' + imageUrl + ');"></div>' +
-          '</div>' +
-          '<div class="elementor-cta__content">' +
-            '<div class="elementor-cta__content_inner">' +
-              '<div class="elementor-cta__title elementor-cta__content-item elementor-content-item">' + title + '</div>' +
-              '<div class="elementor-cta__description elementor-cta__content-item elementor-content-item">' + description + '</div>' +
-              '<div class="elementor-cta__button-wrapper elementor-cta__content-item elementor-content-item">' +
-                '<a class="elementor-cta__button elementor-button" href="' + buttonUrl + '">' +
-                  '<span class="elementor-button-content-wrapper">' +
-                    '<span class="elementor-button-icon"><i aria-hidden="true" class="fas fa-angle-double-right"></i></span>' +
-                    '<span class="elementor-button-text">Lihat Kategori</span>' +
-                  '</span>' +
-                '</a>' +
-              '</div>' +
-            '</div>' +
-          '</div>' +
-        '</div>';
-    }
 });
 

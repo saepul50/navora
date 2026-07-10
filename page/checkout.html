@@ -2424,11 +2424,12 @@
     </div>
 </div>
 
+<script type="module" src="../script/data-dummy.js"></script>
+<script type="module" src="../script/index.js"></script>
 <script type="module">
-import dataProducts from '../script/data-dummy.js';
 
 document.addEventListener('DOMContentLoaded', function () {
-    const products = (window.dataProducts || dataProducts || []).slice(0, 4).map(function (product, index) {
+    const products = (window.dataProducts || []).slice(0, 4).map(function (product, index) {
         return Object.assign({}, product, { qty: index === 1 ? 2 : 1 });
     });
 
@@ -4587,8 +4588,10 @@ document.querySelector('.wishlist-share-url').addEventListener('click', function
 
         </div>
     </div>
-    <div id="woosw_wishlist" class="woosw-popup woosw-popup-center"></div><a href="#" class="scrollup"><span
-            class="scrollup-icon freshio2-icon-long-arrow-up"></span></a>
+    <div id="woosw_wishlist" class="woosw-popup woosw-popup-center"></div>
+    <a href="#" class="scrollup">
+        <i class="fas fa-arrow-up"></i>
+    </a>
     <script type="text/html" id="tmpl-ajax-live-search-template">
         <div class="product-item-search">
             <# if(data.url){ #>

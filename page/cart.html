@@ -719,8 +719,7 @@
     <link rel='stylesheet' id='freshio2-icon-css'
         href='https://demo2.pavothemes.com/freshio/wp-content/themes/freshio2/assets/css/icons.css?ver=2.4.3'
         media='all' />
-    <link rel='stylesheet' id='freshio2-style-css'
-        href='https://demo2.pavothemes.com/freshio/wp-content/themes/freshio2/style.css?ver=2.4.3' media='all' />
+    <link rel="stylesheet" href="../style/style.css">
     <style id='freshio2-style-inline-css'>
         .product-label.product-label-11133 {
             color: #ffffff;
@@ -3136,8 +3135,10 @@
 
         </div>
     </div>
-    <div id="woosw_wishlist" class="woosw-popup woosw-popup-center"></div><a href="#" class="scrollup"><span
-            class="scrollup-icon freshio2-icon-long-arrow-up"></span></a>
+    <div id="woosw_wishlist" class="woosw-popup woosw-popup-center"></div>
+    <a href="#" class="scrollup">
+        <i class="fas fa-arrow-up"></i>
+    </a>
     <script type="text/html" id="tmpl-ajax-live-search-template">
         <div class="product-item-search">
             <# if(data.url){ #>
@@ -3461,5 +3462,7 @@
             if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', replaceAll); } else replaceAll();
         })();
     </script>
+    <script type="module" src="../script/data-dummy.js"></script>
+    <script type="module" src="../script/index.js"></script>
 
 </html>

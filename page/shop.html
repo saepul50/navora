@@ -670,8 +670,8 @@
     <link rel='stylesheet' id='elementor-gf-plusjakartasans-css'
         href='https://fonts.googleapis.com/css?family=Plus+Jakarta+Sans:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&#038;display=swap'
         media='all' />
-    <link rel="stylesheet" href="../style/fontawesome.min.css">
-    <link rel="stylesheet" href="../style/brands.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/brands.min.css">
     <script src="../script/jquery.min.js"></script>
     <script src="../script/jquery-migrate.min.js"></script>
     <script
@@ -863,7 +863,7 @@
                                                     <div class="header-group-action">
                                                         <div class="site-header-wishlist">
                                                             <a class="header-wishlist" href="cart.html">
-                                                                <i class="fas fa-cart-arrow-down" style="color:#000"></i>
+                                                                <i class="fas fa-cart-arrow-down"></i>
                                                                 <span class="count">0</span>
                                                             </a>
                                                         </div>
@@ -2162,6 +2162,7 @@
         </div><!-- #content -->
 
         <script type="module" src="../script/data-dummy.js"></script>
+        <script type="module" src="../script/index.js"></script>
 
         <script>
             (function () {
@@ -3351,8 +3352,10 @@
 
         </div>
     </div>
-    <div id="woosw_wishlist" class="woosw-popup woosw-popup-center"></div><a href="#" class="scrollup"><i
-            class="fas fa-arrow-up"></i></a>
+    <div id="woosw_wishlist" class="woosw-popup woosw-popup-center"></div>
+    <a href="#" class="scrollup">
+        <i class="fas fa-arrow-up"></i>
+    </a>
     <script type="text/html" id="tmpl-ajax-live-search-template">
         <div class="product-item-search">
             <# if(data.url){ #>
@@ -3871,15 +3874,15 @@
             });
             document.querySelectorAll('.woosc-btn').forEach(function (b) {
                 // Re-purpose compare button into Add to Cart that links to cart.html
-                b.setAttribute('data-text', 'Tambah ke keranjang');
-                b.setAttribute('data-text_added', 'Tambah ke keranjang');
-                b.innerHTML = '<i class="fas fa-shopping-cart" aria-hidden="true"></i> Tambah ke keranjang';
+                b.setAttribute('data-text', 'Masukkan keranjang');
+                b.setAttribute('data-text_added', 'Masukkan keranjang');
+                b.innerHTML = '<i class="fas fa-shopping-cart" aria-hidden="true"></i> Masukkan keranjang';
                 b.style.cursor = 'pointer';
                 b.addEventListener('click', function () { window.location.href = 'cart.html'; });
             });
             document.querySelectorAll('.button_cart .button-text').forEach(function (s) {
                 // Change bottom action label to "Lihat detail"
-                if (s.textContent.indexOf('Add to cart') !== -1 || s.textContent.indexOf('Tambah ke keranjang') !== -1) s.textContent = 'Lihat detail';
+                if (s.textContent.indexOf('Add to cart') !== -1 || s.textContent.indexOf('Masukkan keranjang') !== -1) s.textContent = 'Lihat detail';
             });
             document.querySelectorAll('[aria-label^="Add to cart:"]').forEach(function (el) {
                 el.setAttribute('aria-label', el.getAttribute('aria-label').replace('Add to cart:', 'Lihat detail:'));

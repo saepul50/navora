@@ -2803,14 +2803,14 @@
                 b.innerHTML = '<i class="fas fa-eye" aria-hidden="true"></i> Lihat cepat';
             });
             document.querySelectorAll('.woosc-btn').forEach(function (b) {
-                b.setAttribute('data-text', 'Tambah ke keranjang');
-                b.setAttribute('data-text_added', 'Tambah ke keranjang');
-                b.innerHTML = '<i class="fas fa-shopping-cart" aria-hidden="true"></i> Tambah ke keranjang';
+                b.setAttribute('data-text', 'Masukkan keranjang');
+                b.setAttribute('data-text_added', 'Masukkan keranjang');
+                b.innerHTML = '<i class="fas fa-shopping-cart" aria-hidden="true"></i> Masukkan keranjang';
                 b.style.cursor = 'pointer';
                 b.addEventListener('click', function () { window.location.href = 'cart.html'; });
             });
             document.querySelectorAll('.button_cart .button-text').forEach(function (s) {
-                if (s.textContent.indexOf('Add to cart') !== -1 || s.textContent.indexOf('Tambah ke keranjang') !== -1) s.textContent = 'Lihat detail';
+                if (s.textContent.indexOf('Add to cart') !== -1 || s.textContent.indexOf('Masukkan keranjang') !== -1) s.textContent = 'Lihat detail';
             });
             document.querySelectorAll('[aria-label^="Add to cart:"]').forEach(function (el) {
                 el.setAttribute('aria-label', el.getAttribute('aria-label').replace('Add to cart:', 'Lihat detail:'));

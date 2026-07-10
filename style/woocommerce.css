@@ -2930,11 +2930,9 @@ ul.products .wc-block-grid__product .short-description p,
 }
 
 .group-action .shop-action .woosc-btn:before {
-  content: "";
 }
 
 .group-action .shop-action .woosq-btn:before {
-  content: "";
 }
 
 li.product.swiper-slide:not(.swiper-slide-visible) .product-block:hover:before {
@@ -3598,7 +3596,7 @@ li.product.swiper-slide:not(.swiper-slide-visible) .product-block:hover .second-
   flex: 1;
   text-align: center;
   justify-content: center;
-  max-width: 200px;
+  max-width: 220px;
   padding: 18px 30px 18px;
   background-color: var(--e-global-color-primary);
   border-radius: 30px;
@@ -3699,7 +3697,6 @@ li.product.swiper-slide:not(.swiper-slide-visible) .product-block:hover .second-
   font-weight: normal;
   line-height: 1;
   vertical-align: middle;
-  content: "";
 }
 
 .single-product .summary .woosw-btn.woosw-added:before {
