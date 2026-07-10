@@ -587,4 +587,4 @@ window.dataCategories = dataCategories;
 window.dataSubCategories = dataSubCategories;
 
 // Export untuk module-aware usage (tetap kompatibel)
-// export default dataProducts;
+export default dataProducts;

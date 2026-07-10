@@ -30,6 +30,103 @@
     <link rel='stylesheet' id='swiper-css-css'
         href='https://demo2.pavothemes.com/freshio/wp-content/themes/freshio2/assets/css/libs/swiper.css?ver=8.4.5'
         media='all' />
+    <style>
+        .cart_item {
+            transition: transform .25s ease, opacity .25s ease;
+        }
+
+        .cart_item.removing {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .td-remove {
+            width: 40px;
+            padding: 18px 10px;
+        }
+
+        .td-remove .btn-remove-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: transparent;
+            border: 1px solid #e5e7eb;
+            cursor: pointer;
+            color: #6b7280;
+            transition: color .2s ease, background .2s ease, border-color .2s ease;
+            padding: 0;
+        }
+
+        .td-remove .btn-remove-item:hover {
+            background: #fef2f2;
+            color: #dc2626;
+            border-color: rgba(220, 38, 38, 0.25);
+        }
+
+        .td-remove .btn-remove-item:hover svg {
+            transform: scale(1.1);
+            fill: #dc2626;
+        }
+
+        .td-remove .btn-remove-item svg {
+            width: 14px;
+            height: 14px;
+            transition: transform .2s ease, fill .2s ease;
+        }
+
+        .quantity_wrap.quantity-stepper .quantity {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            width: 120px;
+            padding: 6px 10px;
+            border: 1px solid #e5e7eb;
+            border-radius: 999px;
+            background: #ffffff;
+        }
+
+        .quantity_wrap.quantity-stepper .quantity-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            background: #f3f4f6;
+            color: #374151;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background .2s ease, transform .2s ease, color .2s ease;
+        }
+
+        .quantity_wrap.quantity-stepper .quantity-button:hover {
+            background: #e5e7eb;
+            color: #111827;
+            transform: translateY(-1px);
+        }
+
+        .quantity_wrap.quantity-stepper .quantity .qty {
+            width: 40px;
+            border: none;
+            background: transparent;
+            text-align: center;
+            font-size: 14px;
+            color: #111827;
+            padding: 0;
+            margin: 0;
+        }
+
+        .quantity_wrap.quantity-stepper .quantity .qty::-webkit-outer-spin-button,
+        .quantity_wrap.quantity-stepper .quantity .qty::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
     <style id='wp-emoji-styles-inline-css'>
         img.wp-smiley,
         img.emoji {
@@ -1997,11 +2094,11 @@
                                                 <table class="navora-wishlist-table" cellspacing="0">
                                                     <thead>
                                                         <tr>
-                                                            <th class="th-remove"><span class="screen-reader-text">Hapus item</span></th>
-                                                            <th class="th-image"><span class="screen-reader-text">Gambar</span></th>
-                                                            <th class="th-name">Produk</th>
+                                                            <th class="th-remove"></th>
+                                                            <th class="th-image">Produk</th>
+                                                            <th class="th-name"></th>
                                                             <th class="th-price">Harga</th>
-                                                            <th class="th-qty">Jumlah</th>
+                                                            <th class="th-quantity">Jumlah</th>
                                                             <th class="th-subtotal">Subtotal</th>
                                                         </tr>
                                                     </thead>
@@ -3315,7 +3412,7 @@
         import dataProducts from '../script/data-dummy.js';
 
         const formatter = new Intl.NumberFormat('id-ID');
-        const cartProductIds = ['hb-01', 'hb-04', 'fb-01'];
+        const cartProductIds = ['hb-01', 'hb-02', 'hb-04'];
         const recommendedProductIds = ['hb-02', 'hb-03', 'hl-01', 'hl-02'];
 
         function formatPrice(value) {
@@ -3324,6 +3421,7 @@
 
         function createCartItemRow(product, quantity = 1) {
             const subtotal = product.price * quantity;
+            const addedDate = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
             return `
                 <tr class="cart_item" data-product-id="${product.id}" data-price="${product.price}">
                     <td class="td-remove">
@@ -3343,17 +3441,20 @@
                     </td>
                     <td class="td-price">
                         <span class="price-current"><span class="price-currency">Rp</span> ${formatter.format(product.price)}</span>
+                        ${product.originalPrice ? `<span class="price-original"><span class="price-currency">Rp</span> ${formatter.format(product.originalPrice)}</span>` : ''}
                     </td>
-                    <td class="td-qty">
-                        <div class="quantity_wrap">
+                    <td class="td-quantity">
+                        <div class="quantity_wrap quantity-stepper">
                             <label class="quantity_label" for="quantity_${product.id}">Jumlah:</label>
                             <div class="quantity">
+                                <button type="button" class="quantity-button qty-decrease" aria-label="Kurangi jumlah">▼</button>
                                 <input type="number" id="quantity_${product.id}" class="input-text qty text" name="cart[${product.id}][qty]" value="${quantity}" min="1" step="1" />
+                                <button type="button" class="quantity-button qty-increase" aria-label="Tambah jumlah">▲</button>
                             </div>
                         </div>
                     </td>
                     <td class="td-subtotal">
-                        <span class="price-current"><span class="price-currency">Rp</span> ${formatter.format(subtotal)}</span>
+                        <span class="price-current subtotal-value"><span class="price-currency">Rp</span> ${formatter.format(subtotal)}</span>
                     </td>
                 </tr>
             `;
@@ -3372,7 +3473,7 @@
                 const rowSubtotal = price * quantity;
                 subtotal += rowSubtotal;
 
-                const rowSubtotalEl = row.querySelector('.td-subtotal .price-current');
+                const rowSubtotalEl = row.querySelector('.td-subtotal .subtotal-value');
                 if (rowSubtotalEl) {
                     rowSubtotalEl.innerHTML = `<span class="price-currency">Rp</span> ${formatter.format(rowSubtotal)}`;
                 }
@@ -3409,10 +3510,12 @@
                         <div class="product-caption">
                             <h3 class="woocommerce-loop-product__title"><a href="#">${product.nama}</a></h3>
                             <span class="price"><span class="woocommerce-Price-amount amount"><bdi>${formatPrice(product.price)}</bdi></span></span>
-                            <a href="#" class="button_cart product_type_simple add_to_cart_button">
-                                <span class="button_text">Tambah ke keranjang</span>
-                                <span class="button-icon"><i aria-hidden="true" class="freshio2-icon-angle-double-right"></i></span>
-                            </a>
+                            <button type="button" class="btn-atc" onclick="showToast('${product.nama} ditambahkan ke keranjang 🛒')">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z" />
+                                </svg>
+                                <span>Tambah ke keranjang</span>
+                            </button>
                         </div>
                     </div>
                 </li>
@@ -3444,12 +3547,30 @@
             });
 
             cartItemsContainer.addEventListener('click', event => {
+                const button = event.target.closest('.quantity-button');
+                if (button) {
+                    const row = button.closest('tr.cart_item');
+                    const qtyInput = row.querySelector('input.qty');
+                    let current = Number(qtyInput.value) || 1;
+                    if (button.classList.contains('qty-increase')) {
+                        current += 1;
+                    } else if (button.classList.contains('qty-decrease')) {
+                        current = Math.max(1, current - 1);
+                    }
+                    qtyInput.value = current;
+                    updateCartTotals();
+                    return;
+                }
+
                 const removeButton = event.target.closest('.remove-cart-item');
                 if (removeButton) {
                     const row = removeButton.closest('tr.cart_item');
                     if (row) {
-                        row.remove();
-                        updateCartTotals();
+                        row.classList.add('removing');
+                        setTimeout(() => {
+                            row.remove();
+                            updateCartTotals();
+                        }, 250);
                     }
                 }
             });
