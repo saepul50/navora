@@ -34,6 +34,37 @@
         href='https://demo2.pavothemes.com/freshio/wp-content/themes/freshio2/assets/css/libs/swiper.css?ver=8.4.5'
         media='all' />
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --navora-green: #5fbd74;
+            --navora-green-dark: #4aa862;
+            --navora-green-light: #e8f7ec;
+            --navora-red: #e55757;
+            --navora-text: #2d3142;
+            --navora-muted: #8a8fa3;
+            --navora-border: #eef0f5;
+            --navora-bg: #f9fbfc;
+            --navora-white: #ffffff;
+            --navora-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --navora-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.14);
+            --navora-radius: 14px;
+            --navora-transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navora-wishlist-wrap {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            padding: 0 0 60px;
+            max-width: 100% !important;
+            margin: 0 auto;
+        }
+
+        .cross-sells {
+            max-width: 100% !important;
+            width: 100% !important;
+            margin: 0 auto 60px !important;
+        }
+
         .cart_item {
             transition: transform .25s ease, opacity .25s ease;
         }
@@ -43,6 +74,190 @@
             transform: translateX(-20px);
         }
 
+        /* --- Wishlist Header Bar --- */
+        .wishlist-header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--navora-white);
+            border-radius: var(--navora-radius);
+            padding: 20px 28px;
+            margin-bottom: 24px;
+            box-shadow: var(--navora-shadow);
+            border: 1px solid var(--navora-border);
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .wishlist-title-group {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .wishlist-icon-badge {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .wishlist-title-text h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--navora-text);
+            margin: 0 0 2px;
+            line-height: 1.2;
+        }
+
+        .wishlist-title-text span {
+            font-size: 13px;
+            color: var(--navora-muted);
+            font-weight: 400;
+        }
+
+        .wishlist-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-wishlist-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 18px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            cursor: pointer;
+            transition: var(--navora-transition);
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-wishlist-clear {
+            background: #fff0f0;
+            color: var(--navora-red);
+            border: 1.5px solid #ffd6d6;
+        }
+
+        .btn-wishlist-clear:hover {
+            background: var(--navora-red);
+            color: white;
+            border-color: var(--navora-red);
+        }
+
+        .btn-wishlist-cart-all {
+            background-color: #0a472e;
+            color: white;
+            border: 1.5px solid transparent;
+        }
+
+        .btn-wishlist-cart-all:hover {
+            background: linear-gradient(135deg, var(--navora-green-dark) 0%, #3d9a56 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 14px rgba(95, 189, 116, 0.4);
+        }
+
+        /* --- Table Container --- */
+        .wishlist-table-outer {
+            background: var(--navora-white);
+            border-radius: var(--navora-radius);
+            box-shadow: var(--navora-shadow);
+            border: 1px solid var(--navora-border);
+            overflow: hidden;
+        }
+
+        .wishlist-table-wrap {
+            overflow-x: auto;
+        }
+
+        @media (min-width: 992px) {
+            .wishlist-table-wrap {
+                overflow-x: visible !important;
+            }
+        }
+
+        /* --- Table --- */
+        .navora-wishlist-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Table Head */
+        .navora-wishlist-table thead tr {
+            background: linear-gradient(135deg, #f7f9fb 0%, #eef2f6 100%);
+        }
+
+        .navora-wishlist-table thead th {
+            padding: 14px 20px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+            color: var(--navora-muted);
+            border-bottom: 1.5px solid var(--navora-border);
+            white-space: nowrap;
+            text-align: left;
+        }
+
+        .navora-wishlist-table thead th.th-remove {
+            width: 40px;
+            text-align: center;
+        }
+
+        .navora-wishlist-table thead th.th-image {
+            width: 110px;
+        }
+
+        .navora-wishlist-table thead th.th-name {
+            min-width: 220px;
+        }
+
+        .navora-wishlist-table thead th.th-price {
+            width: 160px;
+            text-align: right;
+        }
+
+        .navora-wishlist-table thead th.th-quantity {
+            width: 160px;
+            text-align: center;
+        }
+
+        .navora-wishlist-table thead th.th-subtotal {
+            width: 160px;
+            text-align: right;
+        }
+
+        /* Table Body Row */
+        .navora-wishlist-table tbody tr {
+            border-bottom: 1px solid var(--navora-border);
+            transition: var(--navora-transition);
+        }
+
+        .navora-wishlist-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .navora-wishlist-table tbody tr:hover {
+            background: #fafcff;
+        }
+
+        .navora-wishlist-table tbody td {
+            padding: 18px 20px;
+            vertical-align: middle;
+            font-size: 14px;
+            color: var(--navora-text);
+            text-align: left;
+        }
+
+        /* Remove Button */
         .td-remove {
             width: 40px;
             padding: 18px 10px;
@@ -55,31 +270,117 @@
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            background: transparent;
-            border: 1px solid #e5e7eb;
+            background: var(--navora-green);
+            border: 1px solid var(--navora-green);
             cursor: pointer;
-            color: #6b7280;
-            transition: color .2s ease, background .2s ease, border-color .2s ease;
+            color: #ffffff;
+            transition: var(--navora-transition);
             padding: 0;
         }
 
         .td-remove .btn-remove-item:hover {
-            background: #fef2f2;
-            color: #dc2626;
-            border-color: rgba(220, 38, 38, 0.25);
+            background: var(--navora-green-dark);
+            border-color: var(--navora-green-dark);
+            box-shadow: 0 4px 12px rgba(95, 189, 116, 0.25);
         }
 
         .td-remove .btn-remove-item:hover svg {
             transform: scale(1.1);
-            fill: #dc2626;
+            fill: #ffffff;
         }
 
         .td-remove .btn-remove-item svg {
             width: 14px;
             height: 14px;
-            transition: transform .2s ease, fill .2s ease;
+            fill: #ffffff;
+            transition: transform 0.2s ease, fill 0.2s ease;
         }
 
+        /* Product Image */
+        .td-image .product-img-wrapper {
+            position: relative;
+            width: 88px;
+            height: 88px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--navora-bg);
+            border: 1.5px solid var(--navora-border);
+            transition: var(--navora-transition);
+            display: block;
+            flex-shrink: 0;
+        }
+
+        .td-image .product-img-wrapper:hover {
+            border-color: var(--navora-green);
+            box-shadow: 0 0 0 3px rgba(95, 189, 116, 0.15);
+        }
+
+        .td-image .product-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--navora-transition);
+        }
+
+        .td-image .product-img-wrapper:hover img {
+            transform: scale(1.06);
+        }
+
+        /* Product Name */
+        .td-name .product-name-link {
+            font-size: 14.5px;
+            font-weight: 600;
+            color: var(--navora-text);
+            text-decoration: none;
+            line-height: 1.4;
+            display: block;
+            transition: var(--navora-transition);
+            margin-bottom: 4px;
+        }
+
+        .td-name .product-name-link:hover {
+            color: var(--navora-green);
+        }
+
+        /* Price & Subtotal */
+        .navora-wishlist-table tbody td.td-price,
+        .navora-wishlist-table tbody td.td-subtotal {
+            text-align: right;
+        }
+
+        .td-price .price-current,
+        .td-subtotal .subtotal-value {
+            font-size: 15.5px;
+            font-weight: 700;
+            color: var(--navora-text);
+            display: block;
+            line-height: 1.4;
+            white-space: nowrap;
+        }
+
+        .td-price .price-original {
+            font-size: 12px;
+            color: var(--navora-muted);
+            text-decoration: line-through;
+            font-weight: 400;
+            display: block;
+            margin-top: 2px;
+            line-height: 1.4;
+            white-space: nowrap;
+        }
+
+        .price-currency {
+            vertical-align: baseline !important;
+            font-size: inherit !important;
+            font-weight: inherit !important;
+            color: inherit !important;
+            display: inline-block !important;
+            position: static !important;
+            line-height: inherit !important;
+            margin-right: 2px;
+        }
+
+        /* Quantity Stepper */
         .quantity_wrap.quantity-stepper .quantity {
             display: flex;
             align-items: center;
@@ -90,6 +391,7 @@
             border: 1px solid #e5e7eb;
             border-radius: 999px;
             background: #ffffff;
+            margin: 0 auto;
         }
 
         .quantity_wrap.quantity-stepper .quantity-button {
@@ -130,187 +432,169 @@
             margin: 0;
         }
 
-        @media (max-width: 1024px) {
-            .wishlist-table-outer {
-                padding: 0 16px;
+        .quantity_label {
+            display: none;
+        }
+
+        /* --- Table Footer --- */
+        .wishlist-table-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 24px;
+            background: linear-gradient(135deg, #f7f9fb 0%, #eef2f6 100%);
+            border-top: 1.5px solid var(--navora-border);
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .wishlist-count-info {
+            font-size: 15px;
+            color: var(--navora-text);
+            font-weight: 600;
+        }
+
+        .wishlist-count-info strong {
+            color: #0a472e;
+            font-size: 20px;
+            font-weight: 800;
+            margin-left: 8px;
+        }
+
+        .btn-continue-shop {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 18px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--navora-white);
+            color: var(--navora-text);
+            text-decoration: none;
+            border: 1.5px solid var(--navora-border);
+            transition: var(--navora-transition);
+        }
+
+        .btn-continue-shop:hover {
+            border-color: var(--navora-green);
+            color: var(--navora-green);
+            background: var(--navora-green-light);
+        }
+
+        /* Notification Toast */
+        .wishlist-toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--navora-text);
+            color: white;
+            padding: 12px 22px;
+            border-radius: 10px;
+            font-size: 13.5px;
+            font-weight: 500;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+            z-index: 9999;
+            display: none;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .wishlist-toast.show {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .wishlist-header-bar {
+                padding: 16px 20px;
             }
 
-            .wishlist-table-wrap {
-                overflow-x: hidden;
+            .navora-wishlist-table tbody td {
+                padding: 14px 16px;
             }
 
-            .navora-wishlist-table {
-                width: 100%;
-                border-collapse: collapse;
+            .navora-wishlist-table thead th {
+                padding: 12px 16px;
             }
 
-            .navora-wishlist-table thead {
-                display: none;
-            }
-
-            .navora-wishlist-table tbody {
-                display: grid;
-                gap: 18px;
-            }
-
-            .navora-wishlist-table tbody tr.cart_item {
-                display: grid;
-                gap: 14px;
-                padding: 18px;
-                background: #ffffff;
-                border: 1px solid #e5e7eb;
-                border-radius: 18px;
-                grid-template-columns: 84px minmax(0, 1fr);
-                position: relative;
-            }
-
-            .navora-wishlist-table tbody tr.cart_item td {
-                display: block;
-                width: 100%;
-                padding: 0;
-                border: none;
-            }
-
-            .td-remove {
-                position: absolute;
-                top: 16px;
-                right: 16px;
-                width: auto;
-                padding: 0;
-                z-index: 1;
-            }
-
-            .td-image {
-                grid-column: 1 / 2;
-            }
-
-            .td-name,
-            .td-price,
-            .td-quantity,
-            .td-subtotal {
-                grid-column: 2 / -1;
-            }
-
-            .product-img-wrapper {
-                display: block;
-                width: 100%;
-                max-width: 100%;
-                overflow: hidden;
-                border-radius: 16px;
-            }
-
-            .product-img-wrapper img {
-                width: 100%;
-                height: auto;
-                display: block;
-                object-fit: cover;
-            }
-
-            .td-name .product-name-link {
-                font-size: 1rem;
-                line-height: 1.4;
-                color: #111827;
-                display: block;
-            }
-
-            .td-price,
-            .td-quantity,
-            .td-subtotal {
-                padding-top: 8px;
-            }
-
-            .td-price {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 8px;
-                align-items: center;
-            }
-
-            .td-price .price-current {
-                font-weight: 700;
-            }
-
-            .quantity_wrap.quantity-stepper {
-                width: 100%;
-            }
-
-            .quantity_wrap.quantity-stepper .quantity {
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            .cart-collaterals {
-                padding: 0 16px 16px;
-            }
-
-            .cart_totals {
-                width: 100%;
-                box-sizing: border-box;
-                background: #ffffff;
-                border: 1px solid #e5e7eb;
-                padding: 18px;
-                border-radius: 18px;
-            }
-
-            .shop_table_responsive {
-                width: 100%;
-            }
-
-            .shop_table_responsive tr {
-                display: flex;
-                justify-content: space-between;
-                gap: 12px;
-            }
-
-            .shop_table_responsive td,
-            .shop_table_responsive th {
-                display: flex;
-                justify-content: space-between;
-                width: 100%;
-                padding: 8px 0;
-                border: none;
-            }
-
-            .wc-proceed-to-checkout {
-                margin-top: 18px;
-            }
-
-            .checkout-button {
-                width: 100%;
-                display: inline-flex;
-                justify-content: center;
+            .td-image .product-img-wrapper {
+                width: 70px;
+                height: 70px;
             }
         }
 
         @media (max-width: 767px) {
-            .navora-wishlist-table tbody tr.cart_item {
-                grid-template-columns: 80px 1fr;
+            .wishlist-actions {
+                display: flex !important;
+                width: 100% !important;
+                gap: 8px !important;
+                flex-wrap: nowrap !important;
+            }
+
+            .btn-wishlist-action {
+                flex: 1 !important;
+                justify-content: center !important;
+                padding: 10px 8px !important;
+                font-size: 11px !important;
+                white-space: nowrap !important;
+            }
+
+            /* Hide table header */
+            .navora-wishlist-table thead {
+                display: none !important;
+            }
+
+            .navora-wishlist-table,
+            .navora-wishlist-table tbody,
+            .navora-wishlist-table tr,
+            .navora-wishlist-table td {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .navora-wishlist-table tbody tr {
+                display: grid !important;
+                grid-template-columns: 80px 1fr 1fr;
                 grid-template-areas:
-                    "image name"
-                    "image price"
-                    "image quantity"
-                    "image subtotal";
+                    "image name name"
+                    "image price price"
+                    "quantity quantity subtotal";
                 gap: 8px 12px;
-                background: #ffffff;
-                border: 1px solid #e5e7eb;
-                border-radius: 18px;
+                background: var(--navora-white);
+                border: 1px solid var(--navora-border);
+                border-radius: var(--navora-radius);
                 padding: 16px;
                 margin-bottom: 16px;
                 position: relative;
                 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
             }
 
-            .navora-wishlist-table tbody tr.cart_item td {
-                border: none;
-                padding: 0;
+            .navora-wishlist-table tbody tr:hover {
+                background: var(--navora-white);
             }
 
+            /* Close/remove button top right */
             .td-remove {
                 position: absolute !important;
                 top: 12px;
                 right: 12px;
                 padding: 0 !important;
                 width: auto !important;
+                height: auto !important;
                 z-index: 10;
             }
 
@@ -325,7 +609,6 @@
                 width: 80px !important;
                 height: 80px !important;
                 margin: 0 !important;
-                border-radius: 16px;
             }
 
             .td-name {
@@ -338,9 +621,8 @@
             }
 
             .td-name .product-name-link {
-                font-size: 14px;
-                margin-bottom: 4px;
-                line-height: 1.3;
+                font-size: 13.5px;
+                margin-bottom: 2px;
             }
 
             .td-price {
@@ -352,44 +634,60 @@
                 gap: 6px;
             }
 
-            .td-price .price-current {
-                font-weight: 700;
+            .td-price span {
+                display: inline-block !important;
             }
 
             .td-quantity {
                 grid-area: quantity;
-                padding: 0 !important;
+                padding: 12px 0 0 !important;
+                border-top: 1px dashed var(--navora-border);
+                display: flex;
+                align-items: center;
+                margin-top: 4px;
+            }
+
+            .quantity_wrap.quantity-stepper .quantity {
+                margin: 0;
             }
 
             .td-subtotal {
                 grid-area: subtotal;
-                padding: 0 !important;
+                padding: 12px 0 0 !important;
+                border-top: 1px dashed var(--navora-border);
+                text-align: right;
                 display: flex;
+                justify-content: flex-end;
                 align-items: center;
+                margin-top: 4px;
+            }
+
+            .navora-wishlist-table tbody td {
+                border: none !important;
+            }
+
+            .wishlist-table-footer {
+                padding: 18px 16px;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 16px;
+            }
+
+            .wishlist-count-info {
+                display: flex;
                 justify-content: space-between;
-                border-top: 1px dashed #e5e7eb;
-                padding-top: 10px;
-                margin-top: 8px;
+                align-items: center;
             }
 
-            .td-subtotal .subtotal-value {
-                font-weight: 700;
+            .wishlist-table-footer .wishlist-actions {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
             }
 
-            .td-name[data-label]::before,
-            .td-price[data-label]::before,
-            .td-quantity[data-label]::before,
-            .td-subtotal[data-label]::before {
-                display: none;
-            }
-
-            .recommendation-controls {
-                top: 10px;
-                right: 10px;
-            }
-
-            .recommendation-dots {
-                bottom: 10px;
+            .wishlist-table-footer .wishlist-actions a {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
@@ -1505,78 +1803,192 @@
                     <main id="main" class="site-main">
 
                         <article id="post-75" class="post-75 page type-page status-publish hentry">
-                            <header class="entry-header">
-                                <h1 class="entry-title">Keranjang</h1>
-                            </header><!-- .entry-header -->
                             <div class="entry-content">
                                 <div class="woocommerce">
                                     <div class="woocommerce-notices-wrapper"></div>
-                                    <form class="woocommerce-cart-form"
-                                        action="https://demo2.pavothemes.com/freshio/cart/" method="post">
-
-                                        <div class="wishlist-table-outer">
-                                            <div class="wishlist-table-wrap">
-                                                <table class="navora-wishlist-table" cellspacing="0">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="th-remove"></th>
-                                                            <th class="th-image">Produk</th>
-                                                            <th class="th-name"></th>
-                                                            <th class="th-price">Harga</th>
-                                                            <th class="th-quantity">Jumlah</th>
-                                                            <th class="th-subtotal">Subtotal</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="cart-items-container"></tbody>
-                                                </table>
-                                            </div><!-- /wishlist-table-wrap -->
-                                        </div><!-- /wishlist-table-outer -->
-
-                                        <!-- keep form (nonce) hidden fields if required by backend -->
-                                        <input type="hidden" id="woocommerce-cart-nonce" name="woocommerce-cart-nonce"
-                                            value="e7b647a96d" />
-                                        <input type="hidden" name="_wp_http_referer" value="/freshio/cart/" />
-
-                                    </form>
-
-
-                                    <div class="cart-collaterals">
-                                        <div class="cart_totals ">
-                                            <h2>Ringkasan Belanja</h2>
-                                            <table cellspacing="0" class="shop_table shop_table_responsive">
-                                                <tbody>
-                                                    <tr class="cart-subtotal">
-                                                        <th>Subtotal</th>
-                                                        <td data-title="Subtotal"><span
-                                                                class="woocommerce-Price-amount amount"><bdi
-                                                                    id="cart-subtotal-value">Rp 0</bdi></span>
-                                                        </td>
-                                                    </tr>
-
-
-
-
-
-
-                                                    <tr class="order-total">
-                                                        <th>Total</th>
-                                                        <td data-title="Total"><strong><span
-                                                                    class="woocommerce-Price-amount amount"><bdi
-                                                                        id="cart-total-value">Rp 0</bdi></span></strong>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-
-                                            <div class="wc-proceed-to-checkout">
-
-                                                <a href="checkout.html" class="checkout-button button alt wc-forward">
-                                                    Lanjutkan ke pembayaran</a>
+                                    <div class="navora-wishlist-wrap">
+                                        
+                                        <!-- Header Bar -->
+                                        <div class="wishlist-header-bar">
+                                            <div class="wishlist-title-group">
+                                                <div class="wishlist-icon-badge" style="background: linear-gradient(135deg, #e8f7ec 0%, #d1f0db 100%);">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#5fbd74" width="22" height="22">
+                                                        <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+                                                    </svg>
+                                                </div>
+                                                <div class="wishlist-title-text">
+                                                    <h2>Keranjang Belanja</h2>
+                                                    <span id="cart-header-count">3 produk di keranjang</span>
+                                                </div>
                                             </div>
-
-
+                                            <div class="wishlist-actions">
+                                                <button type="button" class="btn-wishlist-action btn-wishlist-clear clear-cart-btn">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                        fill="currentColor" viewBox="0 0 24 24">
+                                                        <path
+                                                            d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+                                                    </svg>
+                                                    Kosongkan Keranjang
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
+
+                                        <form class="woocommerce-cart-form"
+                                            action="https://demo2.pavothemes.com/freshio/cart/" method="post">
+
+                                            <div class="wishlist-table-outer">
+                                                <div class="wishlist-table-wrap">
+                                                    <table class="navora-wishlist-table" cellspacing="0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="th-remove"></th>
+                                                                <th class="th-image">Produk</th>
+                                                                <th class="th-name"></th>
+                                                                <th class="th-price">Harga</th>
+                                                                <th class="th-quantity">Jumlah</th>
+                                                                <th class="th-subtotal">Subtotal</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="cart-items-container">
+                                                            <!-- Item 1: hb-01 -->
+                                                            <tr class="cart_item" data-product-id="hb-01" data-price="45000">
+                                                                <td class="td-remove" data-label="Hapus">
+                                                                    <button type="button" class="btn-remove-item remove-cart-item" title="Hapus dari keranjang" aria-label="Hapus Sabun Cuci Muka Sari Lerak">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="14" height="14">
+                                                                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                                                                        </svg>
+                                                                    </button>
+                                                                </td>
+                                                                <td class="td-image" data-label="Produk">
+                                                                    <a href="#" class="product-img-wrapper">
+                                                                        <img src="../assets/foto-produk/facewash-lerak.png" alt="Sabun Cuci Muka Sari Lerak" loading="lazy">
+                                                                    </a>
+                                                                </td>
+                                                                <td class="td-name" data-label="Nama Produk">
+                                                                    <a class="product-name-link">Sabun Cuci Muka Sari Lerak</a>
+                                                                </td>
+                                                                <td class="td-price" data-label="Harga">
+                                                                    <span class="price-current"><span class="price-currency">Rp</span> 45.000</span>
+                                                                </td>
+                                                                <td class="td-quantity" data-label="Jumlah">
+                                                                    <div class="quantity_wrap quantity-stepper">
+                                                                        <label class="quantity_label" for="quantity_hb-01">Jumlah:</label>
+                                                                        <div class="quantity">
+                                                                            <button type="button" class="quantity-button qty-decrease" aria-label="Kurangi jumlah">▼</button>
+                                                                            <input type="number" id="quantity_hb-01" class="input-text qty text" name="cart[hb-01][qty]" value="1" min="1" step="1" />
+                                                                            <button type="button" class="quantity-button qty-increase" aria-label="Tambah jumlah">▲</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="td-subtotal">
+                                                                    <span class="price-current subtotal-value"><span class="price-currency">Rp</span> 45.000</span>
+                                                                </td>
+                                                            </tr>
+
+                                                            <!-- Item 2: hb-02 -->
+                                                            <tr class="cart_item" data-product-id="hb-02" data-price="25000">
+                                                                <td class="td-remove" data-label="Hapus">
+                                                                    <button type="button" class="btn-remove-item remove-cart-item" title="Hapus dari keranjang" aria-label="Hapus Air Mawar Murni">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="14" height="14">
+                                                                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                                                                        </svg>
+                                                                    </button>
+                                                                </td>
+                                                                <td class="td-image" data-label="Produk">
+                                                                    <a href="#" class="product-img-wrapper">
+                                                                        <img src="../assets/foto-produk/rose-water.png" alt="Air Mawar Murni" loading="lazy">
+                                                                    </a>
+                                                                </td>
+                                                                <td class="td-name" data-label="Nama Produk">
+                                                                    <a class="product-name-link">Air Mawar Murni</a>
+                                                                </td>
+                                                                <td class="td-price" data-label="Harga">
+                                                                    <span class="price-current"><span class="price-currency">Rp</span> 25.000</span>
+                                                                </td>
+                                                                <td class="td-quantity" data-label="Jumlah">
+                                                                    <div class="quantity_wrap quantity-stepper">
+                                                                        <label class="quantity_label" for="quantity_hb-02">Jumlah:</label>
+                                                                        <div class="quantity">
+                                                                            <button type="button" class="quantity-button qty-decrease" aria-label="Kurangi jumlah">▼</button>
+                                                                            <input type="number" id="quantity_hb-02" class="input-text qty text" name="cart[hb-02][qty]" value="1" min="1" step="1" />
+                                                                            <button type="button" class="quantity-button qty-increase" aria-label="Tambah jumlah">▲</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="td-subtotal">
+                                                                    <span class="price-current subtotal-value"><span class="price-currency">Rp</span> 25.000</span>
+                                                                </td>
+                                                            </tr>
+
+                                                            <!-- Item 3: hb-04 -->
+                                                            <tr class="cart_item" data-product-id="hb-04" data-price="55000">
+                                                                <td class="td-remove" data-label="Hapus">
+                                                                    <button type="button" class="btn-remove-item remove-cart-item" title="Hapus dari keranjang" aria-label="Hapus Sabun Sampo Lerak 2-in-1">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="14" height="14">
+                                                                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                                                                        </svg>
+                                                                    </button>
+                                                                </td>
+                                                                <td class="td-image" data-label="Produk">
+                                                                    <a href="#" class="product-img-wrapper">
+                                                                        <img src="../assets/foto-produk/sabun-sampo-lerak.png" alt="Sabun Sampo Lerak 2-in-1" loading="lazy">
+                                                                    </a>
+                                                                </td>
+                                                                <td class="td-name" data-label="Nama Produk">
+                                                                    <a class="product-name-link">Sabun Sampo Lerak 2-in-1</a>
+                                                                </td>
+                                                                <td class="td-price" data-label="Harga">
+                                                                    <span class="price-current"><span class="price-currency">Rp</span> 55.000</span>
+                                                                </td>
+                                                                <td class="td-quantity" data-label="Jumlah">
+                                                                    <div class="quantity_wrap quantity-stepper">
+                                                                        <label class="quantity_label" for="quantity_hb-04">Jumlah:</label>
+                                                                        <div class="quantity">
+                                                                            <button type="button" class="quantity-button qty-decrease" aria-label="Kurangi jumlah">▼</button>
+                                                                            <input type="number" id="quantity_hb-04" class="input-text qty text" name="cart[hb-04][qty]" value="1" min="1" step="1" />
+                                                                            <button type="button" class="quantity-button qty-increase" aria-label="Tambah jumlah">▲</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="td-subtotal">
+                                                                    <span class="price-current subtotal-value"><span class="price-currency">Rp</span> 55.000</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div><!-- /wishlist-table-wrap -->
+
+                                                <!-- Table Footer -->
+                                                <div class="wishlist-table-footer">
+                                                    <div class="wishlist-count-info">
+                                                        Total Belanja: <strong id="cart-total-value">Rp 125.000</strong>
+                                                    </div>
+                                                    <div class="wishlist-actions">
+                                                        <a href="shop.html" class="btn-continue-shop">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                                                fill="currentColor" viewBox="0 0 24 24">
+                                                                <path
+                                                                    d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+                                                            </svg>
+                                                            Lanjut Belanja
+                                                        </a>
+                                                        <a href="checkout.html" class="btn-wishlist-action btn-wishlist-cart-all checkout-button">
+                                                            Lanjutkan ke Pembayaran
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div><!-- /wishlist-table-outer -->
+
+                                            <!-- keep form (nonce) hidden fields if required by backend -->
+                                            <input type="hidden" id="woocommerce-cart-nonce" name="woocommerce-cart-nonce"
+                                                value="e7b647a96d" />
+                                            <input type="hidden" name="_wp_http_referer" value="/freshio/cart/" />
+
+                                        </form>
+                                    </div><!-- /navora-wishlist-wrap -->
+
+                                    <!-- Toast Notification -->
+                                    <div class="wishlist-toast" id="wishlistToast"></div>
 
 
                                     <div class="cross-sells elementor-element">
@@ -1586,131 +1998,153 @@
                                         </div>
                                         <div class="woocommerce">
                                             <div class="freshio2-swiper swiper"
-                                                data-settings="{&quot;breakpoints&quot;:{&quot;desktop&quot;:{&quot;value&quot;:1440,&quot;column&quot;:4},&quot;laptop&quot;:{&quot;value&quot;:1024,&quot;column&quot;:3},&quot;tablet&quot;:{&quot;value&quot;:767,&quot;column&quot;:3},&quot;mobile&quot;:{&quot;value&quot;:568,&quot;column&quot;:&quot;2&quot;},&quot;small_mobile&quot;:{&quot;value&quot;:0,&quot;column&quot;:1}},&quot;column&quot;:4,&quot;navigation&quot;:&quot;none&quot;,&quot;column_spacing&quot;:30,&quot;swiper_overflow&quot;:&quot;none&quot;,&quot;autoplay&quot;:&quot;no&quot;,&quot;pause_on_hover&quot;:&quot;yes&quot;,&quot;pause_on_interaction&quot;:&quot;yes&quot;,&quot;autoplay_speed&quot;:5000,&quot;infinite&quot;:&quot;no&quot;,&quot;speed&quot;:500,&quot;prevEl&quot;:&quot;.upsells-swiper-button-prev&quot;,&quot;nextEl&quot;:&quot;.upsells-swiper-button-next&quot;,&quot;paginationEl&quot;:&quot;.upsells_swiper-pagination&quot;}">
+                                                data-settings="{&quot;breakpoints&quot;:{&quot;desktop&quot;:{&quot;value&quot;:1440,&quot;column&quot;:6},&quot;laptop&quot;:{&quot;value&quot;:1024,&quot;column&quot;:4},&quot;tablet&quot;:{&quot;value&quot;:767,&quot;column&quot;:3},&quot;mobile&quot;:{&quot;value&quot;:568,&quot;column&quot;:&quot;2&quot;},&quot;small_mobile&quot;:{&quot;value&quot;:0,&quot;column&quot;:1}},&quot;column&quot;:6,&quot;navigation&quot;:&quot;none&quot;,&quot;column_spacing&quot;:30,&quot;swiper_overflow&quot;:&quot;none&quot;,&quot;autoplay&quot;:&quot;no&quot;,&quot;pause_on_hover&quot;:&quot;yes&quot;,&quot;pause_on_interaction&quot;:&quot;yes&quot;,&quot;autoplay_speed&quot;:5000,&quot;infinite&quot;:&quot;no&quot;,&quot;speed&quot;:500,&quot;prevEl&quot;:&quot;.upsells-swiper-button-prev&quot;,&quot;nextEl&quot;:&quot;.upsells-swiper-button-next&quot;,&quot;paginationEl&quot;:&quot;.upsells_swiper-pagination&quot;}">
 
                                                 <ul class="freshio2-products products swiper-wrapper">
 
-
-
-                                                    <li
-                                                        class="swiper-slide product type-product post-264 status-publish first instock product_cat-package-foods product_cat-uncategorized has-post-thumbnail shipping-taxable purchasable product-type-simple">
+                                                    <!-- Product 1: hb-02 -->
+                                                    <li class="swiper-slide product type-product post-hb-02 status-publish instock has-post-thumbnail purchasable product-type-simple">
                                                         <div class="product-block">
                                                             <div class="product-top">
                                                                 <div class="product-transition">
-                                                                    <div class="product-image"><img decoding="async"
-                                                                            width="350" height="327"
-                                                                            src="https://demo2.pavothemes.com/freshio/wp-content/uploads/2020/08/25-350x327.jpg"
+                                                                    <div class="product-image"><img decoding="async" width="350" height="327"
+                                                                            src="../assets/foto-produk/rose-water.png"
                                                                             class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                                                                            alt="Enormous Silk Computer" /></div>
-                                                                    <div class="group-action">
-                                                                        <div class="shop-action">
-                                                                            <button class="woosw-btn woosw-btn-264"
-                                                                                data-id="264"
-                                                                                data-product_name="Enormous Silk Computer"
-                                                                                data-product_image="https://demo2.pavothemes.com/freshio/wp-content/uploads/2020/08/25-150x150.jpg"
-                                                                                aria-label="Add to wishlist">Add to
-                                                                                wishlist</button><button
-                                                                                class="woosq-btn woosq-btn-264"
-                                                                                data-id="264"
-                                                                                data-effect="mfp-3d-unfold"
-                                                                                data-context="default">Quick
-                                                                                view</button><button
-                                                                                class="woosc-btn woosc-btn-264 "
-                                                                                data-text="Compare"
-                                                                                data-text_added="Compare" data-id="264"
-                                                                                data-product_id="264"
-                                                                                data-product_name="Enormous Silk Computer"
-                                                                                data-product_image="https://demo2.pavothemes.com/freshio/wp-content/uploads/2020/08/25-150x150.jpg">Compare</button>
-                                                                        </div>
-                                                                    </div>
-                                                                    <a href="https://demo2.pavothemes.com/freshio/product/enormous-silk-computer/"
-                                                                        class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a>
+                                                                            alt="Air Mawar Murni" /></div>
                                                                 </div>
                                                             </div>
                                                             <div class="product-caption">
-                                                                <h3 class="woocommerce-loop-product__title"><a
-                                                                        href="https://demo2.pavothemes.com/freshio/product/enormous-silk-computer/">Enormous
-                                                                        Silk Computer</a></h3>
-                                                                <span class="price"><span
-                                                                        class="woocommerce-Price-amount amount"><bdi><span
-                                                                                class="woocommerce-Price-currencySymbol">&#36;</span>829.58</bdi></span></span>
-                                                                <a href="/freshio/cart/?add-to-cart=264"
-                                                                    data-quantity="1"
-                                                                    class="button_cart product_type_simple add_to_cart_button ajax_add_to_cart"
-                                                                    data-product_id="264"
-                                                                    data-product_sku="enormous-silk-computer-61767652"
-                                                                    aria-label="Add to cart: &ldquo;Enormous Silk Computer&rdquo;"
-                                                                    rel="nofollow">
-                                                                    <span class="button-text">Add to cart</span>
-                                                                    <span class="button-icon">
-                                                                        <i aria-hidden="true"
-                                                                            class="freshio2-icon-angle-double-right"></i>
-                                                                    </span>
-                                                                </a>
+                                                                <h3 class="woocommerce-loop-product__title"><a href="#">Air Mawar Murni</a></h3>
+                                                                <span class="price"><span class="woocommerce-Price-amount amount"><bdi>Rp 25.000</bdi></span></span>
+                                                                <button type="button" class="btn-atc" onclick="showToast('Air Mawar Murni ditambahkan ke keranjang 🛒')">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                                                        <path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z" />
+                                                                    </svg>
+                                                                    <span>Tambah ke keranjang</span>
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     </li>
 
-
-                                                    <li
-                                                        class="swiper-slide product type-product post-239 status-publish onbackorder product_cat-leafy-green product_cat-uncategorized has-post-thumbnail featured shipping-taxable purchasable product-type-simple">
+                                                    <!-- Product 2: hb-03 -->
+                                                    <li class="swiper-slide product type-product post-hb-03 status-publish instock has-post-thumbnail purchasable product-type-simple">
                                                         <div class="product-block">
                                                             <div class="product-top">
                                                                 <div class="product-transition">
-                                                                    <div class="product-image"><img loading="lazy"
-                                                                            decoding="async" width="350" height="327"
-                                                                            src="https://demo2.pavothemes.com/freshio/wp-content/uploads/2020/08/8-350x327.jpg"
+                                                                    <div class="product-image"><img decoding="async" width="350" height="327"
+                                                                            src="../assets/foto-produk/coconut-serum.png"
                                                                             class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                                                                            alt="Fantastic Granite Pants" /></div>
-                                                                    <div class="group-action">
-                                                                        <div class="shop-action">
-                                                                            <button class="woosw-btn woosw-btn-239"
-                                                                                data-id="239"
-                                                                                data-product_name="Fantastic Granite Pants"
-                                                                                data-product_image="https://demo2.pavothemes.com/freshio/wp-content/uploads/2020/08/8-150x150.jpg"
-                                                                                aria-label="Add to wishlist">Add to
-                                                                                wishlist</button><button
-                                                                                class="woosq-btn woosq-btn-239"
-                                                                                data-id="239"
-                                                                                data-effect="mfp-3d-unfold"
-                                                                                data-context="default">Quick
-                                                                                view</button><button
-                                                                                class="woosc-btn woosc-btn-239 "
-                                                                                data-text="Compare"
-                                                                                data-text_added="Compare" data-id="239"
-                                                                                data-product_id="239"
-                                                                                data-product_name="Fantastic Granite Pants"
-                                                                                data-product_image="https://demo2.pavothemes.com/freshio/wp-content/uploads/2020/08/8-150x150.jpg">Compare</button>
-                                                                        </div>
-                                                                    </div>
-                                                                    <a href="https://demo2.pavothemes.com/freshio/product/fantastic-granite-pants/"
-                                                                        class="woocommerce-LoopProduct-link woocommerce-loop-product__link"></a>
+                                                                            alt="Serum Kelapa Alami" /></div>
                                                                 </div>
                                                             </div>
                                                             <div class="product-caption">
-                                                                <h3 class="woocommerce-loop-product__title"><a
-                                                                        href="https://demo2.pavothemes.com/freshio/product/fantastic-granite-pants/">Fantastic
-                                                                        Granite Pants</a></h3>
-                                                                <span class="price"><span
-                                                                        class="woocommerce-Price-amount amount"><bdi><span
-                                                                                class="woocommerce-Price-currencySymbol">&#36;</span>35.12</bdi></span></span>
-                                                                <a href="/freshio/cart/?add-to-cart=239"
-                                                                    data-quantity="1"
-                                                                    class="button_cart product_type_simple add_to_cart_button ajax_add_to_cart"
-                                                                    data-product_id="239"
-                                                                    data-product_sku="fantastic-granite-pants-27555569"
-                                                                    aria-label="Add to cart: &ldquo;Fantastic Granite Pants&rdquo;"
-                                                                    rel="nofollow">
-                                                                    <span class="button-text">Add to cart</span>
-                                                                    <span class="button-icon">
-                                                                        <i aria-hidden="true"
-                                                                            class="freshio2-icon-angle-double-right"></i>
-                                                                    </span>
-                                                                </a>
+                                                                <h3 class="woocommerce-loop-product__title"><a href="#">Serum Kelapa Alami</a></h3>
+                                                                <span class="price"><span class="woocommerce-Price-amount amount"><bdi>Rp 78.500</bdi></span></span>
+                                                                <button type="button" class="btn-atc" onclick="showToast('Serum Kelapa Alami ditambahkan ke keranjang 🛒')">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                                                        <path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z" />
+                                                                    </svg>
+                                                                    <span>Tambah ke keranjang</span>
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     </li>
 
+                                                    <!-- Product 3: hl-01 -->
+                                                    <li class="swiper-slide product type-product post-hl-01 status-publish instock has-post-thumbnail purchasable product-type-simple">
+                                                        <div class="product-block">
+                                                            <div class="product-top">
+                                                                <div class="product-transition">
+                                                                    <div class="product-image"><img decoding="async" width="350" height="327"
+                                                                            src="../assets/foto-produk/spons-loofah.png"
+                                                                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+                                                                            alt="Spons Loofah Alami" /></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="product-caption">
+                                                                <h3 class="woocommerce-loop-product__title"><a href="#">Spons Loofah Alami</a></h3>
+                                                                <span class="price"><span class="woocommerce-Price-amount amount"><bdi>Rp 15.000</bdi></span></span>
+                                                                <button type="button" class="btn-atc" onclick="showToast('Spons Loofah Alami ditambahkan ke keranjang 🛒')">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                                                        <path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z" />
+                                                                    </svg>
+                                                                    <span>Tambah ke keranjang</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                    <!-- Product 4: hl-02 -->
+                                                    <li class="swiper-slide product type-product post-hl-02 status-publish instock has-post-thumbnail purchasable product-type-simple">
+                                                        <div class="product-block">
+                                                            <div class="product-top">
+                                                                <div class="product-transition">
+                                                                    <div class="product-image"><img decoding="async" width="350" height="327"
+                                                                            src="../assets/foto-produk/sikat-gigi.png"
+                                                                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+                                                                            alt="Sikat Gigi Bambu" /></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="product-caption">
+                                                                <h3 class="woocommerce-loop-product__title"><a href="#">Sikat Gigi Bambu</a></h3>
+                                                                <span class="price"><span class="woocommerce-Price-amount amount"><bdi>Rp 8.500</bdi></span></span>
+                                                                <button type="button" class="btn-atc" onclick="showToast('Sikat Gigi Bambu ditambahkan ke keranjang 🛒')">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                                                        <path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z" />
+                                                                    </svg>
+                                                                    <span>Tambah ke keranjang</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                    <!-- Product 5: fb-03 -->
+                                                    <li class="swiper-slide product type-product post-fb-03 status-publish instock has-post-thumbnail purchasable product-type-simple">
+                                                        <div class="product-block">
+                                                            <div class="product-top">
+                                                                <div class="product-transition">
+                                                                    <div class="product-image"><img decoding="async" width="350" height="327"
+                                                                            src="../assets/foto-produk/teh-bunga.png"
+                                                                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+                                                                            alt="Teh Bunga Herbal" /></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="product-caption">
+                                                                <h3 class="woocommerce-loop-product__title"><a href="#">Teh Bunga Herbal</a></h3>
+                                                                <span class="price"><span class="woocommerce-Price-amount amount"><bdi>Rp 20.000</bdi></span></span>
+                                                                <button type="button" class="btn-atc" onclick="showToast('Teh Bunga Herbal ditambahkan ke keranjang 🛒')">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                                                        <path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z" />
+                                                                    </svg>
+                                                                    <span>Tambah ke keranjang</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                    <!-- Product 6: fb-05 -->
+                                                    <li class="swiper-slide product type-product post-fb-05 status-publish instock has-post-thumbnail purchasable product-type-simple">
+                                                        <div class="product-block">
+                                                            <div class="product-top">
+                                                                <div class="product-transition">
+                                                                    <div class="product-image"><img decoding="async" width="350" height="327"
+                                                                            src="../assets/foto-produk/madu-murni.png"
+                                                                            class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+                                                                            alt="Madu Murni Hutan" /></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="product-caption">
+                                                                <h3 class="woocommerce-loop-product__title"><a href="#">Madu Murni Hutan</a></h3>
+                                                                <span class="price"><span class="woocommerce-Price-amount amount"><bdi>Rp 55.000</bdi></span></span>
+                                                                <button type="button" class="btn-atc" onclick="showToast('Madu Murni Hutan ditambahkan ke keranjang 🛒')">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                                                        <path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01-1.74-.96-.01.01L14.55 11H8.53L4.27 2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z" />
+                                                                    </svg>
+                                                                    <span>Tambah ke keranjang</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </li>
 
                                                 </ul>
                                             </div>
@@ -2828,7 +3262,7 @@
 
         const formatter = new Intl.NumberFormat('id-ID');
         const cartProductIds = ['hb-01', 'hb-02', 'hb-04'];
-        const recommendedProductIds = ['hb-02', 'hb-03', 'hl-01', 'hl-02'];
+        const recommendedProductIds = ['hb-02', 'hb-03', 'hl-01', 'hl-02', 'fb-03', 'fb-05'];
 
         function formatPrice(value) {
             return 'Rp ' + formatter.format(value);
@@ -2841,8 +3275,8 @@
                 <tr class="cart_item" data-product-id="${product.id}" data-price="${product.price}">
                     <td class="td-remove" data-label="Hapus">
                         <button class="btn-remove-item remove-cart-item" title="Hapus dari keranjang" aria-label="Hapus ${product.nama}">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="14" height="14">
+                                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
                             </svg>
                         </button>
                     </td>
@@ -2875,14 +3309,25 @@
             `;
         }
 
+        window.showToast = function(message) {
+            const toast = document.getElementById('wishlistToast');
+            if (toast) {
+                toast.textContent = message;
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 3000);
+            }
+        };
+
         function updateCartTotals() {
             const rows = Array.from(document.querySelectorAll('#cart-items-container tr.cart_item'));
             let subtotal = 0;
+            let totalQty = 0;
 
             rows.forEach(row => {
                 const qtyInput = row.querySelector('input.qty');
                 const quantity = Math.max(1, Number(qtyInput.value) || 1);
                 qtyInput.value = quantity;
+                totalQty += quantity;
 
                 const price = Number(row.dataset.price || 0);
                 const rowSubtotal = price * quantity;
@@ -2894,10 +3339,13 @@
                 }
             });
 
-            const subtotalEl = document.getElementById('cart-subtotal-value');
             const totalEl = document.getElementById('cart-total-value');
-            if (subtotalEl) subtotalEl.textContent = formatPrice(subtotal);
             if (totalEl) totalEl.textContent = formatPrice(subtotal);
+
+            const countEl = document.getElementById('cart-header-count');
+            if (countEl) {
+                countEl.textContent = `${totalQty} produk di keranjang`;
+            }
         }
 
         function renderCartItems() {
@@ -2952,6 +3400,18 @@
             renderRecommendedProducts();
             updateCartTotals();
 
+            const clearCartBtn = document.querySelector('.clear-cart-btn');
+            if (clearCartBtn) {
+                clearCartBtn.addEventListener('click', () => {
+                    const container = document.getElementById('cart-items-container');
+                    if (container) {
+                        container.innerHTML = '';
+                        updateCartTotals();
+                        window.showToast('Keranjang belanja telah dikosongkan 🛒');
+                    }
+                });
+            }
+
             const cartItemsContainer = document.getElementById('cart-items-container');
             if (!cartItemsContainer) return;
 
@@ -2985,6 +3445,7 @@
                         setTimeout(() => {
                             row.remove();
                             updateCartTotals();
+                            window.showToast('Produk dihapus dari keranjang 🛒');
                         }, 250);
                     }
                 }
