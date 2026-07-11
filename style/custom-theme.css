@@ -143,3 +143,52 @@
 .ps-theme-wpc:hover > .ps-scrollbar-y-rail:hover > .ps-scrollbar-y {
     background-color: rgba(0, 0, 0, 1);
 }
+@media (min-width: 1025px) {
+    .widget-area {
+        padding: 24px 20px;
+        background: #ffffff;
+        border: 1px solid #e7e7e7;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    .widget-area .widget {
+        padding: 0;
+        border: 0;
+        background: transparent;
+    }
+
+    .widget-area .widgettitle {
+        margin-bottom: 14px;
+        font-size: 16px;
+        font-weight: 700;
+        color: #1f2937;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+
+    .widget-area .product-categories .cat-item {
+        padding: 8px 0;
+        border-bottom: 1px solid #f1f1f1;
+    }
+
+    .widget-area .product-categories .cat-item:last-child {
+        border-bottom: 0;
+    }
+
+    .widget-area .product-categories .cat-item a {
+        color: #4b5563;
+        font-weight: 500;
+    }
+
+    .widget-area .product-categories .cat-item.current-cat > a {
+        color: #bac34e;
+        font-weight: 700;
+    }
+}
+
+@media (max-width: 1024px) {
+    .widget-area {
+        padding: 0 0 24px;
+    }
+}
