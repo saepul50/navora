@@ -3150,7 +3150,6 @@ button.menu-toggle {
   font-weight: normal;
   line-height: 1;
   vertical-align: middle;
-  content: "";
   font-weight: var(--e-global-typography-secondary-font-weight);
   font-size: 14px;
   font-size: 0.875rem;
@@ -3199,7 +3198,6 @@ button.menu-toggle {
   font-weight: normal;
   line-height: 1;
   vertical-align: middle;
-  content: "";
   font-weight: var(--e-global-typography-secondary-font-weight);
   font-size: 14px;
   font-size: 0.875rem;
